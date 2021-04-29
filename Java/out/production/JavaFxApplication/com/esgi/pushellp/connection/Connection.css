@@ -1,0 +1,13 @@
+@font-face {
+    src: url("../ressources/fonts/Roboto/Roboto-Regular.ttf");
+}
+
+.root{
+    -fx-background-color: #7A0503;
+}
+
+
+.label {
+    -fx-text-fill: rgb(255,255,255);
+    -fx-font-family: 'Roboto';
+}
