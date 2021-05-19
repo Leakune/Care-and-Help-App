@@ -9,14 +9,14 @@ import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;
 
-public class Connection extends Application {
+public class ConnectionApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stageConnection) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Connection.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ConnectionApp.fxml"));
         Platform.runLater( () -> root.requestFocus() ); //permet de defocus l'input Login en focusant le container
 
         Scene scene = new Scene(root);
