@@ -1,6 +1,6 @@
 package com.esgi.pushellp.connection;
 
-import com.esgi.pushellp.ConnectBdd;
+import com.esgi.pushellp.OurHttpClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,14 +16,16 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.sql.*;
-import java.util.Base64;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ConnectionController implements Initializable {
     private static final int ITERATION_COUNT = 65536;
     private static final int KEY_LENGTH = 128;
     private static final String ALGORITHME = "PBKDF2WithHmacSHA1";
+    private static final String API_SERVER_URI = "http://0.0.0.0:3000/login";
+    private HashMap<String, String> headers;
+    private HashMap<Object, Object> bodyRequest;
+
     private Connection connection;
     private Statement stmt;
     private PreparedStatement prepStmt;
@@ -43,61 +45,40 @@ public class ConnectionController implements Initializable {
         System.out.println("Texfield: " + loginTextField.getText());
         System.out.println("PasswordField: " + pwdPasswordField.getText());
 
+        OurHttpClient httpClient = new OurHttpClient();
         try {
-            if(isRegistered(pwdPasswordField.getText(), findUserDataByLogin(loginTextField.getText()))){
-                System.out.println("you are registered");
-            }else{
-                System.out.println("you are not registered");
-            }
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException | SQLException e) {
+            httpClient.sendRequest(
+                    "POST",
+                    API_SERVER_URI,
+                    headers = new HashMap<>(Map.ofEntries(
+                        //new AbstractMap.SimpleEntry<String, String>("User-Agent", "Java 11 HttpClient Bot"),
+                        new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
+                    )),
+                    bodyRequest = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<Object, Object>("username", loginTextField.getText()),
+                            new AbstractMap.SimpleEntry<Object, Object>("password", pwdPasswordField.getText())
+                    ))
+            );
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-    private ResultSet findUserDataByLogin(String login) throws SQLException {
-        prepStmt = connection.prepareStatement("SELECT * FROM individual WHERE pseudo = ?;");
-        prepStmt.setString(1, login);
-        rs = prepStmt.executeQuery();
-        System.out.println(rs);
-        rs.next();
-        //System.out.println(rs);
-        return rs;
+//        try {
+//            if(isRegistered(pwdPasswordField.getText(), findUserDataByLogin(loginTextField.getText()))){
+//                System.out.println("you are registered");
+//            }else{
+//                System.out.println("you are not registered");
+//            }
+//        } catch (NoSuchAlgorithmException | InvalidKeySpecException | SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Hello World");
-        try {
-            connection = (Connection) new ConnectBdd().getConnection();
-            stmt = connection.createStatement();
-            System.out.println("Successfully connecting to database:");
-
-        } catch (SQLException | ClassNotFoundException throwables) {
-            System.out.println("Error connecting to database:");
-            throwables.printStackTrace();
-        }
     }
 
-    public Boolean isRegistered(String password, ResultSet userData) throws NoSuchAlgorithmException, InvalidKeySpecException, SQLException {
-        //generate random salt
-        //String saltString = generateSaltString();
-        //userData.next();
-        String saltString = userData.getString("salt");
-        System.out.println("saltString:" + saltString);
-
-        String hashString = userData.getString("password");
-        System.out.println("hashString:" + hashString);
-
-        String hash = generateHash(saltString, password);
-        System.out.println("hash: " + hash);
-        if(hash.equals(hashString)){
-            return true;
-        }else{
-            return false;
-        }
-
-
-    }
     public String generateSaltString(){
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];

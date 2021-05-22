@@ -25,4 +25,14 @@ public class ConnectionApp extends Application {
         stageConnection.setResizable(false);
         stageConnection.show();
     }
+    @Override
+    public void init() throws Exception { // méthode appelée avant la méthode start
+        System.out.println("init called");
+    }
+
+    @Override
+    public void stop() throws Exception { //méthode appelée quand l'application est stoppée
+        System.out.println("stop called");
+    }
+
 }
