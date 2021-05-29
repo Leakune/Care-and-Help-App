@@ -22,7 +22,7 @@ public class OurHttpClient {
      * @param bodyRequest: the content body passed in our request (e.g {"username": "value", "password" : "value"})
      * @throws Exception
      */
-    public void sendRequest(String http, String uri, HashMap<String, String> headers, HashMap<Object, Object> bodyRequest) throws Exception {
+    public HttpResponse<String> sendRequest(String http, String uri, HashMap<String, String> headers, HashMap<Object, Object> bodyRequest) throws Exception {
 
         HttpRequest.Builder builder =  HttpRequest.newBuilder();
         if(http == "GET"){
@@ -43,11 +43,12 @@ public class OurHttpClient {
 
         // print response body
         System.out.println(response.body());
+        return response;
 
     }
 
     /**
-     * method to convert our bodyRequest into a HttpRequest.BodyPublisher, which is a flow of byte buffers
+     * method to convert our bodyRequest into a HttpRequest.BodyPublisher, which will be sent in our request
      * @param data: our bodyRequest
      * @return HttpRequest.BodyPublisher: flow of byte buffers
      */

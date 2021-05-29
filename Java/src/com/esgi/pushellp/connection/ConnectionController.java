@@ -4,12 +4,14 @@ import com.esgi.pushellp.OurHttpClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.net.URL;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -47,20 +49,26 @@ public class ConnectionController implements Initializable {
 
         OurHttpClient httpClient = new OurHttpClient();
         try {
-            httpClient.sendRequest(
+            HttpResponse<String> response = httpClient.sendRequest(
                     "POST",
                     API_SERVER_URI,
                     headers = new HashMap<>(Map.ofEntries(
-                        //new AbstractMap.SimpleEntry<String, String>("User-Agent", "Java 11 HttpClient Bot"),
-                        new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
+                            //new AbstractMap.SimpleEntry<String, String>("User-Agent", "Java 11 HttpClient Bot"),
+                            new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
                     )),
                     bodyRequest = new HashMap<>(Map.ofEntries(
                             new AbstractMap.SimpleEntry<Object, Object>("username", loginTextField.getText()),
                             new AbstractMap.SimpleEntry<Object, Object>("password", pwdPasswordField.getText())
                     ))
             );
+            if(response.statusCode() != 200){
+                showAlertDialogError("Error finding your profile", response.body());
+                return;
+            }
+            System.out.println("Connected!");
         } catch (Exception e) {
             e.printStackTrace();
+            showAlertDialogError("Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
         }
 
 //        try {
@@ -73,7 +81,13 @@ public class ConnectionController implements Initializable {
 //            e.printStackTrace();
 //        }
     }
-
+    public void showAlertDialogError(String title, String content){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Hello World");
