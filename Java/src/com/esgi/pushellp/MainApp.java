@@ -1,4 +1,4 @@
-package com.esgi.pushellp.connection;
+package com.esgi.pushellp;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -9,21 +9,21 @@ import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;
 
-public class ConnectionApp extends Application {
+public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stageConnection) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ConnectionApp.fxml"));
+    public void start(Stage MainStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("connection/ConnectionApp.fxml"));
         Platform.runLater( () -> root.requestFocus() ); //permet de defocus l'input Login en focusant le container
 
         Scene scene = new Scene(root);
 
-        stageConnection.setScene(scene);
-        stageConnection.setResizable(false);
-        stageConnection.show();
+        MainStage.setScene(scene);
+        MainStage.setResizable(false);
+        MainStage.show();
     }
     @Override
     public void init() throws Exception { // méthode appelée avant la méthode start

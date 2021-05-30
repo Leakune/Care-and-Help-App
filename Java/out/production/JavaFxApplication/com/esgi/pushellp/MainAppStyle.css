@@ -23,3 +23,12 @@
 .button:hover{
     -fx-cursor: hand;
 }
+.container_white{
+    -fx-background-color: white;
+}
+.container_white_border{
+    -fx-background-color: white;
+    -fx-border-style: solid solid solid solid;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+}

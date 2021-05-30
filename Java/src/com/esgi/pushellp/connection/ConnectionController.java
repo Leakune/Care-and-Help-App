@@ -1,6 +1,7 @@
 package com.esgi.pushellp.connection;
 
 import com.esgi.pushellp.OurHttpClient;
+import com.esgi.pushellp.ticketList.TicketListController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,10 +63,12 @@ public class ConnectionController implements Initializable {
                     ))
             );
             if(response.statusCode() != 200){
-                showAlertDialogError("Error finding your profile", response.body());
+                showAlertDialogError("Error finding your profile", "You have given a wrong username and/or password");
                 return;
             }
             System.out.println("Connected!");
+            TicketListController ticketListController = new TicketListController(this);
+            ticketListController.showStage();
         } catch (Exception e) {
             e.printStackTrace();
             showAlertDialogError("Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
