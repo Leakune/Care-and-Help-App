@@ -13,7 +13,6 @@ public class OurHttpClient {
             .version(HttpClient.Version.HTTP_2)
             .build();
 
-
     /**
      * method to send http requests into our api server
      * @param http: our type of http request (e.g "GET", "POST",...)
@@ -25,9 +24,9 @@ public class OurHttpClient {
     public HttpResponse<String> sendRequest(String http, String uri, HashMap<String, String> headers, HashMap<Object, Object> bodyRequest) throws Exception {
 
         HttpRequest.Builder builder =  HttpRequest.newBuilder();
-        if(http == "GET"){
+        if(http.equals("GET")){
             builder.GET();
-        }else if(http == "POST"){
+        }else if(http.equals("POST")){
             builder.POST(buildFormDataFromMap(bodyRequest));
         }
         builder.uri(URI.create(uri));

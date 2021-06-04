@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://$USER_HOME$/javafx-sdk-16/lib" />
       <root url="jar://$USER_HOME$/postgresql-42.2.20.jar!/" />
+      <root url="jar://$USER_HOME$/gson-2.8.7.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="file://$USER_HOME$/javafx-sdk-16/javafx-16-javadoc" />

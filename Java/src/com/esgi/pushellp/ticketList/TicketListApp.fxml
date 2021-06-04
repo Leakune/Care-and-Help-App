@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane prefHeight="690.0" prefWidth="877.0" stylesheets="@../MainAppStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="89.0" prefWidth="891.0" style="-fx-background-color: white;">
@@ -38,7 +37,7 @@
                         <Image url="@../ressources/images/unknown_profile.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="idUser" text="User" />
+                  <Label fx:id="labelUser" text="User" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" />

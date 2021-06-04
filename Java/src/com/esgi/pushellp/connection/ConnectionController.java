@@ -1,7 +1,12 @@
 package com.esgi.pushellp.connection;
 
+import com.esgi.pushellp.MainApp;
 import com.esgi.pushellp.OurHttpClient;
+import com.esgi.pushellp.models.Individual;
 import com.esgi.pushellp.ticketList.TicketListController;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,11 +33,7 @@ public class ConnectionController implements Initializable {
     private static final String API_SERVER_URI = "http://0.0.0.0:3000/login";
     private HashMap<String, String> headers;
     private HashMap<Object, Object> bodyRequest;
-
-    private Connection connection;
-    private Statement stmt;
-    private PreparedStatement prepStmt;
-    private ResultSet rs;
+    private Gson gson = new Gson();
 
 
 
@@ -54,7 +55,6 @@ public class ConnectionController implements Initializable {
                     "POST",
                     API_SERVER_URI,
                     headers = new HashMap<>(Map.ofEntries(
-                            //new AbstractMap.SimpleEntry<String, String>("User-Agent", "Java 11 HttpClient Bot"),
                             new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
                     )),
                     bodyRequest = new HashMap<>(Map.ofEntries(
@@ -66,23 +66,19 @@ public class ConnectionController implements Initializable {
                 showAlertDialogError("Error finding your profile", "You have given a wrong username and/or password");
                 return;
             }
-            System.out.println("Connected!");
-            TicketListController ticketListController = new TicketListController(this);
+            JsonObject convertedObject = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(response.body(), JsonObject.class);
+            //System.out.println(convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(0).getClass().getName());
+
+            Individual indvdl = gson.fromJson(convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(0), Individual.class);
+            System.out.println(indvdl);
+
+            TicketListController ticketListController = new TicketListController(this, indvdl);
             ticketListController.showStage();
         } catch (Exception e) {
             e.printStackTrace();
             showAlertDialogError("Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
         }
 
-//        try {
-//            if(isRegistered(pwdPasswordField.getText(), findUserDataByLogin(loginTextField.getText()))){
-//                System.out.println("you are registered");
-//            }else{
-//                System.out.println("you are not registered");
-//            }
-//        } catch (NoSuchAlgorithmException | InvalidKeySpecException | SQLException e) {
-//            e.printStackTrace();
-//        }
     }
     public void showAlertDialogError(String title, String content){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -102,9 +98,7 @@ public class ConnectionController implements Initializable {
         random.nextBytes(salt);
         return Base64.getEncoder().encodeToString(salt);
     }
-//    public String findSaltStringFromDb(String login){
-//
-//    };
+
 
     public String generateHash(String saltString, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         //convert String > byte[]
