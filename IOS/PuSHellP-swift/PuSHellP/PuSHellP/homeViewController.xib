@@ -17,6 +17,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="homeViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
+                <outlet property="MotDePasseTextField" destination="TId-c9-WiU" id="5Az-cP-WgO"/>
+                <outlet property="PseudoTextField" destination="uq5-Kn-KiU" id="W97-MG-L0H"/>
+                <outlet property="marketButton" destination="VYi-eN-I4V" id="xrK-I6-Bff"/>
+                <outlet property="motDePasse" destination="TId-c9-WiU" id="HIg-d7-vjw"/>
+                <outlet property="pseudo" destination="uq5-Kn-KiU" id="Wkp-OG-Ged"/>
+                <outlet property="submitButton" destination="VYi-eN-I4V" id="hIe-Tl-FKM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,48 +35,69 @@
                     <rect key="frame" x="-53" y="-199" width="884" height="666"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="logo-1" translatesAutoresizingMaskIntoConstraints="NO" id="NcF-Ak-lOM">
-                    <rect key="frame" x="169" y="20" width="473" height="329"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-1" translatesAutoresizingMaskIntoConstraints="NO" id="NcF-Ak-lOM">
+                    <rect key="frame" x="187" y="-150" width="395" height="699"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Unknown-1" translatesAutoresizingMaskIntoConstraints="NO" id="T8P-0v-1qM">
-                    <rect key="frame" x="353" y="413" width="109" height="137"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Unknown-1" translatesAutoresizingMaskIntoConstraints="NO" id="T8P-0v-1qM">
+                    <rect key="frame" x="330" y="363" width="109" height="225"/>
                 </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Mot de passe" textAlignment="center" minimumFontSize="17" background="mdp_bis" translatesAutoresizingMaskIntoConstraints="NO" id="TId-c9-WiU">
-                    <rect key="frame" x="176" y="724" width="459" height="92"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Mot de passe" textAlignment="center" minimumFontSize="17" background="mdp_bis" translatesAutoresizingMaskIntoConstraints="NO" id="TId-c9-WiU">
+                    <rect key="frame" x="155" y="705" width="459" height="99"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                    <connections>
+                        <action selector="MotDePasseTextField:" destination="-1" eventType="editingDidEnd" id="vrr-UC-Z1l"/>
+                    </connections>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pseudo" textAlignment="center" minimumFontSize="17" background="mdp_bis" translatesAutoresizingMaskIntoConstraints="NO" id="uq5-Kn-KiU">
-                    <rect key="frame" x="176" y="608" width="459" height="92"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pseudo" textAlignment="center" minimumFontSize="17" background="mdp_bis" translatesAutoresizingMaskIntoConstraints="NO" id="uq5-Kn-KiU">
+                    <rect key="frame" x="155" y="584" width="459" height="97"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" textContentType="nickname"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="PseudoTextField:" destination="-1" eventType="editingDidEnd" id="8sC-cV-Pn9"/>
+                    </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYi-eN-I4V">
-                    <rect key="frame" x="298" y="868" width="218" height="56"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="218" placeholderIntrinsicHeight="69" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYi-eN-I4V">
+                    <rect key="frame" x="275" y="864" width="218" height="69"/>
                     <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="38"/>
-                    <state key="normal" title="SUBMIT" backgroundImage="submit 2">
+                    <state key="normal" title="SUBMIT" backgroundImage="submit-1">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="21Q-ni-m87"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="13.333333333333332" y="80.555555555555557"/>
+            <constraints>
+                <constraint firstItem="NcF-Ak-lOM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="187" id="2vc-N2-lyX"/>
+                <constraint firstItem="T8P-0v-1qM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="363" id="3ZL-6S-ZBc"/>
+                <constraint firstItem="T8P-0v-1qM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="330" id="3gZ-0w-wSb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TId-c9-WiU" secondAttribute="trailing" constant="154" id="FLv-hj-C43"/>
+                <constraint firstItem="TId-c9-WiU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="705" id="HxX-8i-aTC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VYi-eN-I4V" secondAttribute="bottom" constant="91" id="MjT-Fm-OeV"/>
+                <constraint firstItem="uq5-Kn-KiU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="155" id="Peq-c8-ujv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T8P-0v-1qM" secondAttribute="trailing" constant="329" id="UQi-zJ-xE2"/>
+                <constraint firstItem="TId-c9-WiU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="155" id="Xce-zj-sYe"/>
+                <constraint firstItem="NcF-Ak-lOM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-150" id="XjP-nw-FMh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VYi-eN-I4V" secondAttribute="trailing" constant="275" id="bHz-H1-4D9"/>
+                <constraint firstItem="VYi-eN-I4V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="275" id="lue-7a-wgq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uq5-Kn-KiU" secondAttribute="trailing" constant="154" id="mLa-rj-SmB"/>
+                <constraint firstItem="uq5-Kn-KiU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="584" id="tgT-uZ-Pt0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NcF-Ak-lOM" secondAttribute="trailing" constant="186" id="va0-XW-YF2"/>
+            </constraints>
+            <point key="canvasLocation" x="13.28125" y="80.2734375"/>
         </view>
     </objects>
     <resources>
         <image name="Unknown-1" width="225" height="225"/>
         <image name="logo-1" width="699" height="699"/>
         <image name="mdp_bis" width="301" height="56"/>
-        <image name="submit 2" width="160" height="40"/>
+        <image name="submit-1" width="160" height="40"/>
         <image name="unknown" width="348" height="192"/>
     </resources>
 </document>

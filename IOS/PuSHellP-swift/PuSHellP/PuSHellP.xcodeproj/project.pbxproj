@@ -13,6 +13,8 @@
 		876328612656AD4B00B66420 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876328602656AD4B00B66420 /* AppDelegate.swift */; };
 		87F54B412665490E0048D3F7 /* roboto in Resources */ = {isa = PBXBuildFile; fileRef = 87F54B402665490E0048D3F7 /* roboto */; };
 		87F54B49266574190048D3F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87F54B48266574190048D3F7 /* Assets.xcassets */; };
+		87F54B50266BB8AE0048D3F7 /* FavorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */; };
+		87F54B51266BB8AE0048D3F7 /* FavorisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87F54B4F266BB8AE0048D3F7 /* FavorisViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		876328602656AD4B00B66420 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../../../../../../Nesprecho 2/Nesprecho/AppDelegate.swift"; sourceTree = "<group>"; };
 		87F54B402665490E0048D3F7 /* roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = roboto; sourceTree = "<group>"; };
 		87F54B48266574190048D3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorisViewController.swift; sourceTree = "<group>"; };
+		87F54B4F266BB8AE0048D3F7 /* FavorisViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavorisViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		87308D9C263C323B005A85F3 /* PuSHellP */ = {
 			isa = PBXGroup;
 			children = (
+				87F54B53266BB8F00048D3F7 /* Scenes */,
 				876328602656AD4B00B66420 /* AppDelegate.swift */,
 				87308DA8263C323C005A85F3 /* LaunchScreen.storyboard */,
 				87308DAB263C323C005A85F3 /* Info.plist */,
@@ -63,8 +68,17 @@
 				87308DCB263C3E8B005A85F3 /* homeViewController.xib */,
 				87F54B48266574190048D3F7 /* Assets.xcassets */,
 				87F54B402665490E0048D3F7 /* roboto */,
+				87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */,
+				87F54B4F266BB8AE0048D3F7 /* FavorisViewController.xib */,
 			);
 			path = PuSHellP;
+			sourceTree = "<group>";
+		};
+		87F54B53266BB8F00048D3F7 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +141,7 @@
 			files = (
 				87308DCD263C3E8B005A85F3 /* homeViewController.xib in Resources */,
 				87308DAA263C323C005A85F3 /* LaunchScreen.storyboard in Resources */,
+				87F54B51266BB8AE0048D3F7 /* FavorisViewController.xib in Resources */,
 				87F54B412665490E0048D3F7 /* roboto in Resources */,
 				87F54B49266574190048D3F7 /* Assets.xcassets in Resources */,
 			);
@@ -140,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				876328612656AD4B00B66420 /* AppDelegate.swift in Sources */,
+				87F54B50266BB8AE0048D3F7 /* FavorisViewController.swift in Sources */,
 				87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
