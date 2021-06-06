@@ -17,14 +17,12 @@ class homeViewController: UIViewController {
     // MARK: Outlets
    
     
-    @IBOutlet weak var pseudoTextField: UITextField!
-    @IBOutlet weak var motDePasseTextField: UITextField!
-    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet var pseudoTextField: UITextField!
+    @IBOutlet var motDePasseTextField: UITextField!
+    @IBOutlet var submitButton: UIButton!
     
-    @IBAction func submit(_ sender: Any) {
-    
-    
-        let pseudo = self.pseudoTextField.text ?? ""
+    @IBAction func submitButton(_ sender: Any) {
+    let pseudo = self.pseudoTextField.text ?? ""
         let motDePasse = self.motDePasseTextField.text ?? ""
         guard pseudo.count > 0,
             motDePasse.count > 0

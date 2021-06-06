@@ -11,6 +11,12 @@
 		87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87308DCA263C3E8B005A85F3 /* homeViewController.swift */; };
 		87308DCD263C3E8B005A85F3 /* homeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87308DCB263C3E8B005A85F3 /* homeViewController.xib */; };
 		876328612656AD4B00B66420 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876328602656AD4B00B66420 /* AppDelegate.swift */; };
+		87BB21EF266C059200375241 /* rubriqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB21ED266C059200375241 /* rubriqueViewController.swift */; };
+		87BB21F0266C059200375241 /* rubriqueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB21EE266C059200375241 /* rubriqueViewController.xib */; };
+		87BB21F6266CD41F00375241 /* newPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB21F4266CD41F00375241 /* newPostViewController.swift */; };
+		87BB21F7266CD41F00375241 /* newPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB21F5266CD41F00375241 /* newPostViewController.xib */; };
+		87BB21FB266CE64000375241 /* allRubriquesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB21F9266CE64000375241 /* allRubriquesViewController.swift */; };
+		87BB21FC266CE64000375241 /* allRubriquesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB21FA266CE64000375241 /* allRubriquesViewController.xib */; };
 		87F54B412665490E0048D3F7 /* roboto in Resources */ = {isa = PBXBuildFile; fileRef = 87F54B402665490E0048D3F7 /* roboto */; };
 		87F54B49266574190048D3F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87F54B48266574190048D3F7 /* Assets.xcassets */; };
 		87F54B50266BB8AE0048D3F7 /* FavorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */; };
@@ -23,7 +29,13 @@
 		87308DAB263C323C005A85F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87308DCA263C3E8B005A85F3 /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		87308DCB263C3E8B005A85F3 /* homeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeViewController.xib; sourceTree = "<group>"; };
-		876328602656AD4B00B66420 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../../../../../../Nesprecho 2/Nesprecho/AppDelegate.swift"; sourceTree = "<group>"; };
+		876328602656AD4B00B66420 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		87BB21ED266C059200375241 /* rubriqueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rubriqueViewController.swift; sourceTree = "<group>"; };
+		87BB21EE266C059200375241 /* rubriqueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = rubriqueViewController.xib; sourceTree = "<group>"; };
+		87BB21F4266CD41F00375241 /* newPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPostViewController.swift; sourceTree = "<group>"; };
+		87BB21F5266CD41F00375241 /* newPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = newPostViewController.xib; sourceTree = "<group>"; };
+		87BB21F9266CE64000375241 /* allRubriquesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allRubriquesViewController.swift; sourceTree = "<group>"; };
+		87BB21FA266CE64000375241 /* allRubriquesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = allRubriquesViewController.xib; sourceTree = "<group>"; };
 		87F54B402665490E0048D3F7 /* roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = roboto; sourceTree = "<group>"; };
 		87F54B48266574190048D3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorisViewController.swift; sourceTree = "<group>"; };
@@ -66,10 +78,10 @@
 				87308DAB263C323C005A85F3 /* Info.plist */,
 				87308DCA263C3E8B005A85F3 /* homeViewController.swift */,
 				87308DCB263C3E8B005A85F3 /* homeViewController.xib */,
-				87F54B48266574190048D3F7 /* Assets.xcassets */,
-				87F54B402665490E0048D3F7 /* roboto */,
 				87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */,
 				87F54B4F266BB8AE0048D3F7 /* FavorisViewController.xib */,
+				87F54B48266574190048D3F7 /* Assets.xcassets */,
+				87F54B402665490E0048D3F7 /* roboto */,
 			);
 			path = PuSHellP;
 			sourceTree = "<group>";
@@ -77,6 +89,12 @@
 		87F54B53266BB8F00048D3F7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				87BB21ED266C059200375241 /* rubriqueViewController.swift */,
+				87BB21EE266C059200375241 /* rubriqueViewController.xib */,
+				87BB21F4266CD41F00375241 /* newPostViewController.swift */,
+				87BB21F5266CD41F00375241 /* newPostViewController.xib */,
+				87BB21F9266CE64000375241 /* allRubriquesViewController.swift */,
+				87BB21FA266CE64000375241 /* allRubriquesViewController.xib */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -139,11 +157,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87BB21F7266CD41F00375241 /* newPostViewController.xib in Resources */,
+				87BB21FC266CE64000375241 /* allRubriquesViewController.xib in Resources */,
 				87308DCD263C3E8B005A85F3 /* homeViewController.xib in Resources */,
 				87308DAA263C323C005A85F3 /* LaunchScreen.storyboard in Resources */,
 				87F54B51266BB8AE0048D3F7 /* FavorisViewController.xib in Resources */,
 				87F54B412665490E0048D3F7 /* roboto in Resources */,
 				87F54B49266574190048D3F7 /* Assets.xcassets in Resources */,
+				87BB21F0266C059200375241 /* rubriqueViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +175,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87BB21F6266CD41F00375241 /* newPostViewController.swift in Sources */,
 				876328612656AD4B00B66420 /* AppDelegate.swift in Sources */,
+				87BB21EF266C059200375241 /* rubriqueViewController.swift in Sources */,
 				87F54B50266BB8AE0048D3F7 /* FavorisViewController.swift in Sources */,
+				87BB21FB266CE64000375241 /* allRubriquesViewController.swift in Sources */,
 				87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
