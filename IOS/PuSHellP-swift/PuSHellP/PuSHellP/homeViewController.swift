@@ -41,8 +41,8 @@ class homeViewController: UIViewController {
                     return
                 }
                 print(idvl.description)
-//                let controller = AllCryptoViewController.newInstance(marketsCoins: self.markets)
-//                self.navigationController?.pushViewController(controller, animated: true)
+                let controller = FavorisViewController.newInstance(individual: idvl)
+                self.navigationController?.pushViewController(controller, animated: true)
             }
         })
     }

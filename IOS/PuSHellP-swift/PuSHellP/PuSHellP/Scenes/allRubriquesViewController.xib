@@ -19,17 +19,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uIc-mk-GOz">
-                    <rect key="frame" x="51" y="179" width="666" height="813"/>
+                    <rect key="frame" x="20" y="106" width="728" height="797"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <tabBar contentMode="scaleToFill" translucent="NO" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="lp3-v0-MmM">
+                    <rect key="frame" x="0.0" y="946" width="768" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="768" id="Q2Q-PB-ojF"/>
+                        <constraint firstAttribute="height" constant="49" id="Wqi-AM-vGF"/>
+                    </constraints>
+                    <items>
+                        <tabBarItem image="petit+ 2" largeContentSizeImage="+" id="oBG-Ck-kqY">
+                            <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                        </tabBarItem>
+                    </items>
+                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tabBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zso-E9-Jfc">
+                    <rect key="frame" x="29" y="23" width="62" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="62" id="MbW-ZR-2kB"/>
+                        <constraint firstAttribute="height" constant="48" id="wCZ-NY-cC3"/>
+                    </constraints>
+                    <state key="normal" image="retour 3"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="lp3-v0-MmM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6hM-GA-GBp"/>
+                <constraint firstItem="zso-E9-Jfc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="29" id="RKJ-sv-m5L"/>
+                <constraint firstItem="lp3-v0-MmM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RhO-nF-lTS"/>
+                <constraint firstItem="zso-E9-Jfc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="T9I-6P-BI7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="lp3-v0-MmM" secondAttribute="bottom" constant="29" id="x9q-Be-Vvf"/>
+            </constraints>
             <point key="canvasLocation" x="121.875" y="78.515625"/>
         </view>
     </objects>
     <resources>
+        <image name="+" width="206" height="240"/>
+        <image name="petit+ 2" width="92" height="106"/>
+        <image name="retour 3" width="116" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

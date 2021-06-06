@@ -16,6 +16,11 @@ class FavorisViewController: UIViewController {
     }
 
 
+    @IBOutlet var tabBarPost: UITabBar!
+    // ajouter la conexion avec la Tab bar
+    //let controller = newPostViewController()
+       // self.navigationController?.pushViewController(controller, animated: true)
+    
     /*
     // MARK: - Navigation
 
