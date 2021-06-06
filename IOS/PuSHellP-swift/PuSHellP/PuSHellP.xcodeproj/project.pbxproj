@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4344610C266D133200C0741B /* RequestConnexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344610B266D133200C0741B /* RequestConnexion.swift */; };
+		4344610F266D137B00C0741B /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344610E266D137B00C0741B /* Individual.swift */; };
+		43446113266D4D8C00C0741B /* ConvertDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43446112266D4D8C00C0741B /* ConvertDate.swift */; };
 		87308DAA263C323C005A85F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87308DA8263C323C005A85F3 /* LaunchScreen.storyboard */; };
 		87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87308DCA263C3E8B005A85F3 /* homeViewController.swift */; };
 		87308DCD263C3E8B005A85F3 /* homeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87308DCB263C3E8B005A85F3 /* homeViewController.xib */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4344610B266D133200C0741B /* RequestConnexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConnexion.swift; sourceTree = "<group>"; };
+		4344610E266D137B00C0741B /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
+		43446112266D4D8C00C0741B /* ConvertDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertDate.swift; sourceTree = "<group>"; };
 		87308D9A263C323B005A85F3 /* PuSHellP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuSHellP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87308DA9263C323C005A85F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87308DAB263C323C005A85F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +59,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4344610A266D130500C0741B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4344610B266D133200C0741B /* RequestConnexion.swift */,
+				43446112266D4D8C00C0741B /* ConvertDate.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4344610D266D136A00C0741B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4344610E266D137B00C0741B /* Individual.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		87308D91263C323B005A85F3 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +95,8 @@
 		87308D9C263C323B005A85F3 /* PuSHellP */ = {
 			isa = PBXGroup;
 			children = (
+				4344610D266D136A00C0741B /* Model */,
+				4344610A266D130500C0741B /* Services */,
 				87F54B53266BB8F00048D3F7 /* Scenes */,
 				876328602656AD4B00B66420 /* AppDelegate.swift */,
 				87308DA8263C323C005A85F3 /* LaunchScreen.storyboard */,
@@ -176,9 +201,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				87BB21F6266CD41F00375241 /* newPostViewController.swift in Sources */,
+				4344610C266D133200C0741B /* RequestConnexion.swift in Sources */,
 				876328612656AD4B00B66420 /* AppDelegate.swift in Sources */,
 				87BB21EF266C059200375241 /* rubriqueViewController.swift in Sources */,
+				4344610F266D137B00C0741B /* Individual.swift in Sources */,
 				87F54B50266BB8AE0048D3F7 /* FavorisViewController.swift in Sources */,
+				43446113266D4D8C00C0741B /* ConvertDate.swift in Sources */,
 				87BB21FB266CE64000375241 /* allRubriquesViewController.swift in Sources */,
 				87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */,
 			);

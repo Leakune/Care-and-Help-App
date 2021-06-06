@@ -31,54 +31,22 @@ class homeViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-                //declare parameter as a dictionary which contains string as key and value combination. considering inputs are valid
-
-                let parameters = ["username": pseudo, "password": motDePasse]
-
-                //create the url with URL
-                let url = URL(string: "http://0.0.0.0:3000/login")!
-
-                //create the session object
-                let session = URLSession.shared
-
-                //now create the URLRequest object using the url object
-                var request = URLRequest(url: url)
-                request.httpMethod = "POST" //set http method as POST
-
-                do {
-                    request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-                } catch let error {
-                    print(error.localizedDescription)
+        //create the url with URL
+        let uri = "http://0.0.0.0:3000/login"
+                
+        RequestConnexion.requestConnexion(urlString: uri, pseudo: pseudo, password: motDePasse, completion:{ individual in
+            DispatchQueue.main.async {
+                guard let idvl = individual else{
+                    print("no individual created")
+                    return
                 }
-
-                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-                //create dataTask using the session object to send data to the server
-                let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-
-                    guard error == nil else {
-                        return
-                    }
-
-                    guard let data = data else {
-                        return
-                    }
-
-                    do {
-                        //create json object from data
-                        if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                            print(json)
-                            //let controller = FavorisViewController()
-                            //self.navigationController?.pushViewController(controller, animated: true)
-                        }
-                    } catch let error {
-                        print(error.localizedDescription)
-                    }
-                })
-                task.resume()
+                print(idvl.description)
+//                let controller = AllCryptoViewController.newInstance(marketsCoins: self.markets)
+//                self.navigationController?.pushViewController(controller, animated: true)
             }
+        })
     }
+                
     
 
 
@@ -119,3 +87,4 @@ class homeViewController: UIViewController {
 //    }
 //
 //}
+}
