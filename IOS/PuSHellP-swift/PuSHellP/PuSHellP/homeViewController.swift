@@ -22,12 +22,14 @@ class homeViewController: UIViewController {
     @IBOutlet var submitButton: UIButton!
     
     @IBAction func submitButton(_ sender: Any) {
+        //self.displayLoading()
         let pseudo = self.pseudoTextField.text ?? ""
         let motDePasse = self.motDePasseTextField.text ?? ""
         guard pseudo.count > 0,
               motDePasse.count > 0
             else {
                 let alert = UIAlertController(title: "Erreur", message: "Champs obligatoires", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
             }
@@ -36,6 +38,8 @@ class homeViewController: UIViewController {
                 
         RequestConnexion.requestConnexion(urlString: uri, pseudo: pseudo, password: motDePasse, completion:{ individual in
             DispatchQueue.main.async {
+                //self.dismissLoading()
+                //self.dismiss(animated: false, completion: nil)
                 guard let idvl = individual else{
                     print("no individual created")
                     return
@@ -46,6 +50,24 @@ class homeViewController: UIViewController {
             }
         })
     }
+    
+//    public func displayLoading(){
+//        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+//
+//        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+//        loadingIndicator.startAnimating();
+//
+//        alert.view.addSubview(loadingIndicator)
+//        present(alert, animated: true, completion: nil)
+//    }
+//    public func dismissLoading(){
+//        if let vc = self.presentedViewController, vc is UIAlertController {
+//            dismiss(animated: false, completion: nil)
+//        }
+//    }
+    
                 
     
 

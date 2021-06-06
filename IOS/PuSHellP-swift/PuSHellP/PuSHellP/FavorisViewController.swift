@@ -8,9 +8,17 @@
 import UIKit
 
 class FavorisViewController: UIViewController {
+    public var individual: Individual?
+    
+    static func newInstance(individual: Individual) -> FavorisViewController{
+        let controller = FavorisViewController()
+        controller.individual = individual
+        return controller
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.individual!.description)
 
         // Do any additional setup after loading the view.
     }

@@ -9,9 +9,14 @@ import Foundation
 
 class RequestConnexion{
     
+    enum Result<Individual> {
+        case Success(Individual)
+        case Error(String, Int)
+    }
+    
     public static func individualFromDictionary(_ dict: [String: Any]) -> Individual? {
+        dump(dict)
         if let body = dict["body"] as? [String: Any]{
-            //dump(body)
             if let data = body["data"] as? [Any]{
                 //dump(data)
                 if let data1 = data[0] as? [String: Any]{
@@ -56,8 +61,11 @@ class RequestConnexion{
         return nil
         
     }
+    //public static func requestConnexion(urlString: String, pseudo: String, password: String, completion: @escaping (Result<Individual>) -> Void){
     public static func requestConnexion(urlString: String, pseudo: String, password: String, completion: @escaping (Individual?) -> Void){
+
         guard let uri = URL(string: urlString) else {
+            //completion(.Error("Invalid URL", 401))
             completion(nil)
             return
         }
@@ -84,6 +92,7 @@ class RequestConnexion{
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
 
             guard error == nil, let data = data else {
+                //completion(.Error("error api server", 401))
                 completion(nil)
                 return
             }
@@ -91,6 +100,7 @@ class RequestConnexion{
             do {
                 //create json object from data
                 guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                    //completion(.Error("format json is incorrect", 401))
                     completion(nil)
                     return
                     //print(json)
@@ -98,7 +108,18 @@ class RequestConnexion{
                     //let controller = FavorisViewController()
                     //self.navigationController?.pushViewController(controller, animated: true)
                 }
-                let individual = self.individualFromDictionary(json)
+                if let error = json["error"] as? String{
+                    print(error)
+                    //completion(.Error("errors are present", 401))
+                    completion(nil)
+                    return
+                }
+                guard let individual = self.individualFromDictionary(json) else{
+                    //completion(.Error("error creating individual", 401))
+                    completion(nil)
+                    return
+                }
+                //completion(.Success(individual))
                 completion(individual)
             } catch let error {
                 print(error.localizedDescription)

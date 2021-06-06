@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,7 +56,7 @@
                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="218" placeholderIntrinsicHeight="69" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYi-eN-I4V">
-                    <rect key="frame" x="275" y="864" width="218" height="69"/>
+                    <rect key="frame" x="275" y="834" width="218" height="69"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="218" id="G9w-xd-9jl"/>
                         <constraint firstAttribute="height" constant="69" id="v7J-2C-XAh"/>
@@ -90,14 +90,13 @@
                 <constraint firstItem="T8P-0v-1qM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="330" id="3gZ-0w-wSb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TId-c9-WiU" secondAttribute="trailing" constant="154" id="FLv-hj-C43"/>
                 <constraint firstItem="TId-c9-WiU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="705" id="HxX-8i-aTC"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VYi-eN-I4V" secondAttribute="bottom" constant="91" id="MjT-Fm-OeV"/>
                 <constraint firstItem="uq5-Kn-KiU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="155" id="Peq-c8-ujv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T8P-0v-1qM" secondAttribute="trailing" constant="329" id="UQi-zJ-xE2"/>
                 <constraint firstItem="TId-c9-WiU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="155" id="Xce-zj-sYe"/>
                 <constraint firstItem="NcF-Ak-lOM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-150" id="XjP-nw-FMh"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VYi-eN-I4V" secondAttribute="trailing" constant="275" id="bHz-H1-4D9"/>
-                <constraint firstItem="VYi-eN-I4V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="275" id="lue-7a-wgq"/>
+                <constraint firstItem="VYi-eN-I4V" firstAttribute="top" secondItem="TId-c9-WiU" secondAttribute="bottom" constant="30" id="gub-aT-k2m"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uq5-Kn-KiU" secondAttribute="trailing" constant="154" id="mLa-rj-SmB"/>
+                <constraint firstItem="VYi-eN-I4V" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oaO-Kf-dBy"/>
                 <constraint firstItem="uq5-Kn-KiU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="584" id="tgT-uZ-Pt0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NcF-Ak-lOM" secondAttribute="trailing" constant="186" id="va0-XW-YF2"/>
             </constraints>
