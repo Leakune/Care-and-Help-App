@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavorisViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
+                <outlet property="tabBarPost" destination="oNV-Qx-FD4" id="yH1-IA-JC1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,34 +31,52 @@
                     <color key="sectionIndexBackgroundColor" red="0.20266237849999999" green="0.0089402478189999999" blue="0.018912393600000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqf-IT-lIJ">
-                    <rect key="frame" x="334" y="921" width="100" height="113"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="100" id="9Us-X1-MVD"/>
-                        <constraint firstAttribute="height" constant="113" id="XYd-Rw-nat"/>
-                    </constraints>
-                    <state key="normal" image="+"/>
-                </button>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgT-y7-yhR">
-                    <rect key="frame" x="20" y="20" width="728" height="201"/>
+                    <rect key="frame" x="20" y="73" width="728" height="148"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="728" id="FU2-Z6-whp"/>
-                        <constraint firstAttribute="height" constant="201" id="mVT-vK-q3k"/>
+                        <constraint firstAttribute="height" constant="148" id="GTd-kQ-Z4y"/>
                     </constraints>
                 </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-" translatesAutoresizingMaskIntoConstraints="NO" id="zak-7g-5el">
+                    <rect key="frame" x="0.0" y="20" width="141" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="9tN-MZ-dEl"/>
+                        <constraint firstAttribute="width" constant="141" id="Lls-fi-8PO"/>
+                    </constraints>
+                </imageView>
+                <tabBar contentMode="scaleToFill" translucent="NO" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="oNV-Qx-FD4">
+                    <rect key="frame" x="0.0" y="946" width="768" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="768" id="8qy-tV-XhD"/>
+                        <constraint firstAttribute="height" constant="49" id="yUb-1r-DoE"/>
+                    </constraints>
+                    <items>
+                        <tabBarItem image="petit+ 2" largeContentSizeImage="+" id="RdY-iU-qzB">
+                            <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                        </tabBarItem>
+                    </items>
+                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tabBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="lqf-IT-lIJ" secondAttribute="bottom" constant="-10" id="5VG-as-AqX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zak-7g-5el" secondAttribute="trailing" constant="627" id="7f6-KM-Wvb"/>
+                <constraint firstItem="zak-7g-5el" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Act-WI-INA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bgT-y7-yhR" secondAttribute="trailing" constant="20" id="HRh-db-fAb"/>
                 <constraint firstItem="bgT-y7-yhR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="IT1-gb-GIt"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="PJ7-IB-TBI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oNV-Qx-FD4" secondAttribute="bottom" constant="29" id="RQH-hK-Xna"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="top" secondItem="bgT-y7-yhR" secondAttribute="bottom" constant="22" id="WEA-1L-ub8"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lqf-IT-lIJ" secondAttribute="trailing" constant="334" id="hEW-b5-XEs"/>
-                <constraint firstItem="lqf-IT-lIJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="334" id="qaj-sL-nIo"/>
+                <constraint firstItem="zak-7g-5el" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WkQ-mu-w5U"/>
+                <constraint firstItem="bgT-y7-yhR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="lBg-8Z-czj"/>
+                <constraint firstItem="oNV-Qx-FD4" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lEk-w4-fJs"/>
+                <constraint firstItem="oNV-Qx-FD4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="slp-SR-58F"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Buw-yk-QKx" secondAttribute="bottom" constant="111" id="sxu-qA-ck6"/>
-                <constraint firstItem="bgT-y7-yhR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="vjW-rB-A2j"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Buw-yk-QKx" secondAttribute="trailing" constant="20" id="zne-68-t3R"/>
             </constraints>
             <point key="canvasLocation" x="6.25" y="78.515625"/>
@@ -65,6 +84,8 @@
     </objects>
     <resources>
         <image name="+" width="206" height="240"/>
+        <image name="logo-" width="495" height="232"/>
+        <image name="petit+ 2" width="92" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
