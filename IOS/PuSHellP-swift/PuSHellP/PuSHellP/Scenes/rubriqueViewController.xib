@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="rubriqueViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
+                <outlet property="buttonAddPost" destination="7KS-b7-yy7" id="FZp-Tz-T2p"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,6 +33,9 @@
                         <constraint firstAttribute="width" constant="100" id="hLk-86-wH4"/>
                     </constraints>
                     <state key="normal" image="+"/>
+                    <connections>
+                        <action selector="buttonAddPost:" destination="-1" eventType="touchUpInside" id="cre-mX-tRp"/>
+                    </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SJZ-Yv-2E6">
                     <rect key="frame" x="20" y="185" width="728" height="728"/>

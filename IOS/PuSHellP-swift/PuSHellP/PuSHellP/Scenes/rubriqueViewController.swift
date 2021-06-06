@@ -15,7 +15,14 @@ class rubriqueViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBOutlet var buttonAddPost: UIButton!
+    @IBAction func buttonAddPost(_ sender: Any) {
+           // let controller = AllCryptoViewController(marketsCoins: //self.markets)
+        //    self.navigationController?.pushViewController(controller, animated: true)
+            
+        
+    }
+    
     /*
     // MARK: - Navigation
 

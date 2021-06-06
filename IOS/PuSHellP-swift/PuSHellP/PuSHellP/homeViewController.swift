@@ -22,10 +22,10 @@ class homeViewController: UIViewController {
     @IBOutlet var submitButton: UIButton!
     
     @IBAction func submitButton(_ sender: Any) {
-    let pseudo = self.pseudoTextField.text ?? ""
+        let pseudo = self.pseudoTextField.text ?? ""
         let motDePasse = self.motDePasseTextField.text ?? ""
         guard pseudo.count > 0,
-            motDePasse.count > 0
+              motDePasse.count > 0
             else {
                 let alert = UIAlertController(title: "Erreur", message: "Champs obligatoires", preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
@@ -69,7 +69,8 @@ class homeViewController: UIViewController {
                         //create json object from data
                         if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                             print(json)
-                            // handle json...
+                            //let controller = FavorisViewController()
+                            //self.navigationController?.pushViewController(controller, animated: true)
                         }
                     } catch let error {
                         print(error.localizedDescription)
@@ -78,8 +79,9 @@ class homeViewController: UIViewController {
                 task.resume()
             }
     }
+    
 
-   
+
    
     // MARK: Private function
 //    private func setupTextFieldManager(){

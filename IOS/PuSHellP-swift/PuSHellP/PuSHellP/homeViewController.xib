@@ -54,25 +54,6 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                    <connections>
-                        <action selector="MotDePasseTextField:" destination="-1" eventType="editingDidEnd" id="vrr-UC-Z1l"/>
-                        <action selector="motDePaseeTextField:" destination="-1" eventType="editingDidEnd" id="pQQ-fM-hXg"/>
-                    </connections>
-                </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pseudo" textAlignment="center" minimumFontSize="17" background="mdp_bis" translatesAutoresizingMaskIntoConstraints="NO" id="uq5-Kn-KiU">
-                    <rect key="frame" x="155" y="584" width="459" height="97"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="459" id="1B8-9M-vSz"/>
-                        <constraint firstAttribute="height" constant="97" id="SrH-Jz-i4W"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
-                    <textInputTraits key="textInputTraits" textContentType="nickname"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="PseudoTextField:" destination="-1" eventType="editingDidEnd" id="8sC-cV-Pn9"/>
-                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="218" placeholderIntrinsicHeight="69" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYi-eN-I4V">
                     <rect key="frame" x="275" y="864" width="218" height="69"/>
@@ -85,10 +66,21 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="21Q-ni-m87"/>
-                        <action selector="submitButton:" destination="-1" eventType="touchUpInside" id="Hgz-hG-I8a"/>
+                        <action selector="submitButton:" destination="-1" eventType="touchUpInside" id="6wY-3g-0xw"/>
                     </connections>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Pseudo" textAlignment="center" minimumFontSize="17" background="mdp_bis" translatesAutoresizingMaskIntoConstraints="NO" id="uq5-Kn-KiU">
+                    <rect key="frame" x="155" y="584" width="459" height="97"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="459" id="1B8-9M-vSz"/>
+                        <constraint firstAttribute="height" constant="97" id="SrH-Jz-i4W"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
+                    <textInputTraits key="textInputTraits" textContentType="nickname"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
