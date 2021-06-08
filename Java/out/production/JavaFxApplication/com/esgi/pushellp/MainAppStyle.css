@@ -26,6 +26,12 @@
 .container_white{
     -fx-background-color: white;
 }
+.container_black{
+    -fx-background-color: black;
+}
+.container_red{
+    -fx-background-color: #7A0503;
+}
 .container_white_border{
     -fx-background-color: white;
     -fx-border-style: solid solid solid solid;

@@ -17,7 +17,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage MainStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("connection/ConnectionApp.fxml"));
-        Platform.runLater( () -> root.requestFocus() ); //permet de defocus l'input Login en focusant le container
+        Platform.runLater( () -> root.requestFocus() );
 
         Scene scene = new Scene(root);
 

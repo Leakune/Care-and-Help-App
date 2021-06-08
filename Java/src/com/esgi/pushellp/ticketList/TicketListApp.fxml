@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="690.0" prefWidth="877.0" stylesheets="@../MainAppStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -55,9 +56,9 @@
          <children>
             <ChoiceBox layoutX="768.0" layoutY="16.0" prefHeight="25.0" prefWidth="36.0" />
             <Label layoutX="384.0" layoutY="21.0" text="En cours" />
-            <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="Add" />
+            <Button fx:id="addButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="Add" />
          </children>
       </Pane>
-      <Pane layoutX="37.0" layoutY="212.0" prefHeight="447.0" prefWidth="818.0" styleClass="container_white" />
+      <VBox fx:id="listTicketVBox" layoutX="37.0" layoutY="217.0" prefHeight="421.0" prefWidth="818.0" styleClass="container_black" stylesheets="@../MainAppStyle.css" />
    </children>
 </AnchorPane>
