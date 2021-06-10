@@ -33,7 +33,6 @@ class homeViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-        //create the url with URL
         let uri = "http://0.0.0.0:3000/login"
                 
         RequestConnexion.requestConnexion(urlString: uri, pseudo: pseudo, password: motDePasse, completion:{ individual in
