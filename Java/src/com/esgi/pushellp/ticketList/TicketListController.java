@@ -65,6 +65,7 @@ public class TicketListController implements Initializable {
 
     public void openCreateTicketScene(ActionEvent event) {
         createTicketController.setIndividual(user);
+        createTicketController.updateLabel(user.getPseudo());
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(createTicketScene);
     }

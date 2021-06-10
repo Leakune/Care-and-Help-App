@@ -30,9 +30,6 @@ import java.sql.*;
 import java.util.*;
 
 public class ConnectionController implements Initializable {
-    private static final int ITERATION_COUNT = 65536;
-    private static final int KEY_LENGTH = 128;
-    private static final String ALGORITHME = "PBKDF2WithHmacSHA1";
     private static final String API_SERVER_URI = "http://0.0.0.0:3000/login";
     private HashMap<String, String> headers;
     private HashMap<Object, Object> bodyRequest;

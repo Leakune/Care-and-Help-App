@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:controller="com.esgi.pushellp.ticketList.TicketListController" prefHeight="690.0" prefWidth="877.0" stylesheets="@../MainAppStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="690.0" prefWidth="877.0" stylesheets="@../MainAppStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esgi.pushellp.ticketList.TicketListController">
    <children>
       <GridPane prefHeight="89.0" prefWidth="891.0" style="-fx-background-color: white;">
         <columnConstraints>
