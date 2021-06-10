@@ -3,9 +3,11 @@ package com.esgi.pushellp.createTicket;
 import com.esgi.pushellp.connection.ConnectionController;
 import com.esgi.pushellp.models.Individual;
 import com.esgi.pushellp.ticketList.TicketListController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -20,50 +22,41 @@ public class CreateTicketController implements Initializable {
     private Stage createListStage;
     private Scene createListScene;
     private TicketListController ticketListController;
+    private Scene ticketListScene;
     private Individual user;
     @FXML
     AnchorPane createTicketRoot;
     @FXML
     Label labelUser2;
 
-    public CreateTicketController(TicketListController ticketListController, Individual individual) {
-        this.ticketListController = ticketListController;
-        this.user = individual;
 
-        try {
-            //Parent root = FXMLLoader.load(getClass().getResource("CreateTicketApp.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateTicketApp.fxml"));
-
-            //In the fxml file, set this class as the controller
-            loader.setController(this);
-            //this.createListScene = new Scene(root);
-            Parent root = loader.load();
-            this.createListScene = new Scene(root);
-
-            this.createListStage = new Stage();
-            this.createListStage.setScene(this.createListScene);
-            this.createListStage.setResizable(false);
-            // cleanup controller resources when window closes:
-            //Controller controller = loader.getController();
-            this.createListStage.setOnHidden(e -> this.shutdown());
-            labelUser2.setText(user.getPseudo());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public void setTicketListScene(Scene scene){
+        ticketListScene = scene;
     }
-
-    private void shutdown() {
-        this.ticketListController.showStage();
+    public void setTicketListController(TicketListController controller){
+        ticketListController = controller;
+    }
+    public void setIndividual(Individual individual) {
+        user = individual;
+    }
+    public void openTicketListScene(ActionEvent event){
+        ticketListController.setIndividual(user);
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        primaryStage.setScene(ticketListScene);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-    public void showStage() {
-        this.createListStage.showAndWait();
     }
 
+    @FXML
+    public void onClickSubmit(ActionEvent event) {
+        System.out.println("button submit clicked");
+        openTicketListScene(event);
+    }
+    @FXML
+    public void onClickCancel(ActionEvent event) {
+        System.out.println("button cancel clicked");
+        openTicketListScene(event);
+    }
 }

@@ -10,9 +10,12 @@ import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -34,6 +37,8 @@ public class ConnectionController implements Initializable {
     private HashMap<String, String> headers;
     private HashMap<Object, Object> bodyRequest;
     private Gson gson = new Gson();
+    private Scene ticketListScene;
+    private TicketListController ticketListController;
 
 
 
@@ -72,8 +77,8 @@ public class ConnectionController implements Initializable {
             Individual indvdl = gson.fromJson(convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(0), Individual.class);
             System.out.println(indvdl);
 
-            TicketListController ticketListController = new TicketListController(this, indvdl);
-            ticketListController.showStage();
+            openTicketListScene(event, indvdl);
+
         } catch (Exception e) {
             e.printStackTrace();
             showAlertDialogError("Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
@@ -87,42 +92,23 @@ public class ConnectionController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    public void openTicketListScene(ActionEvent event, Individual individual){
+        ticketListController.setIndividual(individual);
+        ticketListController.updateLabel(individual.getPseudo());
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        primaryStage.setScene(ticketListScene);
+    }
+    public void setTicketListScene(Scene scene){
+        ticketListScene = scene;
+    }
+    public void setTicketListController(TicketListController controller){
+        ticketListController = controller;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Hello World");
     }
 
-    public String generateSaltString(){
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
-        return Base64.getEncoder().encodeToString(salt);
-    }
 
-
-    public String generateHash(String saltString, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        //convert String > byte[]
-        byte[] salt = saltString.getBytes(StandardCharsets.ISO_8859_1);
-
-        //implementing PBKDF2 algorithm hash
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, ITERATION_COUNT, KEY_LENGTH);
-        SecretKeyFactory factory = SecretKeyFactory.getInstance(ALGORITHME);
-
-        //generate hash password
-        byte[] hash = factory.generateSecret(spec).getEncoded();
-        Base64.Encoder enc = Base64.getEncoder();
-
-//        String saltString = enc.encodeToString(salt);
-//        System.out.println("salt: " + saltString);
-
-        String hashString = enc.encodeToString(hash);
-//        System.out.println("hash: " + hashString);
-//
-//        System.out.println("hash-length: " + hashString.length());
-//
-//        System.out.println(new Date());
-
-        return hashString;
-    }
 
 }
