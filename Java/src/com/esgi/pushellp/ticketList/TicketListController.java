@@ -3,6 +3,7 @@ package com.esgi.pushellp.ticketList;
 import com.esgi.pushellp.connection.ConnectionController;
 import com.esgi.pushellp.createTicket.CreateTicketController;
 import com.esgi.pushellp.models.Individual;
+import com.esgi.pushellp.models.Ticket;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,16 +17,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.awt.*;
 import java.io.IOException;
@@ -55,6 +57,8 @@ public class TicketListController implements Initializable {
     private ChoiceBox choiceBox;
     @FXML
     private Label labelStateTicketList;
+    @FXML
+    private ListView listView;
 
 
     @FXML
@@ -87,12 +91,18 @@ public class TicketListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /* listView */
+
+        Ticket ticket1 = new Ticket("ticket1", "description1");
+        Ticket ticket2 = new Ticket("ticket2", "description2");
+
+        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2);
+        listView.setItems(tickets);
+        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
+        /* comboBox */
+
+        //listTicketVBox.getChildren().setAll(labelVbox);
         Label labelVbox = new Label(NONE);
-        Label labelVbox2 = new Label(NONE);
-        Label labelVbox3 = new Label(NONE);
-
-        listTicketVBox.getChildren().setAll(labelVbox, labelVbox2, labelVbox3);
-
         labelVbox.setMaxWidth(Double.MAX_VALUE);
         labelVbox.setAlignment(Pos.CENTER);
 
