@@ -32,6 +32,12 @@
 .container_red{
     -fx-background-color: #7A0503;
 }
+.container_red_black_border{
+    -fx-background-color: #7A0503;
+    -fx-border-style: solid solid solid solid;
+     -fx-border-width: 2;
+    -fx-border-color: black;
+}
 .container_white_border{
     -fx-background-color: white;
     -fx-border-style: solid solid solid solid;
