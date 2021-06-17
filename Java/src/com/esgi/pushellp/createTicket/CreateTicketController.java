@@ -1,36 +1,43 @@
 package com.esgi.pushellp.createTicket;
 
-import com.esgi.pushellp.connection.ConnectionController;
+import com.esgi.pushellp.OurHttpClient;
+import com.esgi.pushellp.commun.Utils;
 import com.esgi.pushellp.models.Individual;
+import com.esgi.pushellp.models.Ticket;
 import com.esgi.pushellp.ticketList.TicketListController;
-import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
-import java.io.IOException;
 import java.net.URL;
-import java.time.DayOfWeek;
+import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.AbstractMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
 
 public class CreateTicketController implements Initializable {
+    public static final String TO_DO = "A faire";
+    public static final String IN_PROGRESS = "En cours";
+    public static final String DONE = "Terminé";
+    public static final String MY_TICKETS = "Mes tickets";
+    private static final String API_SERVER_URI = "http://0.0.0.0:3000/createTicket";
+
+    private HashMap<String, String> headers;
+    private HashMap<Object, Object> bodyRequest;
+    private Gson gson = new Gson();
+
     private TicketListController ticketListController;
     private Scene ticketListScene;
     private Individual user;
@@ -60,7 +67,13 @@ public class CreateTicketController implements Initializable {
         user = individual;
     }
     public void openTicketListScene(ActionEvent event){
+        ticketListController.updateLabelAndChoiceBoxTicket(IN_PROGRESS);
         ticketListController.setIndividual(user);
+        Ticket ticket1 = new Ticket("ticket1", "description1");
+        Ticket ticket2 = new Ticket("ticket2", "description2");
+        Ticket ticket3 = new Ticket("ticket3", "description3");
+        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
+        ticketListController.updateTicketList(tickets);
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(ticketListScene);
     }
@@ -70,7 +83,38 @@ public class CreateTicketController implements Initializable {
     @FXML
     public void onClickSubmit(ActionEvent event) {
         System.out.println("button submit clicked");
-        openTicketListScene(event);
+        System.out.println("Date: " + dateToday.getText());
+        System.out.println("Titre: " + titleTextField.getText());
+        System.out.println("Deadline: " + deadlineDatePicker.getValue());
+        System.out.println("Priorite: " + priorityComboBox.getValue());
+        System.out.println("Description: " + descriptionTextArea.getText());
+
+        OurHttpClient httpClient = new OurHttpClient();
+        try {
+            HttpResponse<String> response = httpClient.sendRequest(
+                    "POST",
+                    API_SERVER_URI,
+                    headers = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
+                    )),
+                    bodyRequest = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<Object, Object>("title", titleTextField.getText()),
+                            new AbstractMap.SimpleEntry<Object, Object>("deadline", deadlineDatePicker.getValue()),
+                            new AbstractMap.SimpleEntry<Object, Object>("priority", priorityComboBox.getValue()),
+                            new AbstractMap.SimpleEntry<Object, Object>("description", titleTextField.getText()),
+                            new AbstractMap.SimpleEntry<Object, Object>("idUser", user.getIdindividual())
+                    ))
+            );
+            if(response.statusCode() != 200){
+                Utils.showAlertDialog("error", "Error creating the ticket", "Please ask to the administrators of the api-server");
+                return;
+            }
+            Utils.showAlertDialog("success", "Successfully creating the ticket", "You have created a new ticket!");
+            openTicketListScene(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Utils.showAlertDialog("error","Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
+        }
     }
     @FXML
     public void onClickCancel(ActionEvent event) {
@@ -100,32 +144,12 @@ public class CreateTicketController implements Initializable {
 //    }
 
     private void addTextLimiter(final TextInputControl tf, final int maxLength) {
-//        tf.textProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-//                if (tf.getText().length() > maxLength) {
-//                    String s = tf.getText().substring(0, maxLength);
-//                    tf.setText(s);
-//                }
-//            }
-//        });
-//        UnaryOperator<TextFormatter.Change> rejectChange = c -> {
-//            // check if the change might effect the validating predicate
-//            if (c.isContentChange()) {
-//                // check if change is valid
-//                if (c.getControlNewText().length() > maxLength) {
-//                    // invalid change
-//                    // sugar: show a context menu with error message
-//                    final ContextMenu menu = new ContextMenu();
-//                    menu.getItems().add(new MenuItem("This field takes\n"+len+" characters only."));
-//                    menu.show(c.getControl(), Side.BOTTOM, 0, 0);
-//                    // return null to reject the change
-//                    return null;
-//                }
-//            }
-//            // valid change: accept the change by returning it
-//            return c;
-//        };
+        tf.textProperty().addListener((ov, oldValue, newValue) -> {
+            if (tf.getText().length() > maxLength) {
+                String s = tf.getText().substring(0, maxLength);
+                tf.setText(s);
+            }
+        });
     }
 
     @Override
@@ -137,13 +161,12 @@ public class CreateTicketController implements Initializable {
         dateToday.setText(dateTodayString);
 
         //set title texfield configuration
-//        addTextLimiter(titleTextField, 100);
+        addTextLimiter(titleTextField, 100);
 
         //set date deadline configuration
         deadlineDatePicker.setValue(LocalDate.now());
 //        deadlineDatePicker.getEditor().setDisable(true);
 //        deadlineDatePicker.getEditor().setOpacity(1);
-        // Factory to create Cell of DatePicker
 //        Callback<DatePicker, DateCell> dayCellFactory= this.getDayCellFactory();
 //        deadlineDatePicker.setDayCellFactory(dayCellFactory);
 
@@ -154,7 +177,7 @@ public class CreateTicketController implements Initializable {
 
         //set textArea configuration
         descriptionTextArea.setWrapText(true);
-//        addTextLimiter(descriptionTextArea, 1500);
+        addTextLimiter(descriptionTextArea, 1500);
 
     }
 }

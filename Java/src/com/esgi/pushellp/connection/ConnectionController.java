@@ -1,35 +1,33 @@
 package com.esgi.pushellp.connection;
 
-import com.esgi.pushellp.MainApp;
 import com.esgi.pushellp.OurHttpClient;
+import com.esgi.pushellp.commun.Utils;
 import com.esgi.pushellp.models.Individual;
+import com.esgi.pushellp.models.Ticket;
 import com.esgi.pushellp.ticketList.TicketListController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.net.URL;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
-import java.sql.*;
 import java.util.*;
 
 public class ConnectionController implements Initializable {
+    public static final String TO_DO = "A faire";
+    public static final String IN_PROGRESS = "En cours";
+    public static final String DONE = "Terminé";
+    public static final String MY_TICKETS = "Mes tickets";
     private static final String API_SERVER_URI = "http://0.0.0.0:3000/login";
     private HashMap<String, String> headers;
     private HashMap<Object, Object> bodyRequest;
@@ -65,7 +63,7 @@ public class ConnectionController implements Initializable {
                     ))
             );
             if(response.statusCode() != 200){
-                showAlertDialogError("Error finding your profile", "You have given a wrong username and/or password");
+                Utils.showAlertDialog("error", "Error finding your profile", "You have given a wrong username and/or password");
                 return;
             }
             JsonObject convertedObject = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(response.body(), JsonObject.class);
@@ -78,20 +76,21 @@ public class ConnectionController implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlertDialogError("Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
+            Utils.showAlertDialog("error", "Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
         }
 
     }
-    public void showAlertDialogError(String title, String content){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
+
     public void openTicketListScene(ActionEvent event, Individual individual){
         ticketListController.setIndividual(individual);
         ticketListController.updateLabel(individual.getPseudo());
+        ticketListController.updateLabelAndChoiceBoxTicket(IN_PROGRESS);
+
+        Ticket ticket1 = new Ticket("ticket1", "description1");
+        Ticket ticket2 = new Ticket("ticket2", "description2");
+        Ticket ticket3 = new Ticket("ticket3", "description3");
+        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
+        ticketListController.updateTicketList(tickets);
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(ticketListScene);
     }

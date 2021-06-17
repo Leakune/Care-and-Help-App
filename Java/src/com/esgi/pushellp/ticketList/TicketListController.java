@@ -41,6 +41,7 @@ public class TicketListController implements Initializable {
     public static final String TO_DO = "A faire";
     public static final String IN_PROGRESS = "En cours";
     public static final String DONE = "Terminé";
+    public static final String MY_TICKETS = "Mes tickets";
     public static final String NONE = "No ticket available at the moment, please create one";
     private Individual user;
     private Scene createTicketScene;
@@ -71,6 +72,17 @@ public class TicketListController implements Initializable {
     public void updateLabel(String text){
         labelUser.setText(text);
     }
+    public void updateLabelAndChoiceBoxTicket(String text){
+        labelStateTicketList.setText(text);
+        choiceBox.setValue(text);
+    }
+
+
+    public void updateTicketList(ObservableList<Ticket> tickets){
+        listTicketVBox.getChildren().setAll(listView);
+        listView.setItems(tickets);
+        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
+    }
 
     public void setIndividual(Individual individual) {
         user = individual;
@@ -95,10 +107,10 @@ public class TicketListController implements Initializable {
 
         Ticket ticket1 = new Ticket("ticket1", "description1");
         Ticket ticket2 = new Ticket("ticket2", "description2");
+        Ticket ticket3 = new Ticket("ticket3", "description3");
 
-        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2);
-        listView.setItems(tickets);
-        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
+        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
+        updateTicketList(tickets);
         /* comboBox */
 
         //listTicketVBox.getChildren().setAll(labelVbox);
@@ -107,7 +119,7 @@ public class TicketListController implements Initializable {
         labelVbox.setAlignment(Pos.CENTER);
 
         ObservableList<String> statusListTicket //
-                = FXCollections.observableArrayList(TO_DO, IN_PROGRESS, DONE);
+                = FXCollections.observableArrayList(TO_DO, IN_PROGRESS, DONE, MY_TICKETS);
 
         choiceBox.setItems(statusListTicket);
         choiceBox.setValue(IN_PROGRESS);
