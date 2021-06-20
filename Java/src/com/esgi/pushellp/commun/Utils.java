@@ -26,7 +26,7 @@ public class Utils {
         List<Ticket> ticketList = new ArrayList<Ticket>();
         try {
             HttpResponse<String> response = httpClient.sendRequest(
-                    "POST",
+                    "GET",
                     API_SERVER_URI,
                     headers = new HashMap<>(Map.ofEntries(
                             new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")

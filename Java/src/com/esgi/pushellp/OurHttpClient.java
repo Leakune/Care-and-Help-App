@@ -22,16 +22,22 @@ public class OurHttpClient {
      * @throws Exception
      */
     public HttpResponse<String> sendRequest(String http, String uri, HashMap<String, String> headers, HashMap<Object, Object> bodyRequest) throws Exception {
-
         HttpRequest.Builder builder =  HttpRequest.newBuilder();
         if(http.equals("GET")){
-            if(bodyRequest.isEmpty()){
-                System.out.println("isEmpty");
-                builder.GET();
-            }
-            else{
-                System.out.println("isNotEmpty");
-                builder.method("GET", buildFormDataFromMap(bodyRequest));
+            builder.GET();
+            if(!bodyRequest.isEmpty()){
+                StringBuilder uriParams = new StringBuilder();
+                uriParams.append("?");
+                for (HashMap.Entry<Object, Object> mapEntry : bodyRequest.entrySet()) {
+                    if (uriParams.length() > 1) {
+                        uriParams.append("&");
+                    }
+                    uriParams.append(mapEntry.getKey().toString());
+                    uriParams.append("=");
+                    uriParams.append(mapEntry.getValue().toString());
+                }
+                uri += uriParams;
+                uri = uri.replaceAll(" ", "%20");
             }
         }else if(http.equals("POST")){
             builder.POST(buildFormDataFromMap(bodyRequest));

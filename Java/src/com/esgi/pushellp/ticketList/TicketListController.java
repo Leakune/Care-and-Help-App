@@ -83,7 +83,7 @@ public class TicketListController implements Initializable {
     public void initObservableListTicketList(List<Ticket> listTickets){
         this.listTickets = new ArrayList<>(listTickets);
         this.tickets = FXCollections.observableArrayList(this.listTickets);
-        listTicketVBox.getChildren().setAll(listView);
+        //listTicketVBox.getChildren().setAll(listView);
         listView.setItems(this.tickets);
         listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
     }
@@ -93,20 +93,24 @@ public class TicketListController implements Initializable {
              this.listTickets) {
             System.out.println(ticket);
         }
-        this.tickets.removeAll(this.listTickets);
-        this.listTickets = new ArrayList<>(listTickets);
+        ObservableList<Ticket> tickets = FXCollections.observableArrayList(listTickets);
+//        this.tickets.removeAll(this.listTickets);
+//        this.listTickets = new ArrayList<>(listTickets);
         System.out.println("after");
         for (Ticket ticket:
                 this.listTickets) {
             System.out.println(ticket);
         }
-        this.tickets.addAll(this.listTickets);
+//        this.tickets.addAll(this.listTickets);
 
-        listTicketVBox.getChildren().clear();
-        listTicketVBox.getChildren().setAll(listView);
+//        listTicketVBox.getChildren().clear();
+//        listTicketVBox.getChildren().setAll(listView);
+        listView.setItems(null);
         listView.setItems(tickets);
+        listView.refresh();
+
         //System.out.println(listView.getItems());
-        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
+        //listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
         //listView.refresh();
     }
 
@@ -158,7 +162,7 @@ public class TicketListController implements Initializable {
                     //listTicketVBox.getChildren().setAll(new Label("TO DO"));
                     labelStateTicketList.setText(TO_DO);
                 }else if(newValue.equals(IN_PROGRESS)){
-                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("en cours"));
+                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("en_cours"));
                     updateTicketList(tickets);
                     //listTicketVBox.getChildren().setAll(new Label("IN PROGRESS"));
                     labelStateTicketList.setText(IN_PROGRESS);

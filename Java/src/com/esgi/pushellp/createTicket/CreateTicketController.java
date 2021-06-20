@@ -67,7 +67,7 @@ public class CreateTicketController implements Initializable {
         ticketListController.updateLabelAndChoiceBoxTicket(IN_PROGRESS);
         ticketListController.setIndividual(user);
 
-        List<Ticket> tickets = Utils.getTicketListByStatus("en cours");
+        List<Ticket> tickets = Utils.getTicketListByStatus("en_cours");
         ticketListController.initObservableListTicketList(tickets);
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(ticketListScene);
