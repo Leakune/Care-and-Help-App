@@ -25,7 +25,14 @@ public class OurHttpClient {
 
         HttpRequest.Builder builder =  HttpRequest.newBuilder();
         if(http.equals("GET")){
-            builder.GET();
+            if(bodyRequest.isEmpty()){
+                System.out.println("isEmpty");
+                builder.GET();
+            }
+            else{
+                System.out.println("isNotEmpty");
+                builder.method("GET", buildFormDataFromMap(bodyRequest));
+            }
         }else if(http.equals("POST")){
             builder.POST(buildFormDataFromMap(bodyRequest));
         }
@@ -37,11 +44,6 @@ public class OurHttpClient {
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        // print status code
-        System.out.println(response.statusCode());
-
-        // print response body
-        System.out.println(response.body());
         return response;
 
     }

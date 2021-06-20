@@ -86,11 +86,8 @@ public class ConnectionController implements Initializable {
         ticketListController.updateLabel(individual.getPseudo());
         ticketListController.updateLabelAndChoiceBoxTicket(IN_PROGRESS);
 
-        Ticket ticket1 = new Ticket("ticket1", "description1");
-        Ticket ticket2 = new Ticket("ticket2", "description2");
-        Ticket ticket3 = new Ticket("ticket3", "description3");
-        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
-        ticketListController.updateTicketList(tickets);
+        List<Ticket> tickets = Utils.getTicketListByStatus("en cours");
+        ticketListController.initObservableListTicketList(tickets);
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(ticketListScene);
     }

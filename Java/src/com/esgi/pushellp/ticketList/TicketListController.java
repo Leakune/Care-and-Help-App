@@ -1,5 +1,6 @@
 package com.esgi.pushellp.ticketList;
 
+import com.esgi.pushellp.commun.Utils;
 import com.esgi.pushellp.connection.ConnectionController;
 import com.esgi.pushellp.createTicket.CreateTicketController;
 import com.esgi.pushellp.models.Individual;
@@ -32,6 +33,7 @@ import javafx.util.Callback;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -46,7 +48,8 @@ public class TicketListController implements Initializable {
     private Individual user;
     private Scene createTicketScene;
     private CreateTicketController createTicketController;
-    private List<String> colors = Arrays.asList("red", "green", "blue");
+    private ObservableList<Ticket> tickets;
+    private List<Ticket> listTickets;
 
     @FXML
     private Label labelUser;
@@ -77,11 +80,34 @@ public class TicketListController implements Initializable {
         choiceBox.setValue(text);
     }
 
+    public void initObservableListTicketList(List<Ticket> listTickets){
+        this.listTickets = new ArrayList<>(listTickets);
+        this.tickets = FXCollections.observableArrayList(this.listTickets);
+        listTicketVBox.getChildren().setAll(listView);
+        listView.setItems(this.tickets);
+        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
+    }
+    public void updateTicketList(List<Ticket> listTickets){
+        System.out.println("before");
+        for (Ticket ticket:
+             this.listTickets) {
+            System.out.println(ticket);
+        }
+        this.tickets.removeAll(this.listTickets);
+        this.listTickets = new ArrayList<>(listTickets);
+        System.out.println("after");
+        for (Ticket ticket:
+                this.listTickets) {
+            System.out.println(ticket);
+        }
+        this.tickets.addAll(this.listTickets);
 
-    public void updateTicketList(ObservableList<Ticket> tickets){
+        listTicketVBox.getChildren().clear();
         listTicketVBox.getChildren().setAll(listView);
         listView.setItems(tickets);
+        //System.out.println(listView.getItems());
         listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
+        //listView.refresh();
     }
 
     public void setIndividual(Individual individual) {
@@ -105,12 +131,12 @@ public class TicketListController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* listView */
 
-        Ticket ticket1 = new Ticket("ticket1", "description1");
-        Ticket ticket2 = new Ticket("ticket2", "description2");
-        Ticket ticket3 = new Ticket("ticket3", "description3");
+//        Ticket ticket1 = new Ticket("ticket1", "description1");
+//        Ticket ticket2 = new Ticket("ticket2", "description2");
+//        Ticket ticket3 = new Ticket("ticket3", "description3");
 
-        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
-        updateTicketList(tickets);
+//        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
+//        updateTicketList(tickets);
         /* comboBox */
 
         //listTicketVBox.getChildren().setAll(labelVbox);
@@ -126,15 +152,20 @@ public class TicketListController implements Initializable {
         //
         ChangeListener<String> changeListener = (observable, oldValue, newValue) -> {
             if (newValue != null) {
-                System.out.println(newValue);
                 if(newValue.equals(TO_DO)){
-                    listTicketVBox.getChildren().setAll(new Label("TO DO"));
+                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("nouveau"));
+                    updateTicketList(tickets);
+                    //listTicketVBox.getChildren().setAll(new Label("TO DO"));
                     labelStateTicketList.setText(TO_DO);
                 }else if(newValue.equals(IN_PROGRESS)){
-                    listTicketVBox.getChildren().setAll(new Label("IN PROGRESS"));
+                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("en cours"));
+                    updateTicketList(tickets);
+                    //listTicketVBox.getChildren().setAll(new Label("IN PROGRESS"));
                     labelStateTicketList.setText(IN_PROGRESS);
                 }else if(newValue.equals(DONE)){
-                    listTicketVBox.getChildren().setAll(new Label("DONE"));
+                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("terminé"));
+                    updateTicketList(tickets);
+                    //listTicketVBox.getChildren().setAll(new Label("DONE"));
                     labelStateTicketList.setText(DONE);
                 }
             }

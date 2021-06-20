@@ -14,9 +14,29 @@ public class Ticket {
     private String description;
     private String priority;
 
-    public Ticket(String title, String description){
+    public Ticket(int idticket, String title, Timestamp creationdate, Timestamp updatedate, Timestamp deadline, String status, String description, String priority) {
+        this.idticket = idticket;
         this.title = title;
+        this.creationdate = creationdate;
+        this.updatedate = updatedate;
+        this.deadline = deadline;
+        this.status = status;
         this.description = description;
+        this.priority = priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "idticket=" + idticket +
+                ", title='" + title + '\'' +
+                ", creationdate=" + creationdate +
+                ", updatedate=" + updatedate +
+                ", deadline=" + deadline +
+                ", status='" + status + '\'' +
+                ", description='" + description + '\'' +
+                ", priority='" + priority + '\'' +
+                '}';
     }
 
     public String getTitle() {

@@ -22,10 +22,7 @@ import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CreateTicketController implements Initializable {
     public static final String TO_DO = "A faire";
@@ -69,11 +66,9 @@ public class CreateTicketController implements Initializable {
     public void openTicketListScene(ActionEvent event){
         ticketListController.updateLabelAndChoiceBoxTicket(IN_PROGRESS);
         ticketListController.setIndividual(user);
-        Ticket ticket1 = new Ticket("ticket1", "description1");
-        Ticket ticket2 = new Ticket("ticket2", "description2");
-        Ticket ticket3 = new Ticket("ticket3", "description3");
-        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
-        ticketListController.updateTicketList(tickets);
+
+        List<Ticket> tickets = Utils.getTicketListByStatus("en cours");
+        ticketListController.initObservableListTicketList(tickets);
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(ticketListScene);
     }
