@@ -3,6 +3,7 @@ package com.esgi.pushellp;
 import com.esgi.pushellp.commun.Utils;
 import com.esgi.pushellp.connection.ConnectionController;
 import com.esgi.pushellp.createTicket.CreateTicketController;
+import com.esgi.pushellp.detailTicket.DetailTicketController;
 import com.esgi.pushellp.ticketList.TicketListController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -41,16 +42,32 @@ public class MainApp extends Application {
             Parent createListScreen = createTicketLoader.load();
             Scene createListScene = new Scene(createListScreen);
 
-            CreateTicketController createTicketController = createTicketLoader.getController();
+            //set detailTicket scene configuration
+            FXMLLoader detailTicketLoader = new FXMLLoader(getClass().getResource("detailTicket/DetailTicketApp.fxml"));
+            Parent detailTicketScreen = detailTicketLoader.load();
+            Scene detailTicketScene = new Scene(detailTicketScreen);
+
 
             // injecting createListScene into the ticketListController
+            CreateTicketController createTicketController = createTicketLoader.getController();
+
             TicketListController ticketListController = ticketListLoader.getController();
             ticketListController.setCreateTicketScene(createListScene);
             ticketListController.setCreateTicketController(createTicketController);
 
+            // injecting detailTicketScene Scene into the ticketListController
+            DetailTicketController detailTicketController = detailTicketLoader.getController();
+
+            ticketListController.setDetailTicketScene(detailTicketScene);
+            ticketListController.setDetailTicketController(detailTicketController);
+
             // injecting ticketListScene into the createListController
             createTicketController.setTicketListController(ticketListController);
             createTicketController.setTicketListScene(ticketListScene);
+
+            // injecting ticketListScene into the detailTicketController
+            detailTicketController.setTicketListController(ticketListController);
+            detailTicketController.setTicketListScene(ticketListScene);
 
             // injecting ticketListScene into the connectionController
             ConnectionController connectionController = connectionLoader.getController();

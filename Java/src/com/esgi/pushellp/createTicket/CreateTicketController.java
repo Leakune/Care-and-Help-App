@@ -25,10 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CreateTicketController implements Initializable {
-    public static final String TO_DO = "A faire";
     public static final String IN_PROGRESS = "En cours";
-    public static final String DONE = "Terminé";
-    public static final String MY_TICKETS = "Mes tickets";
     private static final String API_SERVER_URI = "http://0.0.0.0:3000/createTicket";
 
     private HashMap<String, String> headers;
@@ -63,6 +60,7 @@ public class CreateTicketController implements Initializable {
     public void setIndividual(Individual individual) {
         user = individual;
     }
+
     public void openTicketListScene(ActionEvent event){
         ticketListController.updateLabelAndChoiceBoxTicket(IN_PROGRESS);
         ticketListController.setIndividual(user);

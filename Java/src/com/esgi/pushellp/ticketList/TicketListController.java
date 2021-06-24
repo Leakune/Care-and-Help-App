@@ -3,6 +3,7 @@ package com.esgi.pushellp.ticketList;
 import com.esgi.pushellp.commun.Utils;
 import com.esgi.pushellp.connection.ConnectionController;
 import com.esgi.pushellp.createTicket.CreateTicketController;
+import com.esgi.pushellp.detailTicket.DetailTicketController;
 import com.esgi.pushellp.models.Individual;
 import com.esgi.pushellp.models.Ticket;
 import javafx.application.Platform;
@@ -11,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
@@ -47,7 +50,9 @@ public class TicketListController implements Initializable {
     public static final String NONE = "No ticket available at the moment, please create one";
     private Individual user;
     private Scene createTicketScene;
+    private Scene detailTicketScene;
     private CreateTicketController createTicketController;
+    private DetailTicketController detailTicketController;
     private ObservableList<Ticket> tickets;
     private List<Ticket> listTickets;
 
@@ -85,7 +90,11 @@ public class TicketListController implements Initializable {
         this.tickets = FXCollections.observableArrayList(this.listTickets);
         //listTicketVBox.getChildren().setAll(listView);
         listView.setItems(this.tickets);
-        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
+        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> {
+            TicketCell cell = new TicketCell();
+            cell.setOnMouseClicked(mouseEvent -> openDetailTicketScene(mouseEvent, cell.getTicketData()));
+            return cell;
+        });
     }
     public void updateTicketList(List<Ticket> listTickets){
         System.out.println("before");
@@ -93,7 +102,7 @@ public class TicketListController implements Initializable {
              this.listTickets) {
             System.out.println(ticket);
         }
-        ObservableList<Ticket> tickets = FXCollections.observableArrayList(listTickets);
+        this.tickets = FXCollections.observableArrayList(listTickets);
 //        this.tickets.removeAll(this.listTickets);
 //        this.listTickets = new ArrayList<>(listTickets);
         System.out.println("after");
@@ -106,7 +115,12 @@ public class TicketListController implements Initializable {
 //        listTicketVBox.getChildren().clear();
 //        listTicketVBox.getChildren().setAll(listView);
         listView.setItems(null);
-        listView.setItems(tickets);
+        listView.setItems(this.tickets);
+        listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> {
+            TicketCell cell = new TicketCell();
+            cell.setOnMouseClicked(mouseEvent -> openDetailTicketScene(mouseEvent, cell.getTicketData()));
+            return cell;
+        });
         listView.refresh();
 
         //System.out.println(listView.getItems());
@@ -117,11 +131,18 @@ public class TicketListController implements Initializable {
     public void setIndividual(Individual individual) {
         user = individual;
     }
-    public void setCreateTicketScene(Scene scene) {
-        createTicketScene = scene;
+    public void setCreateTicketScene(Scene createTicketScene) {
+        this.createTicketScene = createTicketScene;
     }
     public void setCreateTicketController(CreateTicketController controller){
         createTicketController = controller;
+    }
+    public void setDetailTicketScene(Scene detailTicketScene) {
+        this.detailTicketScene = detailTicketScene;
+    }
+
+    public void setDetailTicketController(DetailTicketController detailTicketController) {
+        this.detailTicketController = detailTicketController;
     }
 
     public void openCreateTicketScene(ActionEvent event) {
@@ -129,6 +150,12 @@ public class TicketListController implements Initializable {
         createTicketController.updateLabel(user.getPseudo());
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(createTicketScene);
+    }
+    public void openDetailTicketScene(MouseEvent event, Ticket ticket) {
+        detailTicketController.setIndividual(user);
+        detailTicketController.setTicket(ticket);
+        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        primaryStage.setScene(detailTicketScene);
     }
 
     @Override
@@ -194,5 +221,4 @@ public class TicketListController implements Initializable {
 //        }); // set onAction property
 
     }
-
 }
