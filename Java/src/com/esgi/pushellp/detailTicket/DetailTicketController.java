@@ -10,6 +10,7 @@ import com.esgi.pushellp.ticketList.TicketListController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,14 +26,22 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.net.http.HttpResponse;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class DetailTicketController implements Initializable {
     public static final String IN_PROGRESS = "En cours";
-    private static final String API_SERVER_URI = "http://0.0.0.0:3000/createCommentary";
+    public static final String TO_DO = "Nouveau";
+    public static final String DONE = "Terminé";
+    private static final String API_SERVER_URI_CREATE_COMMENTARY = "http://0.0.0.0:3000/createCommentary";
+    private static final String API_SERVER_URI_SET_TICKET_STATUS = "http://0.0.0.0:3000/setTicketStatus";
+    private static final String API_SERVER_URI_SET_TICKET_IDINDIVIDUAL = "http://0.0.0.0:3000/setTicketIdIndividual";
+
+
     private HashMap<String, String> headers;
     private HashMap<Object, Object> bodyRequest;
     private Gson gson = new Gson();
+    private OurHttpClient httpClient = new OurHttpClient();
     private ImageView imageArrowBack = new ImageView(getClass().getResource("../ressources/images/arrow-left.png").toString());
     private TicketListController ticketListController;
     private Scene ticketListScene;
@@ -56,7 +65,7 @@ public class DetailTicketController implements Initializable {
     @FXML
     public ComboBox comboboxStatus;
     @FXML
-    public Label labelStatus;
+    public Label labelPriority;
     @FXML
     public Label dateLastUpdate;
     @FXML
@@ -79,9 +88,13 @@ public class DetailTicketController implements Initializable {
     }
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
-        System.out.println(ticket);
-        updateLabelTicket();
-        updateDescriptionTextArea();
+        configureLabelTicket();
+        configureDescriptionTextArea();
+        configureLabelDateCreate();
+        configureLabelDateEnd();
+        configureLabelDateLastUpdate();
+        configureLabelPriority();
+        configureComboBoxStatus();
         List<Commentary> listCommentaries = Utils.getCommentaryListByIdTicket(this.ticket.getIdticket());
         this.listCommentaries = new ArrayList<>(listCommentaries);
         updateCommentaryList(listCommentaries);
@@ -89,10 +102,83 @@ public class DetailTicketController implements Initializable {
     public void updateLabelUser(){
         labelResponsable.setText(this.userResponsible.getPseudo());
     }
-    public void updateLabelTicket(){
+    public void configureLabelTicket(){
         detailTicketTitle.setText(this.ticket.getTitle());
     }
-    public void updateDescriptionTextArea(){
+    public void configureLabelDateCreate(){
+        dateCreate.setText(this.ticket.getCreationdate().toString());
+    }
+    public void configureLabelDateEnd(){
+        dateEnd.setText(this.ticket.getDeadline().toString());
+    }
+    public void configureLabelDateLastUpdate(){
+        dateLastUpdate.setText(this.ticket.getUpdatedate() != null ? this.ticket.getUpdatedate().toString() : "null");
+    }
+    public void configureLabelPriority(){
+        labelPriority.setText(this.ticket.getPriority());
+    }
+
+    public void configureComboBoxStatus(){
+        ObservableList<String> statusListTicket = FXCollections.observableArrayList(TO_DO, IN_PROGRESS, DONE);
+        comboboxStatus.setItems(statusListTicket);
+        switch (this.ticket.getStatus()){
+            case "en_cours":
+                comboboxStatus.setValue(IN_PROGRESS);
+                break;
+            case "nouveau":
+                comboboxStatus.setValue(TO_DO);
+                break;
+            case "terminé":
+                comboboxStatus.setValue(DONE);
+                break;
+            default:
+                comboboxStatus.setValue(this.ticket.getStatus());
+        }
+
+        ChangeListener<String> changeListener = (observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                if(newValue.equals(TO_DO)){
+                    updateStatusTicket("nouveau");
+                }else if(newValue.equals(IN_PROGRESS)){
+                    updateStatusTicket("en_cours");
+                }else if(newValue.equals(DONE)){
+                    updateStatusTicket("terminé");
+                }
+            }
+        };
+        // Selected Item Changed.
+        comboboxStatus.getSelectionModel().selectedItemProperty().addListener(changeListener);
+    }
+    public void updateStatusTicket(String status){
+        try {
+            HttpResponse<String> response = httpClient.sendRequest(
+                    "PUT",
+                    API_SERVER_URI_SET_TICKET_STATUS,
+                    headers = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
+                    )),
+                    bodyRequest = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<Object, Object>("idTicket", this.ticket.getIdticket()),
+                            new AbstractMap.SimpleEntry<Object, Object>("status", status)
+                    ))
+            );
+            if(response.statusCode() != 200){
+                Utils.showAlertDialog("error", "Error updating the ticket's status", "Please contact your administrator.");
+                return;
+            }
+            JsonObject convertedObject = gson.fromJson(response.body(), JsonObject.class);
+            Timestamp updateDate = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(convertedObject.get("body").getAsJsonObject().get("updateDate"), Timestamp.class);
+            this.ticket.setStatus(status);
+            this.ticket.setUpdatedate(updateDate);
+            configureLabelDateLastUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Utils.showAlertDialog("error", "Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
+        }
+    }
+
+    public void configureDescriptionTextArea(){
         descriptionTextArea.setText(this.ticket.getTitle());
     }
 
@@ -107,15 +193,45 @@ public class DetailTicketController implements Initializable {
         listViewCommentaries.setCellFactory((Callback<ListView<Ticket>, ListCell<Commentary>>) listView -> new CommentaryCell());
         listViewCommentaries.refresh();
     }
+    public void onClickChangeResponsibleOfTicket(ActionEvent event) {
+        try {
+            HttpResponse<String> response = httpClient.sendRequest(
+                    "PUT",
+                    API_SERVER_URI_SET_TICKET_IDINDIVIDUAL,
+                    headers = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
+                    )),
+                    bodyRequest = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<Object, Object>("idTicket", this.ticket.getIdticket()),
+                            new AbstractMap.SimpleEntry<Object, Object>("idUser", this.user.getIdindividual())
+                    ))
+            );
+            if(response.statusCode() != 200){
+                Utils.showAlertDialog("error", "Error updating the ticket's responsible", "Please contact your administrator.");
+                return;
+            }
+            JsonObject convertedObject = gson.fromJson(response.body(), JsonObject.class);
+            Timestamp updateDate = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(convertedObject.get("body").getAsJsonObject().get("updateDate"), Timestamp.class);
+            this.ticket.setIndividual_idindividual(this.user.getIdindividual());
+            this.ticket.setUpdatedate(updateDate);
+            this.userResponsible = this.user;
+            updateLabelUser();
+            configureLabelDateLastUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Utils.showAlertDialog("error", "Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
+        }
+    }
 
     public void onClickSubmit(ActionEvent event) {
-        System.out.println("submit");
-        System.out.println(commentaryTextArea.getText());
-        OurHttpClient httpClient = new OurHttpClient();
+        if(commentaryTextArea.getText().trim().equals("")){
+            Utils.showAlertDialog("info", "Create a commentary without content", "Please write at least a character.");
+            return;
+        }
         try {
             HttpResponse<String> response = httpClient.sendRequest(
                     "POST",
-                    API_SERVER_URI,
+                    API_SERVER_URI_CREATE_COMMENTARY,
                     headers = new HashMap<>(Map.ofEntries(
                             new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
                     )),
@@ -131,6 +247,7 @@ public class DetailTicketController implements Initializable {
             }
             Utils.showAlertDialog("success", "Successfully creating the commentary", "You have created a new commentary!");
             updateCommentaryList(Utils.getCommentaryListByIdTicket(this.ticket.getIdticket()));
+            commentaryTextArea.setText("");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,8 +256,9 @@ public class DetailTicketController implements Initializable {
     }
 
     public void onClickCancel(ActionEvent event) {
-        System.out.println("cancel");
+        commentaryTextArea.setText("");
     }
+
 
     public void onClickButtonBack(ActionEvent event) {
         openTicketListScene(event);

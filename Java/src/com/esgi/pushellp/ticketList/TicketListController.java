@@ -43,11 +43,9 @@ import java.util.ResourceBundle;
 
 
 public class TicketListController implements Initializable {
-    public static final String TO_DO = "A faire";
+    public static final String TO_DO = "Nouveau";
     public static final String IN_PROGRESS = "En cours";
     public static final String DONE = "Terminé";
-    public static final String MY_TICKETS = "Mes tickets";
-    public static final String NONE = "No ticket available at the moment, please create one";
     private Individual user;
     private Scene createTicketScene;
     private Scene detailTicketScene;
@@ -97,10 +95,6 @@ public class TicketListController implements Initializable {
     }
     public void updateTicketList(List<Ticket> listTickets){
         this.tickets = FXCollections.observableArrayList(listTickets);
-        for (Ticket ticket:
-                this.listTickets) {
-            System.out.println(ticket);
-        }
         listView.setItems(null);
         listView.setItems(this.tickets);
         listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> {
@@ -144,14 +138,8 @@ public class TicketListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* comboBox */
-
-        //listTicketVBox.getChildren().setAll(labelVbox);
-        Label labelVbox = new Label(NONE);
-        labelVbox.setMaxWidth(Double.MAX_VALUE);
-        labelVbox.setAlignment(Pos.CENTER);
-
         ObservableList<String> statusListTicket //
-                = FXCollections.observableArrayList(TO_DO, IN_PROGRESS, DONE, MY_TICKETS);
+                = FXCollections.observableArrayList(TO_DO, IN_PROGRESS, DONE);
 
         choiceBox.setItems(statusListTicket);
         choiceBox.setValue(IN_PROGRESS);

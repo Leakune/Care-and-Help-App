@@ -41,6 +41,8 @@ public class OurHttpClient {
             }
         }else if(http.equals("POST")){
             builder.POST(buildFormDataFromMap(bodyRequest));
+        }else if(http.equals("PUT")){
+            builder.PUT(buildFormDataFromMap(bodyRequest));
         }
         builder.uri(URI.create(uri));
         for (HashMap.Entry<String, String> mapEntry : headers.entrySet()) {

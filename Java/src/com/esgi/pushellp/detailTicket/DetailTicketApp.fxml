@@ -18,7 +18,7 @@
 
 <AnchorPane fx:id="createTicketRoot" prefHeight="726.0" prefWidth="877.0" stylesheets="@../MainAppStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esgi.pushellp.detailTicket.DetailTicketController">
     <children>
-      <Button id="buttonBack" fx:id="buttonBack" layoutX="33.0" layoutY="33.0" mnemonicParsing="false" onAction="#onClickButtonBack" text="Retour" />
+      <Button id="buttonBack" fx:id="buttonBack" layoutX="22.0" layoutY="22.0" mnemonicParsing="false" onAction="#onClickButtonBack" text="Retour" />
           <Pane layoutX="124.0" layoutY="-1.0" prefHeight="72.0" prefWidth="627.0" styleClass="container_white">
               <children>
                   <Label fx:id="detailTicketTitle" layoutX="277.0" layoutY="29.0" text="Détail Ticket" />
@@ -29,7 +29,7 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                <children>
                   <Label text="Attribué à :" />
-                  <Button mnemonicParsing="false" text=" me l'affecter" />
+                  <Button mnemonicParsing="false" onAction="#onClickChangeResponsibleOfTicket" text=" me l'affecter" />
                </children>
             </VBox>
             <ImageView fitHeight="69.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
@@ -66,7 +66,7 @@
                   <Label text="Date de fin:" GridPane.rowIndex="1" />
                   <Label fx:id="dateCreate" text="jj/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label fx:id="dateLastUpdate" text="jj/mm/aaaa" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="labelStatus" text="&quot;Priorité&quot;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label fx:id="labelPriority" text="&quot;Priorité&quot;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <Label text="Status:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <ComboBox fx:id="comboboxStatus" prefHeight="25.0" prefWidth="103.0" promptText="Status" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                </children>

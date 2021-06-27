@@ -22,6 +22,7 @@ public class Utils {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
     public static List<Ticket> getTicketListByStatus(String status){
         HashMap<String, String> headers;
         HashMap<Object, Object> bodyRequest;

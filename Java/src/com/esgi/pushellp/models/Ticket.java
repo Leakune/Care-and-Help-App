@@ -110,4 +110,8 @@ public class Ticket {
     public int getIndividual_idindividual() {
         return individual_idindividual;
     }
+
+    public void setIndividual_idindividual(int individual_idindividual) {
+        this.individual_idindividual = individual_idindividual;
+    }
 }
