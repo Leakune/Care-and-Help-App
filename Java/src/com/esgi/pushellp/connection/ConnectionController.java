@@ -24,10 +24,7 @@ import java.net.http.HttpResponse;
 import java.util.*;
 
 public class ConnectionController implements Initializable {
-    public static final String TO_DO = "A faire";
     public static final String IN_PROGRESS = "En cours";
-    public static final String DONE = "Terminé";
-    public static final String MY_TICKETS = "Mes tickets";
     private static final String API_SERVER_URI = "http://0.0.0.0:3000/login";
     private HashMap<String, String> headers;
     private HashMap<Object, Object> bodyRequest;

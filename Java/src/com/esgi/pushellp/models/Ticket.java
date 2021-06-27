@@ -13,8 +13,9 @@ public class Ticket {
     private String status;
     private String description;
     private String priority;
+    private int individual_idindividual;
 
-    public Ticket(int idticket, String title, Timestamp creationdate, Timestamp updatedate, Timestamp deadline, String status, String description, String priority) {
+    public Ticket(int idticket, String title, Timestamp creationdate, Timestamp updatedate, Timestamp deadline, String status, String description, String priority, int individual_idindividual) {
         this.idticket = idticket;
         this.title = title;
         this.creationdate = creationdate;
@@ -23,6 +24,7 @@ public class Ticket {
         this.status = status;
         this.description = description;
         this.priority = priority;
+        this.individual_idindividual = individual_idindividual;
     }
 
     @Override
@@ -36,8 +38,10 @@ public class Ticket {
                 ", status='" + status + '\'' +
                 ", description='" + description + '\'' +
                 ", priority='" + priority + '\'' +
+                ", individual_idindividual='" + individual_idindividual + '\'' +
                 '}';
     }
+
 
     public String getTitle() {
         return title;
@@ -53,5 +57,57 @@ public class Ticket {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getIdticket() {
+        return idticket;
+    }
+
+    public void setIdticket(int idticket) {
+        this.idticket = idticket;
+    }
+
+    public Timestamp getCreationdate() {
+        return creationdate;
+    }
+
+    public void setCreationdate(Timestamp creationdate) {
+        this.creationdate = creationdate;
+    }
+
+    public Timestamp getUpdatedate() {
+        return updatedate;
+    }
+
+    public void setUpdatedate(Timestamp updatedate) {
+        this.updatedate = updatedate;
+    }
+
+    public Timestamp getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Timestamp deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public int getIndividual_idindividual() {
+        return individual_idindividual;
     }
 }

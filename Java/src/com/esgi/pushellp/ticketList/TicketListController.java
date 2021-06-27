@@ -76,7 +76,6 @@ public class TicketListController implements Initializable {
         openCreateTicketScene(event);
     }
 
-
     public void updateLabel(String text){
         labelUser.setText(text);
     }
@@ -97,23 +96,11 @@ public class TicketListController implements Initializable {
         });
     }
     public void updateTicketList(List<Ticket> listTickets){
-        System.out.println("before");
-        for (Ticket ticket:
-             this.listTickets) {
-            System.out.println(ticket);
-        }
         this.tickets = FXCollections.observableArrayList(listTickets);
-//        this.tickets.removeAll(this.listTickets);
-//        this.listTickets = new ArrayList<>(listTickets);
-        System.out.println("after");
         for (Ticket ticket:
                 this.listTickets) {
             System.out.println(ticket);
         }
-//        this.tickets.addAll(this.listTickets);
-
-//        listTicketVBox.getChildren().clear();
-//        listTicketVBox.getChildren().setAll(listView);
         listView.setItems(null);
         listView.setItems(this.tickets);
         listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> {
@@ -122,10 +109,6 @@ public class TicketListController implements Initializable {
             return cell;
         });
         listView.refresh();
-
-        //System.out.println(listView.getItems());
-        //listView.setCellFactory((Callback<ListView<Ticket>, ListCell<Ticket>>) listView -> new TicketCell());
-        //listView.refresh();
     }
 
     public void setIndividual(Individual individual) {
@@ -152,22 +135,14 @@ public class TicketListController implements Initializable {
         primaryStage.setScene(createTicketScene);
     }
     public void openDetailTicketScene(MouseEvent event, Ticket ticket) {
-        detailTicketController.setIndividual(user);
         detailTicketController.setTicket(ticket);
+        detailTicketController.setIndividual(user);
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         primaryStage.setScene(detailTicketScene);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /* listView */
-
-//        Ticket ticket1 = new Ticket("ticket1", "description1");
-//        Ticket ticket2 = new Ticket("ticket2", "description2");
-//        Ticket ticket3 = new Ticket("ticket3", "description3");
-
-//        ObservableList<Ticket> tickets = FXCollections.observableArrayList(ticket1, ticket2, ticket3);
-//        updateTicketList(tickets);
         /* comboBox */
 
         //listTicketVBox.getChildren().setAll(labelVbox);
@@ -184,41 +159,19 @@ public class TicketListController implements Initializable {
         ChangeListener<String> changeListener = (observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if(newValue.equals(TO_DO)){
-                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("nouveau"));
-                    updateTicketList(tickets);
-                    //listTicketVBox.getChildren().setAll(new Label("TO DO"));
+                    updateTicketList(Utils.getTicketListByStatus("nouveau"));
                     labelStateTicketList.setText(TO_DO);
                 }else if(newValue.equals(IN_PROGRESS)){
-                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("en_cours"));
-                    updateTicketList(tickets);
-                    //listTicketVBox.getChildren().setAll(new Label("IN PROGRESS"));
+                    updateTicketList(Utils.getTicketListByStatus("en_cours"));
                     labelStateTicketList.setText(IN_PROGRESS);
                 }else if(newValue.equals(DONE)){
-                    ObservableList<Ticket> tickets = FXCollections.observableArrayList(Utils.getTicketListByStatus("terminé"));
-                    updateTicketList(tickets);
-                    //listTicketVBox.getChildren().setAll(new Label("DONE"));
+                    updateTicketList(Utils.getTicketListByStatus("terminé"));
                     labelStateTicketList.setText(DONE);
                 }
             }
         };
         // Selected Item Changed.
         choiceBox.getSelectionModel().selectedItemProperty().addListener(changeListener);
-//        System.out.println(connectionController);
-//        this.addButton.setOnAction((e)->{
-//            System.out.println("clicked");
-//            Pane pane = new Pane();
-//            String enteredByUser = this.colors.get(0);
-//            pane.setBackground(new Background(new BackgroundFill(Color.web("#7A0503"), null, null)));
-//            Label labeltest = new Label("Test");
-//            labeltest.getStyleClass().add("label");
-//
-//            //this.colors.remove(0);
-//            this.listTicketVBox.getChildren().add(labeltest);
-//            CreateTicketController createTicketController = new CreateTicketController(this, this.user);
-//            createTicketController.showStage();
-//            this.hideStage();
-//
-//        }); // set onAction property
 
     }
 }

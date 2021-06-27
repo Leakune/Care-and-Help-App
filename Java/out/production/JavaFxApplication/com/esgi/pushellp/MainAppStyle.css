@@ -20,6 +20,7 @@
     -fx-font-family: 'Roboto';
 
 }
+
 .button:hover{
     -fx-cursor: hand;
 }
