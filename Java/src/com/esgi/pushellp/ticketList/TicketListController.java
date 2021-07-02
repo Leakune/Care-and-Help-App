@@ -70,7 +70,6 @@ public class TicketListController implements Initializable {
 
     @FXML
     protected void onClickAddButton(ActionEvent event){
-        System.out.println("add button clicked");
         openCreateTicketScene(event);
     }
 

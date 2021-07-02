@@ -33,10 +33,13 @@ public class DetailTicketController implements Initializable {
     public static final String IN_PROGRESS = "En cours";
     public static final String TO_DO = "Nouveau";
     public static final String DONE = "Terminé";
+    public static final String ANDROID = "android";
+    public static final String IOS = "ios";
+    public static final String FLUTTER = "flutter";
     private static final String API_SERVER_URI_CREATE_COMMENTARY = "http://0.0.0.0:3000/createCommentary";
     private static final String API_SERVER_URI_SET_TICKET_STATUS = "http://0.0.0.0:3000/setTicketStatus";
+    private static final String API_SERVER_URI_SET_TICKET_PLATFORM = "http://0.0.0.0:3000/setTicketPlatform";
     private static final String API_SERVER_URI_SET_TICKET_IDINDIVIDUAL = "http://0.0.0.0:3000/setTicketIdIndividual";
-
 
     private HashMap<String, String> headers;
     private HashMap<Object, Object> bodyRequest;
@@ -65,6 +68,8 @@ public class DetailTicketController implements Initializable {
     @FXML
     public ComboBox comboboxStatus;
     @FXML
+    public ComboBox comboboxPlatform;
+    @FXML
     public Label labelPriority;
     @FXML
     public Label dateLastUpdate;
@@ -74,6 +79,8 @@ public class DetailTicketController implements Initializable {
     public Label dateEnd;
     @FXML
     public Label labelResponsable;
+    @FXML
+    public Button buttonAffect;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,8 +90,11 @@ public class DetailTicketController implements Initializable {
     }
     public void setIndividual(Individual individual) {
         user = individual;
-        userResponsible = Utils.getIndividualById(this.ticket.getIndividual_idindividual());
-        updateLabelUser();
+        if(this.ticket.getIndividual_idindividual() > 0){
+            userResponsible =  Utils.getIndividualById(this.ticket.getIndividual_idindividual());
+            updateLabelUserResponsable();
+        }
+        configureButtonAffect();
     }
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
@@ -95,12 +105,21 @@ public class DetailTicketController implements Initializable {
         configureLabelDateLastUpdate();
         configureLabelPriority();
         configureComboBoxStatus();
+        configureComboboxPlatform();
+        configureCommentaryTextArea();
         List<Commentary> listCommentaries = Utils.getCommentaryListByIdTicket(this.ticket.getIdticket());
         this.listCommentaries = new ArrayList<>(listCommentaries);
         updateCommentaryList(listCommentaries);
     }
-    public void updateLabelUser(){
+    public void updateLabelUserResponsable(){
         labelResponsable.setText(this.userResponsible.getPseudo());
+    }
+
+    //hide button if current user is the responsible of the ticket
+    public void configureButtonAffect(){
+        if(this.userResponsible != null){
+            buttonAffect.setVisible(!(this.user.getIdindividual() == this.userResponsible.getIdindividual()));
+        }
     }
     public void configureLabelTicket(){
         detailTicketTitle.setText(this.ticket.getTitle());
@@ -111,6 +130,7 @@ public class DetailTicketController implements Initializable {
     public void configureLabelDateEnd(){
         dateEnd.setText(this.ticket.getDeadline().toString());
     }
+    public void configureCommentaryTextArea(){commentaryTextArea.setWrapText(true);}
     public void configureLabelDateLastUpdate(){
         dateLastUpdate.setText(this.ticket.getUpdatedate() != null ? this.ticket.getUpdatedate().toString() : "null");
     }
@@ -149,6 +169,19 @@ public class DetailTicketController implements Initializable {
         // Selected Item Changed.
         comboboxStatus.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
+    public void configureComboboxPlatform(){
+        ObservableList<String> platformListTicket = FXCollections.observableArrayList(ANDROID, IOS, FLUTTER);
+        comboboxPlatform.setItems(platformListTicket);
+        comboboxPlatform.setValue(this.ticket.getApplication_platformapplication());
+
+        ChangeListener<String> changeListener = (observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                updatePlatformTicket(newValue);
+            }
+        };
+        // Selected Item Changed.
+        comboboxPlatform.getSelectionModel().selectedItemProperty().addListener(changeListener);
+    }
     public void updateStatusTicket(String status){
         try {
             HttpResponse<String> response = httpClient.sendRequest(
@@ -177,16 +210,41 @@ public class DetailTicketController implements Initializable {
             Utils.showAlertDialog("error", "Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
         }
     }
+    public void updatePlatformTicket(String platform){
+        try {
+            HttpResponse<String> response = httpClient.sendRequest(
+                    "PUT",
+                    API_SERVER_URI_SET_TICKET_PLATFORM,
+                    headers = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<String, String>("Content-Type", "application/x-www-form-urlencoded")
+                    )),
+                    bodyRequest = new HashMap<>(Map.ofEntries(
+                            new AbstractMap.SimpleEntry<Object, Object>("idTicket", this.ticket.getIdticket()),
+                            new AbstractMap.SimpleEntry<Object, Object>("platform", platform)
+                    ))
+            );
+            if(response.statusCode() != 200){
+                Utils.showAlertDialog("error", "Error updating the ticket's platform", "Please contact your administrator.");
+                return;
+            }
+            JsonObject convertedObject = gson.fromJson(response.body(), JsonObject.class);
+            Timestamp updateDate = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(convertedObject.get("body").getAsJsonObject().get("updateDate"), Timestamp.class);
+            this.ticket.setApplication_platformapplication(platform);
+            this.ticket.setUpdatedate(updateDate);
+            configureLabelDateLastUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Utils.showAlertDialog("error", "Error Connection API Server", "An error occurred while we attempted connecting to the API Server.");
+        }
+    }
 
     public void configureDescriptionTextArea(){
         descriptionTextArea.setText(this.ticket.getTitle());
     }
 
     public void updateCommentaryList(List<Commentary> listCommentaries){
-        for (Commentary commentary:
-             listCommentaries) {
-            System.out.println(commentary);
-        }
+
         this.commentaries = FXCollections.observableArrayList(listCommentaries);
         listViewCommentaries.setItems(null);
         listViewCommentaries.setItems(this.commentaries);
@@ -215,7 +273,8 @@ public class DetailTicketController implements Initializable {
             this.ticket.setIndividual_idindividual(this.user.getIdindividual());
             this.ticket.setUpdatedate(updateDate);
             this.userResponsible = this.user;
-            updateLabelUser();
+            updateLabelUserResponsable();
+            configureButtonAffect();
             configureLabelDateLastUpdate();
         } catch (Exception e) {
             e.printStackTrace();

@@ -38,6 +38,7 @@ public class CommentaryController {
         labelUser.setText(user.getPseudo());
         labelDateCreation.setText(commentary.getDatecreation().toString());
         commentarySample.setText(commentary.getText());
+        commentarySample.setWrapText(true);
     }
 
     public VBox getBox()

@@ -26,6 +26,15 @@ import java.util.*;
 
 public class CreateTicketController implements Initializable {
     public static final String IN_PROGRESS = "En cours";
+
+    public static final String LOW = "basse";
+    public static final String MEDIUM = "moyen";
+    public static final String HIGH = "élevé";
+
+    public static final String ANDROID = "android";
+    public static final String IOS = "ios";
+    public static final String FLUTTER = "flutter";
+
     private static final String API_SERVER_URI = "http://0.0.0.0:3000/createTicket";
 
     private HashMap<String, String> headers;
@@ -41,6 +50,10 @@ public class CreateTicketController implements Initializable {
     Label labelUser2;
     @FXML
     private Label dateToday;
+    @FXML
+    public Label labelApp;
+    @FXML
+    public ComboBox comboboxPlatform;
     @FXML
     private TextArea descriptionTextArea;
     @FXML
@@ -75,13 +88,6 @@ public class CreateTicketController implements Initializable {
     }
     @FXML
     public void onClickSubmit(ActionEvent event) {
-        System.out.println("button submit clicked");
-        System.out.println("Date: " + dateToday.getText());
-        System.out.println("Titre: " + titleTextField.getText());
-        System.out.println("Deadline: " + deadlineDatePicker.getValue());
-        System.out.println("Priorite: " + priorityComboBox.getValue());
-        System.out.println("Description: " + descriptionTextArea.getText());
-
         OurHttpClient httpClient = new OurHttpClient();
         try {
             HttpResponse<String> response = httpClient.sendRequest(
@@ -92,6 +98,7 @@ public class CreateTicketController implements Initializable {
                     )),
                     bodyRequest = new HashMap<>(Map.ofEntries(
                             new AbstractMap.SimpleEntry<Object, Object>("title", titleTextField.getText()),
+                            new AbstractMap.SimpleEntry<Object, Object>("platform", comboboxPlatform.getValue()),
                             new AbstractMap.SimpleEntry<Object, Object>("deadline", deadlineDatePicker.getValue()),
                             new AbstractMap.SimpleEntry<Object, Object>("priority", priorityComboBox.getValue()),
                             new AbstractMap.SimpleEntry<Object, Object>("description", titleTextField.getText()),
@@ -111,7 +118,6 @@ public class CreateTicketController implements Initializable {
     }
     @FXML
     public void onClickCancel(ActionEvent event) {
-        System.out.println("button cancel clicked");
         openTicketListScene(event);
     }
     // Factory to create Cell of DatePicker
@@ -163,10 +169,15 @@ public class CreateTicketController implements Initializable {
 //        Callback<DatePicker, DateCell> dayCellFactory= this.getDayCellFactory();
 //        deadlineDatePicker.setDayCellFactory(dayCellFactory);
 
-        //set comboBox configuration
-        ObservableList<String> priorityList = FXCollections.observableArrayList("basse", "moyen", "élevé");
-        priorityComboBox.setValue("basse");
+        //set comboBox priority configuration
+        ObservableList<String> priorityList = FXCollections.observableArrayList(LOW, MEDIUM, HIGH);
+        priorityComboBox.setValue(LOW);
         priorityComboBox.setItems(priorityList);
+
+        //set comboBox application configuration
+        ObservableList<String> applicationList = FXCollections.observableArrayList(ANDROID, IOS, FLUTTER);
+        comboboxPlatform.setValue(ANDROID);
+        comboboxPlatform.setItems(applicationList);
 
         //set textArea configuration
         descriptionTextArea.setWrapText(true);

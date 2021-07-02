@@ -14,8 +14,19 @@ public class Ticket {
     private String description;
     private String priority;
     private int individual_idindividual;
+    private String application_platformapplication;
 
-    public Ticket(int idticket, String title, Timestamp creationdate, Timestamp updatedate, Timestamp deadline, String status, String description, String priority, int individual_idindividual) {
+    public Ticket(int idticket,
+                  String title,
+                  Timestamp creationdate,
+                  Timestamp updatedate,
+                  Timestamp deadline,
+                  String status,
+                  String description,
+                  String priority,
+                  int individual_idindividual,
+                  String application_platformapplication)
+    {
         this.idticket = idticket;
         this.title = title;
         this.creationdate = creationdate;
@@ -25,6 +36,7 @@ public class Ticket {
         this.description = description;
         this.priority = priority;
         this.individual_idindividual = individual_idindividual;
+        this.application_platformapplication = application_platformapplication;
     }
 
     @Override
@@ -39,6 +51,7 @@ public class Ticket {
                 ", description='" + description + '\'' +
                 ", priority='" + priority + '\'' +
                 ", individual_idindividual='" + individual_idindividual + '\'' +
+                ", application_idapplication='" + application_platformapplication + '\'' +
                 '}';
     }
 
@@ -113,5 +126,13 @@ public class Ticket {
 
     public void setIndividual_idindividual(int individual_idindividual) {
         this.individual_idindividual = individual_idindividual;
+    }
+
+    public String getApplication_platformapplication() {
+        return application_platformapplication;
+    }
+
+    public void setApplication_platformapplication(String application_platformapplication) {
+        this.application_platformapplication = application_platformapplication;
     }
 }

@@ -42,10 +42,6 @@ public class ConnectionController implements Initializable {
 
     @FXML
     public void onClickSubmit(ActionEvent event){
-        System.out.println("button clicked");
-        System.out.println("Texfield: " + loginTextField.getText());
-        System.out.println("PasswordField: " + pwdPasswordField.getText());
-
         OurHttpClient httpClient = new OurHttpClient();
         try {
             HttpResponse<String> response = httpClient.sendRequest(
@@ -67,7 +63,6 @@ public class ConnectionController implements Initializable {
             //System.out.println(convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(0).getClass().getName());
 
             Individual indvdl = gson.fromJson(convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(0), Individual.class);
-            System.out.println(indvdl);
 
             openTicketListScene(event, indvdl);
 

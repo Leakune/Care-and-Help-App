@@ -41,7 +41,7 @@ public class Utils {
                     ))
             );
             if(response.statusCode() != 200){
-                Utils.showAlertDialog("error", "Error finding the ticket list", "There may be no ticket with the status " + status);
+                //Utils.showAlertDialog("error", "Error finding the ticket list", "There may be no ticket with the status " + status);
                 return ticketList;
             }
             JsonObject convertedObject = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(response.body(), JsonObject.class);
@@ -50,9 +50,6 @@ public class Utils {
                 JsonElement data = convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(i);
                 ticketList.add(gson.fromJson(data, Ticket.class));
             }
-//            for (int i = 0; i < sizeData; i++) {
-//                System.out.println(ticketList.get(i));
-//            }
             return ticketList;
 
         } catch (Exception e) {
@@ -83,9 +80,6 @@ public class Utils {
                 JsonElement data = convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(i);
                 commentaryList.add(gson.fromJson(data, Commentary.class));
             }
-//            for (int i = 0; i < sizeData; i++) {
-//                System.out.println(ticketList.get(i));
-//            }
             return commentaryList;
 
         } catch (Exception e) {
