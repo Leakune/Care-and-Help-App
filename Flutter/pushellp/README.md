@@ -1,16 +1,11 @@
 # pushellp
 
-A new Flutter project.
+Application Flutter for the "super-admin" of the Care and Help App project.
+The features include the management of users, posts, sections, tickets.
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
+### Library http
 
-A few resources to get you started if this is your first Flutter project:
+To make http requests to our api-server, we use the package "http": https://pub.dev/packages/http/install
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
