@@ -13,7 +13,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
+      controller: controller..text = "Ludovic", //TODO controller
       decoration: InputDecoration(
         hintText: input,
       ),

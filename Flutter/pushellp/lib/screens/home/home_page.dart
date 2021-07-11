@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pushellp/commun/appBarCustom.dart';
+import 'package:pushellp/commun/drawerCustom.dart';
 import 'package:pushellp/models/User.dart';
 import 'package:pushellp/screens/app_theme/manage_app_theme.dart';
 import 'package:pushellp/screens/home/custom_button.dart';
@@ -22,9 +24,11 @@ class HomePage extends StatelessWidget {
     final double itemWidth = size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Page"),
+      appBar: AppBarCustom(
+        title: "Home Page",
+        userPseudo: user.pseudo,
       ),
+      drawer: DrawerCustom(user: user,),
       body: SafeArea(
         child: Center(
           child: Padding(

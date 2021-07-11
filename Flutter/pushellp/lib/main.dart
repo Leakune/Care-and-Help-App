@@ -92,13 +92,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Connection"),
-      ),
-      body: SafeArea(
-        child: Connection(),
-      ),
-    );
+    return Connection();
   }
 }

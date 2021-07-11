@@ -25,8 +25,15 @@ class _ConnectionState extends State<Connection> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: _futureUser == null ? buildFormLogin() : buildFutureBuilderLogin(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Connection"),
+      ),
+      body: SafeArea(
+        child: Center(
+          child: _futureUser == null ? buildFormLogin() : buildFutureBuilderLogin(),
+        ),
+      ),
     );
   }
 

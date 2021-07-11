@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pushellp/commun/backToHomePage.dart';
+import 'package:pushellp/commun/drawerCustom.dart';
 import 'package:pushellp/models/User.dart';
 
 class ManageNotifiedPostPage extends StatelessWidget {
@@ -13,9 +15,24 @@ class ManageNotifiedPostPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Manage Notified Posts"),
       ),
+      drawer: DrawerCustom(
+        user: user,
+      ),
       body: SafeArea(
-        child: Center(
-          child: Text(user.pseudo)
+        child: Column(
+          children: [
+            SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: BackToHomePageButton(user: user),
+              ),
+            ),
+            Center(
+              child: Text(user.pseudo),
+            ),
+          ],
         ),
       ),
     );
