@@ -18,7 +18,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Home page");
     var size = MediaQuery.of(context).size;
     final double itemHeight = size.height / 4;
     final double itemWidth = size.width;
