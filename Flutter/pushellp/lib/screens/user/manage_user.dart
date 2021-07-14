@@ -81,18 +81,53 @@ class _ManageUserPageState extends State<ManageUserPage>
               child: TabBarView(
                 children: [
                   Center(
-                    child: Column(
-                      children: [
-                        Text("List of visitors"),
-                        Table(
-                          border: TableBorder.all(),
-                          children: _tableRows,
-                        )
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          Text("List of visitors", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                          SizedBox(height: 15),
+                          Table(
+                            border: TableBorder.all(),
+                            children: _tableRows,
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  Center(child: Text("List of admins")),
-                  Center(child: Text("List of super-admins"))
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          Text("List of admins", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                          SizedBox(height: 15),
+                          Table(
+                            border: TableBorder.all(),
+                            columnWidths: {
+                              3: FlexColumnWidth(1)
+                            },
+                            children: _tableRows,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          Text("List of super admins", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                          SizedBox(height: 15),
+                          Table(
+                            border: TableBorder.all(),
+                            children: _tableRows,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
                 controller: _tabController,
               ),
@@ -157,13 +192,10 @@ class _ManageUserPageState extends State<ManageUserPage>
         Text(
           user.birthday.toString(),
         ),
-        Text(
-          "actions",
-        ),
+        Row(children: [ImageIcon(AssetImage('images/promote.png')),Icon(Icons.delete)],),
       ]));
     }
     _tableRows = tableRows;
-    await Future.delayed(Duration(seconds: 1));
     //return Table(border: TableBorder.all(), children: tableRows,)
   }
 }
