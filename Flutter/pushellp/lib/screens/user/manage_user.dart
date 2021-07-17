@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:pushellp/commun/appBarCustom.dart';
 import 'package:pushellp/commun/backToHomePage.dart';
 import 'package:pushellp/commun/drawerCustom.dart';
+import 'package:pushellp/commun/utils.dart';
 import 'package:pushellp/models/User.dart';
 import 'package:pushellp/screens/user/action_btn.dart';
 import 'package:pushellp/screens/user/cell_table.dart';
@@ -127,74 +128,101 @@ class _ManageUserPageState extends State<ManageUserPage>
         status = "superadmin";
         break;
     }
-    List<User> users = await _httpService.getUsersByStatus(status);
-    List<TableRow> tableRows = [];
-    tableRows.add(TableRow(children: [
-      HeaderTable(
-          headerValue: "Pseudo",
-          headerColor: headerColor,
-          headerFontSize: headerFontSize),
-      HeaderTable(
-          headerValue: "Email",
-          headerColor: headerColor,
-          headerFontSize: headerFontSize),
-      HeaderTable(
-          headerValue: "Register date",
-          headerColor: headerColor,
-          headerFontSize: headerFontSize),
-      HeaderTable(
-          headerValue: "Birthday",
-          headerColor: headerColor,
-          headerFontSize: headerFontSize),
-      HeaderTable(
+    try{
+      List<User> users = await _httpService.getUsersByStatus(status);
+      List<TableRow> tableRows = [];
+      tableRows.add(TableRow(children: [
+        HeaderTable(
+            headerValue: "Pseudo",
+            headerColor: headerColor,
+            headerFontSize: headerFontSize),
+        HeaderTable(
+            headerValue: "Email",
+            headerColor: headerColor,
+            headerFontSize: headerFontSize),
+        HeaderTable(
+            headerValue: "Register date",
+            headerColor: headerColor,
+            headerFontSize: headerFontSize),
+        HeaderTable(
+            headerValue: "Birthday",
+            headerColor: headerColor,
+            headerFontSize: headerFontSize),
+        HeaderTable(
           headerValue: "Actions",
           headerColor: headerColor,
-          headerFontSize: headerFontSize),
-    ]));
-    for (var u in users) {
-      var pseudo = u.pseudo;
-      var email = u.email;
-      var promoteUserActionBtn = status == "client"
-          ? ActionBtn(
-              title: "Delete user",
-              question:
-                  "Are you sure you want to promote the user $pseudo into an admin?",
-              callback: () async {
-                await _httpService.setUserStatusAdminByIdUser(u.idUser, widget.user.idUser);
-                Navigator.of(context).pop();
-                setState(() {}); //TODO update list of users after the change of the status
-                // setState(() {
-                //   _selectedIndex = _tabController!.index;
-                // });
-              },
-              icon: ImageIcon(AssetImage('images/promote.png')),
-            )
-          : SizedBox();
-      tableRows.add(TableRow(children: [
-        CellTable(valueCell: pseudo, paddingLeft: paddingLeftCellTable),
-        CellTable(valueCell: email, paddingLeft: paddingLeftCellTable),
-        CellTable(
-            valueCell: formatDate(u.registerdate.toString()),
-            paddingLeft: paddingLeftCellTable),
-        CellTable(
-            valueCell: formatDate(u.birthday.toString()),
-            paddingLeft: paddingLeftCellTable),
-        Row(
-          children: [
-            promoteUserActionBtn,
-            ActionBtn(
-              title: "Delete user",
-              question: "Are you sure you want to delete the user $pseudo?",
-              callback: () {
-                print("delete clicked");
-              },
-              icon: Icon(Icons.delete),
-            )
-          ],
+          headerFontSize: headerFontSize,
         ),
       ]));
+      for (var u in users) {
+        var pseudo = u.pseudo;
+        var email = u.email;
+        var promoteUserActionBtn;
+        var deleteUserActionBtn;
+        if(status == "client"){
+          promoteUserActionBtn = ActionBtn(
+                title: "Upgrade user",
+                question:
+                    "Are you sure you want to promote the user $pseudo into an admin?",
+                callback: () async {
+                  try{
+                    await _httpService.setUserStatusAdminByIdUser(u.idUser, widget.user.idUser);
+                    Navigator.of(context).pop();
+                    setState(() {}); //TODO update list of users after the change of the status
+                    // setState(() {
+                    //   _selectedIndex = _tabController!.index;
+                    // });
+                  }catch(err){
+                    print("Error: $err");
+                    Utils.displayAlertDialog(context, "Error updating the user", err.toString());
+                  }
+                },
+                icon: ImageIcon(AssetImage('images/promote.png')),
+              );
+        }else{
+          promoteUserActionBtn = SizedBox();
+        }
+        if(status == "superadmin"){
+          deleteUserActionBtn = SizedBox();
+        }else{
+          deleteUserActionBtn = ActionBtn(
+            title: "Delete user",
+            question: "Are you sure you want to delete the user $pseudo?",
+            callback: () async{
+              try{
+                await _httpService.deleteUserById(u.idUser);
+                Navigator.of(context).pop();
+                setState(() {}); //TODO update list of users after the deletion
+              }catch(err){
+                print("Error: $err");
+                Utils.displayAlertDialog(context, "Error deleting the user", err.toString());
+              }  
+            },
+            icon: Icon(Icons.delete),
+          );
+        }
+        tableRows.add(TableRow(children: [
+          CellTable(valueCell: pseudo, paddingLeft: paddingLeftCellTable),
+          CellTable(valueCell: email, paddingLeft: paddingLeftCellTable),
+          CellTable(
+              valueCell: formatDate(u.registerdate.toString()),
+              paddingLeft: paddingLeftCellTable),
+          CellTable(
+              valueCell: formatDate(u.birthday.toString()),
+              paddingLeft: paddingLeftCellTable),
+          Row(
+            children: [
+              promoteUserActionBtn,
+              deleteUserActionBtn
+            ],
+          ),
+        ]));
+      }
+      _tableRows = tableRows;
+    }catch(err){
+      print("Error: $err");
+      Utils.displayAlertDialog(context, "Error deleting the user", err.toString());
     }
-    _tableRows = tableRows;
   }
 }
 

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:pushellp/commun/utils.dart';
 import 'package:pushellp/models/User.dart';
 import 'package:pushellp/screens/home/home_page.dart';
 import 'package:pushellp/services/http_service.dart';
@@ -109,14 +110,18 @@ class _ConnectionState extends State<Connection> {
         _futureUser = _httpService.login(
             _loginController.text.trim(), _passwordController.text.trim());
       });*/
-
-      User user = await _httpService.login(
-          _loginController.text.trim(), _passwordController.text.trim());
-      Navigator.pushNamed(
-        context,
-        HomePage.routeName,
-        arguments: user,
-      );
+      try{
+        User user = await _httpService.login(
+            _loginController.text.trim(), _passwordController.text.trim());
+        Navigator.pushNamed(
+          context,
+          HomePage.routeName,
+          arguments: user,
+        );
+      }catch(err){
+        print("Error: $err");
+        Utils.displayAlertDialog(context, "Error deleting the user", err.toString());
+      }
     }
   }
 
