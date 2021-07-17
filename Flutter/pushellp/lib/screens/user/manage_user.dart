@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pushellp/commun/appBarCustom.dart';
 import 'package:pushellp/commun/backToHomePage.dart';
 import 'package:pushellp/commun/drawerCustom.dart';
 import 'package:pushellp/models/User.dart';
+import 'package:pushellp/screens/user/action_btn.dart';
+import 'package:pushellp/screens/user/cell_table.dart';
+import 'package:pushellp/screens/user/header_table.dart';
+import 'package:pushellp/screens/user/tab_bar_view_custom.dart';
 import 'package:pushellp/services/http_service.dart';
 
 class ManageUserPage extends StatefulWidget {
@@ -17,6 +22,11 @@ class ManageUserPage extends StatefulWidget {
 
 class _ManageUserPageState extends State<ManageUserPage>
     with SingleTickerProviderStateMixin {
+  final double paddingLeftCellTable = 5.0;
+  final Color headerColor = Colors.white;
+  final double headerFontSize = 18;
+  final double tabBarViewPadding = 20;
+  final double fontSizeTitle = 24;
   final HttpService _httpService = HttpService();
   TabController? _tabController;
   int _selectedIndex = 0;
@@ -29,14 +39,13 @@ class _ManageUserPageState extends State<ManageUserPage>
       setState(() {
         _selectedIndex = _tabController!.index;
       });
-      print("Selected Index: " + _tabController!.index.toString());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     createTable();
-    
+
     return Scaffold(
       appBar: AppBarCustom(
         title: "Manage Users",
@@ -80,54 +89,21 @@ class _ManageUserPageState extends State<ManageUserPage>
             Expanded(
               child: TabBarView(
                 children: [
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          Text("List of visitors", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-                          SizedBox(height: 15),
-                          Table(
-                            border: TableBorder.all(),
-                            children: _tableRows,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          Text("List of admins", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-                          SizedBox(height: 15),
-                          Table(
-                            border: TableBorder.all(),
-                            columnWidths: {
-                              3: FlexColumnWidth(1)
-                            },
-                            children: _tableRows,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          Text("List of super admins", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-                          SizedBox(height: 15),
-                          Table(
-                            border: TableBorder.all(),
-                            children: _tableRows,
-                          )
-                        ],
-                      ),
-                    ),
-                  )
+                  TabBarViewCustom(
+                      padding: tabBarViewPadding,
+                      title: "List of visitors",
+                      fontSizeTitle: fontSizeTitle,
+                      tableRows: _tableRows),
+                  TabBarViewCustom(
+                      padding: tabBarViewPadding,
+                      title: "List of admins",
+                      fontSizeTitle: fontSizeTitle,
+                      tableRows: _tableRows),
+                  TabBarViewCustom(
+                      padding: tabBarViewPadding,
+                      title: "List of super admins",
+                      fontSizeTitle: fontSizeTitle,
+                      tableRows: _tableRows),
                 ],
                 controller: _tabController,
               ),
@@ -142,61 +118,91 @@ class _ManageUserPageState extends State<ManageUserPage>
     String status = "client";
     switch (_selectedIndex) {
       case 0:
-        print("creating table android");
         status = "client";
         break;
       case 1:
-        print("creating table ios");
         status = "admin";
         break;
       case 2:
-        print("creating table flutter");
         status = "superadmin";
         break;
     }
     List<User> users = await _httpService.getUsersByStatus(status);
     List<TableRow> tableRows = [];
     tableRows.add(TableRow(children: [
-      Text(
-        "Pseudo",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      ),
-      Text(
-        "Email",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      ),
-      Text(
-        "Register date",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      ),
-      Text(
-        "birthday",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      ),
-      Text(
-        "Actions",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      )
+      HeaderTable(
+          headerValue: "Pseudo",
+          headerColor: headerColor,
+          headerFontSize: headerFontSize),
+      HeaderTable(
+          headerValue: "Email",
+          headerColor: headerColor,
+          headerFontSize: headerFontSize),
+      HeaderTable(
+          headerValue: "Register date",
+          headerColor: headerColor,
+          headerFontSize: headerFontSize),
+      HeaderTable(
+          headerValue: "Birthday",
+          headerColor: headerColor,
+          headerFontSize: headerFontSize),
+      HeaderTable(
+          headerValue: "Actions",
+          headerColor: headerColor,
+          headerFontSize: headerFontSize),
     ]));
-    for (var user in users) {
+    for (var u in users) {
+      var pseudo = u.pseudo;
+      var email = u.email;
+      var promoteUserActionBtn = status == "client"
+          ? ActionBtn(
+              title: "Delete user",
+              question:
+                  "Are you sure you want to promote the user $pseudo into an admin?",
+              callback: () async {
+                await _httpService.setUserStatusAdminByIdUser(u.idUser, widget.user.idUser);
+                Navigator.of(context).pop();
+                setState(() {}); //TODO update list of users after the change of the status
+                // setState(() {
+                //   _selectedIndex = _tabController!.index;
+                // });
+              },
+              icon: ImageIcon(AssetImage('images/promote.png')),
+            )
+          : SizedBox();
       tableRows.add(TableRow(children: [
-        Text(
-          user.pseudo,
+        CellTable(valueCell: pseudo, paddingLeft: paddingLeftCellTable),
+        CellTable(valueCell: email, paddingLeft: paddingLeftCellTable),
+        CellTable(
+            valueCell: formatDate(u.registerdate.toString()),
+            paddingLeft: paddingLeftCellTable),
+        CellTable(
+            valueCell: formatDate(u.birthday.toString()),
+            paddingLeft: paddingLeftCellTable),
+        Row(
+          children: [
+            promoteUserActionBtn,
+            ActionBtn(
+              title: "Delete user",
+              question: "Are you sure you want to delete the user $pseudo?",
+              callback: () {
+                print("delete clicked");
+              },
+              icon: Icon(Icons.delete),
+            )
+          ],
         ),
-        Text(
-          user.email,
-        ),
-        Text(
-          user.registerdate.toString(),
-        ),
-        Text(
-          user.birthday.toString(),
-        ),
-        Row(children: [ImageIcon(AssetImage('images/promote.png')),Icon(Icons.delete)],),
       ]));
     }
     _tableRows = tableRows;
-    //return Table(border: TableBorder.all(), children: tableRows,)
   }
 }
 
+String formatDate(String date) {
+  var inputFormat = DateFormat("yyyy-MM-dd' HH:mm:ss");
+  var inputDate = inputFormat.parse(date);
+
+  var outputFormat = DateFormat("dd/MM/yyyy");
+  var outputDate = outputFormat.format(inputDate);
+  return outputDate;
+}

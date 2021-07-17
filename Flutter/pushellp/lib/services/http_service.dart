@@ -46,4 +46,22 @@ class HttpService {
         jsonArrayUser.map((dynamic it) => User.fromJson(it)).toList();
     return users;
   }
+  Future<void> setUserStatusAdminByIdUser(int idUserToPromote, int idUserWhoPromotes) async{
+    final response = await http.put(
+      Uri.parse(baseUrl + "setUserStatusAdminByIdUser"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, int>{
+        'idUserToPromote': idUserToPromote,
+        'idUserWhoPromotes': idUserWhoPromotes,
+      }),
+    );
+    var json = jsonDecode(response.body);
+
+    if (response.statusCode != 200) {
+      String jsonError = json["error"];
+      throw Exception(jsonError);
+    }
+  }
 }
