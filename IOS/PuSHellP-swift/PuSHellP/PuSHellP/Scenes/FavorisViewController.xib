@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Black.ttf">
+            <string>Roboto-Black</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavorisViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
@@ -38,13 +43,6 @@
                         <constraint firstAttribute="height" constant="148" id="GTd-kQ-Z4y"/>
                     </constraints>
                 </stackView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-" translatesAutoresizingMaskIntoConstraints="NO" id="zak-7g-5el">
-                    <rect key="frame" x="0.0" y="20" width="141" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="45" id="9tN-MZ-dEl"/>
-                        <constraint firstAttribute="width" constant="141" id="Lls-fi-8PO"/>
-                    </constraints>
-                </imageView>
                 <tabBar contentMode="scaleToFill" translucent="NO" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="oNV-Qx-FD4">
                     <rect key="frame" x="0.0" y="946" width="768" height="49"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,19 +58,43 @@
                     </items>
                     <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tabBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tT-Mp-UNI">
+                    <rect key="frame" x="580" y="20" width="188" height="65"/>
+                    <accessibility key="accessibilityConfiguration" label="Toutes les rubriques"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="feD-Gu-Pc0"/>
+                        <constraint firstAttribute="width" constant="188" id="mSE-ft-G6t"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="26"/>
+                    <state key="normal" title="Rubriques &gt;">
+                        <color key="titleColor" red="0.48394340279999998" green="0.063351407649999997" blue="0.007341299206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonRubrique:" destination="-1" eventType="touchUpInside" id="2a5-Kh-0QG"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-" translatesAutoresizingMaskIntoConstraints="NO" id="zak-7g-5el">
+                    <rect key="frame" x="102" y="7" width="564" height="78"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="78" id="aqI-sv-Upn"/>
+                        <constraint firstAttribute="width" constant="564" id="wwv-h6-JOi"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zak-7g-5el" secondAttribute="trailing" constant="627" id="7f6-KM-Wvb"/>
-                <constraint firstItem="zak-7g-5el" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Act-WI-INA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zak-7g-5el" secondAttribute="trailing" constant="102" id="22S-97-xKg"/>
+                <constraint firstItem="8tT-Mp-UNI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="6Tj-E5-eJ6"/>
+                <constraint firstItem="8tT-Mp-UNI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="CJB-HM-a7a"/>
+                <constraint firstItem="zak-7g-5el" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="7" id="EV4-Lx-gXl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bgT-y7-yhR" secondAttribute="trailing" constant="20" id="HRh-db-fAb"/>
                 <constraint firstItem="bgT-y7-yhR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="IT1-gb-GIt"/>
+                <constraint firstItem="zak-7g-5el" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="102" id="JQo-Bz-sBC"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="PJ7-IB-TBI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oNV-Qx-FD4" secondAttribute="bottom" constant="29" id="RQH-hK-Xna"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="top" secondItem="bgT-y7-yhR" secondAttribute="bottom" constant="22" id="WEA-1L-ub8"/>
-                <constraint firstItem="zak-7g-5el" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WkQ-mu-w5U"/>
                 <constraint firstItem="bgT-y7-yhR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="lBg-8Z-czj"/>
                 <constraint firstItem="oNV-Qx-FD4" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lEk-w4-fJs"/>
                 <constraint firstItem="oNV-Qx-FD4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="slp-SR-58F"/>

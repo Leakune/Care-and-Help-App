@@ -8,6 +8,12 @@
 import UIKit
 
 class allRubriquesViewController: UIViewController {
+    public var individual: Individual?
+    static func newInstance(individual: Individual) -> allRubriquesViewController{
+        let controller = allRubriquesViewController()
+        controller.individual = individual
+        return controller
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +21,12 @@ class allRubriquesViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func buttonReturnFavoris(_ sender: Any) {
+        print(individual!.description)
+        let controller = FavorisViewController.newInstance(individual: individual!)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Nesprecho
 //
-//  Created by Benoit Briatte on 03/02/2021.
+
 //
 
 import UIKit

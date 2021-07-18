@@ -14,6 +14,12 @@
 		87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87308DCA263C3E8B005A85F3 /* homeViewController.swift */; };
 		87308DCD263C3E8B005A85F3 /* homeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87308DCB263C3E8B005A85F3 /* homeViewController.xib */; };
 		876328612656AD4B00B66420 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876328602656AD4B00B66420 /* AppDelegate.swift */; };
+		876FD8A826715FF6008A0CAA /* profilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD8A626715FF6008A0CAA /* profilViewController.swift */; };
+		876FD8A926715FF6008A0CAA /* profilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876FD8A726715FF6008A0CAA /* profilViewController.xib */; };
+		876FD8AD26716084008A0CAA /* notificationAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD8AB26716084008A0CAA /* notificationAdminViewController.swift */; };
+		876FD8AE26716084008A0CAA /* notificationAdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876FD8AC26716084008A0CAA /* notificationAdminViewController.xib */; };
+		876FD8B226716169008A0CAA /* postViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD8B026716169008A0CAA /* postViewController.swift */; };
+		876FD8B326716169008A0CAA /* postViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876FD8B126716169008A0CAA /* postViewController.xib */; };
 		87BB21EF266C059200375241 /* rubriqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB21ED266C059200375241 /* rubriqueViewController.swift */; };
 		87BB21F0266C059200375241 /* rubriqueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87BB21EE266C059200375241 /* rubriqueViewController.xib */; };
 		87BB21F6266CD41F00375241 /* newPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB21F4266CD41F00375241 /* newPostViewController.swift */; };
@@ -36,6 +42,12 @@
 		87308DCA263C3E8B005A85F3 /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		87308DCB263C3E8B005A85F3 /* homeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeViewController.xib; sourceTree = "<group>"; };
 		876328602656AD4B00B66420 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		876FD8A626715FF6008A0CAA /* profilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profilViewController.swift; sourceTree = "<group>"; };
+		876FD8A726715FF6008A0CAA /* profilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = profilViewController.xib; sourceTree = "<group>"; };
+		876FD8AB26716084008A0CAA /* notificationAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationAdminViewController.swift; sourceTree = "<group>"; };
+		876FD8AC26716084008A0CAA /* notificationAdminViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = notificationAdminViewController.xib; sourceTree = "<group>"; };
+		876FD8B026716169008A0CAA /* postViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postViewController.swift; sourceTree = "<group>"; };
+		876FD8B126716169008A0CAA /* postViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = postViewController.xib; sourceTree = "<group>"; };
 		87BB21ED266C059200375241 /* rubriqueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rubriqueViewController.swift; sourceTree = "<group>"; };
 		87BB21EE266C059200375241 /* rubriqueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = rubriqueViewController.xib; sourceTree = "<group>"; };
 		87BB21F4266CD41F00375241 /* newPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPostViewController.swift; sourceTree = "<group>"; };
@@ -101,10 +113,6 @@
 				876328602656AD4B00B66420 /* AppDelegate.swift */,
 				87308DA8263C323C005A85F3 /* LaunchScreen.storyboard */,
 				87308DAB263C323C005A85F3 /* Info.plist */,
-				87308DCA263C3E8B005A85F3 /* homeViewController.swift */,
-				87308DCB263C3E8B005A85F3 /* homeViewController.xib */,
-				87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */,
-				87F54B4F266BB8AE0048D3F7 /* FavorisViewController.xib */,
 				87F54B48266574190048D3F7 /* Assets.xcassets */,
 				87F54B402665490E0048D3F7 /* roboto */,
 			);
@@ -114,12 +122,22 @@
 		87F54B53266BB8F00048D3F7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				87308DCA263C3E8B005A85F3 /* homeViewController.swift */,
+				87308DCB263C3E8B005A85F3 /* homeViewController.xib */,
+				87F54B4E266BB8AE0048D3F7 /* FavorisViewController.swift */,
+				87F54B4F266BB8AE0048D3F7 /* FavorisViewController.xib */,
 				87BB21ED266C059200375241 /* rubriqueViewController.swift */,
 				87BB21EE266C059200375241 /* rubriqueViewController.xib */,
 				87BB21F4266CD41F00375241 /* newPostViewController.swift */,
 				87BB21F5266CD41F00375241 /* newPostViewController.xib */,
 				87BB21F9266CE64000375241 /* allRubriquesViewController.swift */,
 				87BB21FA266CE64000375241 /* allRubriquesViewController.xib */,
+				876FD8A626715FF6008A0CAA /* profilViewController.swift */,
+				876FD8A726715FF6008A0CAA /* profilViewController.xib */,
+				876FD8AB26716084008A0CAA /* notificationAdminViewController.swift */,
+				876FD8AC26716084008A0CAA /* notificationAdminViewController.xib */,
+				876FD8B026716169008A0CAA /* postViewController.swift */,
+				876FD8B126716169008A0CAA /* postViewController.xib */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -182,12 +200,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				876FD8A926715FF6008A0CAA /* profilViewController.xib in Resources */,
 				87BB21F7266CD41F00375241 /* newPostViewController.xib in Resources */,
 				87BB21FC266CE64000375241 /* allRubriquesViewController.xib in Resources */,
 				87308DCD263C3E8B005A85F3 /* homeViewController.xib in Resources */,
 				87308DAA263C323C005A85F3 /* LaunchScreen.storyboard in Resources */,
+				876FD8AE26716084008A0CAA /* notificationAdminViewController.xib in Resources */,
 				87F54B51266BB8AE0048D3F7 /* FavorisViewController.xib in Resources */,
 				87F54B412665490E0048D3F7 /* roboto in Resources */,
+				876FD8B326716169008A0CAA /* postViewController.xib in Resources */,
 				87F54B49266574190048D3F7 /* Assets.xcassets in Resources */,
 				87BB21F0266C059200375241 /* rubriqueViewController.xib in Resources */,
 			);
@@ -202,12 +223,15 @@
 			files = (
 				87BB21F6266CD41F00375241 /* newPostViewController.swift in Sources */,
 				4344610C266D133200C0741B /* RequestConnexion.swift in Sources */,
+				876FD8A826715FF6008A0CAA /* profilViewController.swift in Sources */,
 				876328612656AD4B00B66420 /* AppDelegate.swift in Sources */,
 				87BB21EF266C059200375241 /* rubriqueViewController.swift in Sources */,
 				4344610F266D137B00C0741B /* Individual.swift in Sources */,
 				87F54B50266BB8AE0048D3F7 /* FavorisViewController.swift in Sources */,
 				43446113266D4D8C00C0741B /* ConvertDate.swift in Sources */,
+				876FD8B226716169008A0CAA /* postViewController.swift in Sources */,
 				87BB21FB266CE64000375241 /* allRubriquesViewController.swift in Sources */,
+				876FD8AD26716084008A0CAA /* notificationAdminViewController.swift in Sources */,
 				87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

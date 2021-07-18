@@ -40,14 +40,6 @@
                     <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="24"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8N-ya-AKK">
-                    <rect key="frame" x="29" y="23" width="62" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="62" id="JUf-ca-HTF"/>
-                        <constraint firstAttribute="height" constant="48" id="KkM-HO-4vz"/>
-                    </constraints>
-                    <state key="normal" image="retour 3"/>
-                </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo 1" translatesAutoresizingMaskIntoConstraints="NO" id="bG5-B2-Mns">
                     <rect key="frame" x="234" y="23" width="301" height="165"/>
                     <constraints>
@@ -66,23 +58,33 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCb-pG-Hln">
+                    <rect key="frame" x="0.0" y="22" width="177" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Pp8-7H-u70"/>
+                        <constraint firstAttribute="width" constant="177" id="Vsa-t1-ucx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="26"/>
+                    <state key="normal" title="&lt; Retour">
+                        <color key="titleColor" red="0.48394340279999998" green="0.063351407649999997" blue="0.007341299206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MHe-em-yvc" secondAttribute="trailing" constant="52" id="6tU-RB-4jc"/>
+                <constraint firstItem="xCb-pG-Hln" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="74g-Ur-nLx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P29-H7-ajV" secondAttribute="trailing" constant="52" id="CYR-Dj-Qjx"/>
                 <constraint firstItem="P29-H7-ajV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="218" id="Ew1-le-rwL"/>
-                <constraint firstItem="A8N-ya-AKK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="29" id="GOH-ju-yEE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bG5-B2-Mns" secondAttribute="trailing" constant="233" id="Lca-ZC-vJf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="j4p-wE-Vik" secondAttribute="trailing" constant="265" id="Rrn-5J-iGA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MHe-em-yvc" secondAttribute="bottom" constant="186" id="ThE-0S-Mq5"/>
                 <constraint firstItem="P29-H7-ajV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="58" id="cbt-gX-xfv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="j4p-wE-Vik" secondAttribute="bottom" constant="44" id="evY-wP-brD"/>
-                <constraint firstItem="bG5-B2-Mns" firstAttribute="leading" secondItem="A8N-ya-AKK" secondAttribute="trailing" constant="143" id="g9X-wT-bep"/>
+                <constraint firstItem="xCb-pG-Hln" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fE6-Il-600"/>
                 <constraint firstItem="MHe-em-yvc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="53" id="n9h-fd-6s2"/>
                 <constraint firstItem="bG5-B2-Mns" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="nTz-xf-tdQ"/>
-                <constraint firstItem="A8N-ya-AKK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="p3Z-O4-VlT"/>
                 <constraint firstItem="MHe-em-yvc" firstAttribute="top" secondItem="P29-H7-ajV" secondAttribute="bottom" constant="33" id="yRy-2o-1bL"/>
                 <constraint firstItem="j4p-wE-Vik" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="272" id="zXR-65-F94"/>
             </constraints>
@@ -93,7 +95,6 @@
         <image name="Logo 1" width="93" height="103"/>
         <image name="fond post 2" width="301" height="233"/>
         <image name="pseudo_bis" width="300" height="56"/>
-        <image name="retour 3" width="116" height="93"/>
         <image name="submit-1" width="160" height="40"/>
     </resources>
 </document>
