@@ -53,6 +53,9 @@
                     <state key="normal" title="&lt; Favoris">
                         <color key="titleColor" red="0.48394340279999998" green="0.063351407649999997" blue="0.007341299206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="buttonReturnFavoris:" destination="-1" eventType="touchUpInside" id="Z9E-34-zhk"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

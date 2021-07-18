@@ -24,6 +24,11 @@ class FavorisViewController: UIViewController {
     }
 
 
+    @IBAction func buttonRubrique(_ sender: Any) {
+        let controller = allRubriquesViewController.newInstance(individual: individual!)
+        
+        self.navigationController?.pushViewController(controller, animated: true)                //self.navigationController?.pushViewController(allRubriquesViewController, animated: true)
+    }
     @IBOutlet var tabBarPost: UITabBar!
     // ajouter la conexion avec la Tab bar
     //let controller = newPostViewController()

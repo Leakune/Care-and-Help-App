@@ -4,8 +4,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Black.ttf">
+            <string>Roboto-Black</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="profilViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
@@ -16,9 +22,44 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaK-iO-fSz">
+                    <rect key="frame" x="0.0" y="22" width="177" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="2Tk-ep-1Kf"/>
+                        <constraint firstAttribute="width" constant="177" id="dOY-GS-6nV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="26"/>
+                    <state key="normal" title="&lt; Favoris">
+                        <color key="titleColor" red="0.48394340279999998" green="0.063351407649999997" blue="0.007341299206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="Unknown-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bo4-4a-QaH">
+                    <rect key="frame" x="330" y="86" width="109" height="225"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="225" id="3hH-ch-ztF"/>
+                        <constraint firstAttribute="width" constant="109" id="fJh-rZ-aoS"/>
+                    </constraints>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4eH-Ac-cGN">
+                    <rect key="frame" x="130" y="308" width="508" height="660"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </tableView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="133" y="69"/>
+            <point key="canvasLocation" x="132.8125" y="68.5546875"/>
         </view>
     </objects>
+    <resources>
+        <image name="Unknown-1" width="225" height="225"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
