@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pushellp/commun/appBarCustom.dart';
-import 'package:pushellp/commun/backToHomePage.dart';
+import 'package:pushellp/commun/back_btn_custom.dart';
+import 'package:pushellp/commun/cell_table.dart';
 import 'package:pushellp/commun/drawerCustom.dart';
+import 'package:pushellp/commun/header_table.dart';
 import 'package:pushellp/commun/utils.dart';
 import 'package:pushellp/models/User.dart';
 import 'package:pushellp/screens/user/action_btn.dart';
-import 'package:pushellp/screens/user/cell_table.dart';
-import 'package:pushellp/screens/user/header_table.dart';
 import 'package:pushellp/screens/user/tab_bar_view_custom.dart';
 import 'package:pushellp/services/http_service.dart';
 
@@ -63,7 +63,7 @@ class _ManageUserPageState extends State<ManageUserPage>
               padding: const EdgeInsets.only(left: 15.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: BackToHomePageButton(user: widget.user),
+                child: BackButtonCustom(user: widget.user, btnLeadsToHomePage: true,),
               ),
             ),
             SizedBox(height: 10),

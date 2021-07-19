@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pushellp/commun/backToHomePage.dart';
+import 'package:pushellp/commun/back_btn_custom.dart';
 import 'package:pushellp/commun/drawerCustom.dart';
 import 'package:pushellp/models/User.dart';
 
@@ -26,7 +26,7 @@ class ManageNotifiedPostPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: BackToHomePageButton(user: user),
+                child: BackButtonCustom(user: user, btnLeadsToHomePage: true,),
               ),
             ),
             Center(
