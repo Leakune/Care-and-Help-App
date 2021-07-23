@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:pushellp/commun/action_btn.dart';
 import 'package:pushellp/commun/appBarCustom.dart';
 import 'package:pushellp/commun/back_btn_custom.dart';
+import 'package:pushellp/commun/cell_table.dart';
 import 'package:pushellp/commun/drawerCustom.dart';
 import 'package:pushellp/commun/header_table.dart';
+import 'package:pushellp/commun/utils.dart';
+import 'package:pushellp/models/Section.dart';
 import 'package:pushellp/models/User.dart';
 import 'package:pushellp/screens/section/create_update_section.dart';
+import 'package:pushellp/services/http_service.dart';
 //import 'package:pushellp/services/http_service.dart';
 
 class ManageSectionPage extends StatefulWidget {
@@ -18,14 +23,15 @@ class ManageSectionPage extends StatefulWidget {
 }
 
 class _ManageSectionPageState extends State<ManageSectionPage> {
+  final double paddingLeftCellTable = 5.0;
   final Color headerColor = Colors.white;
   final double headerFontSize = 18;
+  final HttpService _httpService = HttpService();
   //final HttpService _httpService = HttpService();
   List<TableRow> _tableRows = [];
 
   @override
   Widget build(BuildContext context) {
-    createTable();
     return Scaffold(
       appBar: AppBarCustom(
         title: "Manage Sections",
@@ -42,7 +48,10 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
               padding: const EdgeInsets.only(left: 15.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: BackButtonCustom(user: widget.user, btnLeadsToHomePage: true,),
+                child: BackButtonCustom(
+                  user: widget.user,
+                  btnLeadsToHomePage: true,
+                ),
               ),
             ),
             Center(
@@ -63,7 +72,10 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => CreateUpdateSection(user: widget.user, isCreatePage: true,),
+                                builder: (context) => CreateUpdateSection(
+                                  user: widget.user,
+                                  isCreatePage: true,
+                                ),
                               ),
                             );
                           },
@@ -72,11 +84,26 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Table(
-                      defaultVerticalAlignment:
-                          TableCellVerticalAlignment.middle,
-                      border: TableBorder.all(),
-                      children: _tableRows,
+                    FutureBuilder(
+                      future: _httpService.getSections(),
+                      builder: (context, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return Center(child: CircularProgressIndicator());
+                          case ConnectionState.done:
+                            if (snapshot.hasError) {
+                              return Text(snapshot.error.toString());
+                            }
+                            if (!snapshot.hasData) {
+                              return Text("Sections not found");
+                            }
+                            List<Section> sections =
+                                snapshot.data! as List<Section>;
+                            return createTable(sections);
+                          default:
+                            return Text("Section");
+                        }
+                      },
                     )
                   ],
                 ),
@@ -88,7 +115,7 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
     );
   }
 
-  void createTable() {
+  Table createTable(List<Section> sections) {
     List<TableRow> tableRows = [];
     tableRows.add(TableRow(children: [
       HeaderTable(
@@ -105,6 +132,46 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
         headerFontSize: headerFontSize,
       ),
     ]));
-    _tableRows = tableRows;
+    for (var s in sections) {
+      var title = s.title;
+      tableRows.add(TableRow(children: [
+        CellTable(valueCell: s.title, paddingLeft: paddingLeftCellTable),
+        CellTable(
+            valueCell: s.srcicon != "" ? s.srcicon! : "null",
+            paddingLeft: paddingLeftCellTable),
+        Row(
+          children: [
+            ActionBtn(
+              icon: Icon(Icons.edit),
+              isLeadingToUpdateSection: true,
+              user: widget.user,
+              section: s,
+            ),
+            ActionBtn(
+              title: "Delete section",
+              question: "Are you sure you want to delete the section $title?",
+              callback: () async {
+                try {
+                  await _httpService.deleteSectionById(s.idSection);
+                  Navigator.of(context).pop();
+                  setState(() {});
+                } catch (err) {
+                  print("Error: $err");
+                  Utils.displayAlertDialog(
+                      context, "Error deleting the user", err.toString());
+                }
+              },
+              icon: Icon(Icons.delete),
+              isLeadingToUpdateSection: false,
+            )
+          ],
+        )
+      ]));
+    }
+    return Table(
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      border: TableBorder.all(),
+      children: tableRows,
+    );
   }
 }

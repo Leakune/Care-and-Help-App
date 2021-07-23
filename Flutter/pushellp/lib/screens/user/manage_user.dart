@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pushellp/commun/action_btn.dart';
 import 'package:pushellp/commun/appBarCustom.dart';
 import 'package:pushellp/commun/back_btn_custom.dart';
 import 'package:pushellp/commun/cell_table.dart';
@@ -7,7 +8,6 @@ import 'package:pushellp/commun/drawerCustom.dart';
 import 'package:pushellp/commun/header_table.dart';
 import 'package:pushellp/commun/utils.dart';
 import 'package:pushellp/models/User.dart';
-import 'package:pushellp/screens/user/action_btn.dart';
 import 'package:pushellp/screens/user/tab_bar_view_custom.dart';
 import 'package:pushellp/services/http_service.dart';
 
@@ -23,15 +23,18 @@ class ManageUserPage extends StatefulWidget {
 
 class _ManageUserPageState extends State<ManageUserPage>
     with SingleTickerProviderStateMixin {
+
   final double paddingLeftCellTable = 5.0;
   final Color headerColor = Colors.white;
   final double headerFontSize = 18;
   final double tabBarViewPadding = 20;
   final double fontSizeTitle = 24;
   final HttpService _httpService = HttpService();
+
   TabController? _tabController;
   int _selectedIndex = 0;
   List<TableRow> _tableRows = [];
+  //bool _loading = true;
 
   void initState() {
     super.initState();
@@ -45,6 +48,9 @@ class _ManageUserPageState extends State<ManageUserPage>
 
   @override
   Widget build(BuildContext context) {
+    // if(_loading){
+    //   return CircularProgressIndicator();
+    // }
     createTable();
 
     return Scaffold(
@@ -177,7 +183,7 @@ class _ManageUserPageState extends State<ManageUserPage>
                     Utils.displayAlertDialog(context, "Error updating the user", err.toString());
                   }
                 },
-                icon: ImageIcon(AssetImage('images/promote.png')),
+                icon: ImageIcon(AssetImage('images/promote.png')), isLeadingToUpdateSection: false,
               );
         }else{
           promoteUserActionBtn = SizedBox();
@@ -198,7 +204,7 @@ class _ManageUserPageState extends State<ManageUserPage>
                 Utils.displayAlertDialog(context, "Error deleting the user", err.toString());
               }  
             },
-            icon: Icon(Icons.delete),
+            icon: Icon(Icons.delete), isLeadingToUpdateSection: false,
           );
         }
         tableRows.add(TableRow(children: [
@@ -221,7 +227,7 @@ class _ManageUserPageState extends State<ManageUserPage>
       _tableRows = tableRows;
     }catch(err){
       print("Error: $err");
-      Utils.displayAlertDialog(context, "Error deleting the user", err.toString());
+      Utils.displayAlertDialog(context, "Error getting the user list", err.toString());
     }
   }
 }

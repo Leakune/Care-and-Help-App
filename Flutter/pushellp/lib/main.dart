@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pushellp/router/router.dart';
 import 'package:pushellp/screens/home/home_page.dart';
 
 import 'models/User.dart';
@@ -31,6 +32,7 @@ class MainApp extends StatelessWidget {
         ),
       ),
       onGenerateRoute: (settings){
+        //MyRouter.generateRoute(settings);
         //Home Page
         if(settings.name == HomePage.routeName){
           final args = settings.arguments as User;
@@ -38,7 +40,7 @@ class MainApp extends StatelessWidget {
             return HomePage(user: args);
           });
         }
-         //Manage Users
+          //Manage Users
         if(settings.name == ManageUserPage.routeName){
           final args = settings.arguments as User;
           return MaterialPageRoute(builder: (context){
@@ -80,6 +82,10 @@ class MainApp extends StatelessWidget {
             return ManageAppThemePage(user: args);
           });
         }
+        //page not found
+        return MaterialPageRoute(builder: (context){ 
+          return Center(child: Text("Error: Page not found"));
+        });
       },
       home: Home(),
       debugShowCheckedModeBanner: false,

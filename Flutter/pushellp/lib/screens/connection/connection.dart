@@ -75,29 +75,32 @@ class _ConnectionState extends State<Connection> {
   }
 
   FutureBuilder<User> buildFutureBuilderLogin() {
+    print("futureBuilder");
     return FutureBuilder<User>(
       future: _futureUser,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          Navigator.pushNamed(
-            context,
-            HomePage.routeName,
-            arguments: snapshot.data,
-          );
-          return Text(snapshot.data!.pseudo);
-        } else if (snapshot.hasError) {
-          print(snapshot.error);
-          // WidgetsBinding.instance!.addPostFrameCallback((_) =>
-          //   displayAlertDialog(context, "Error", snapshot.error.toString())
-          // );
-          return buildFormLogin();
-          //return SizedBox.shrink();
-
-          //displayAlertDialog(snapshot.error.toString());
-
+        switch(snapshot.connectionState){
+          case ConnectionState.waiting:
+            return Center(child: CircularProgressIndicator());
+          case ConnectionState.done:
+            if(snapshot.hasError){
+              Utils.displayAlertDialog(context, "Error", "Error during the connection");
+              //return Text(snapshot.error.toString());
+              return buildFormLogin();
+            }
+            if(!snapshot.hasData){
+              Utils.displayAlertDialog(context, "Error", "User not found");
+              return buildFormLogin();
+            }
+            Navigator.pushNamed(
+              context,
+              HomePage.routeName,
+              arguments: snapshot.data as User,
+            );
+            return Text(snapshot.data!.pseudo);
+          default:
+            return Text("Connection");
         }
-
-        return CircularProgressIndicator();
       },
     );
   }
@@ -105,12 +108,13 @@ class _ConnectionState extends State<Connection> {
   void onClickSubmitButton() async {
     //verify if form is valid
     if (_formKey.currentState!.validate()) {
-      /* TODO display AlertDialog
-      setState(() {
-        _futureUser = _httpService.login(
-            _loginController.text.trim(), _passwordController.text.trim());
-      });*/
-      try{
+      // setState(() async{
+      //   print("here");
+      //   _futureUser =  _httpService.login(
+      //       _loginController.text.trim(), _passwordController.text.trim());
+      //   print("here2");
+      // });
+      try{ //TODO
         User user = await _httpService.login(
             _loginController.text.trim(), _passwordController.text.trim());
         Navigator.pushNamed(

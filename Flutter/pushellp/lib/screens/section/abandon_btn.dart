@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:pushellp/commun/utils.dart';
 
-class ActionBtn extends StatelessWidget {
+class AbandonBtn extends StatelessWidget {
   final String title;
   final String question;
-  final VoidCallback callback;
+  final BuildContext contextParent;
   final dynamic icon;
-  const ActionBtn(
+  const AbandonBtn(
       {Key? key,
       required this.title,
       required this.question,
-      required this.callback, this.icon})
+      this.icon,
+      required this.contextParent})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
+    return ElevatedButton(
+      onPressed: () {
         // set up the buttons
         Widget cancelButton = TextButton(
           child: Text("No"),
@@ -24,7 +25,10 @@ class ActionBtn extends StatelessWidget {
         );
         Widget confirmButton = TextButton(
           child: Text("Yes"),
-          onPressed: callback,
+          onPressed: (){
+            Navigator.of(context).pop();
+            Navigator.of(contextParent).pop();
+          },
         );
         Utils.displayAlertDialogChoices(
             context: context,
@@ -33,7 +37,7 @@ class ActionBtn extends StatelessWidget {
             cancelBtn: cancelButton,
             confirmBtn: confirmButton);
       },
-      child: icon,
+      child: Text("Abandon"),
     );
   }
 }
