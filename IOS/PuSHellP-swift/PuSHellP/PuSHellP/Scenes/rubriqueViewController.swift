@@ -8,6 +8,11 @@
 import UIKit
 
 class rubriqueViewController: UIViewController {
+    
+    /*required init?(coder: aDecoder: NSCoder) {
+        super.init(coder: adCoder)
+        tabBarItem = UITabBarItem(title: "User", image: UIImage(named: "User—Icone"), tag: 1)
+    }*/
 
     override func viewDidLoad() {
         super.viewDidLoad()
