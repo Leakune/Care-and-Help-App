@@ -10,7 +10,6 @@ import 'package:pushellp/models/Section.dart';
 import 'package:pushellp/models/User.dart';
 import 'package:pushellp/screens/section/create_update_section.dart';
 import 'package:pushellp/services/http_service.dart';
-//import 'package:pushellp/services/http_service.dart';
 
 class ManageSectionPage extends StatefulWidget {
   static const routeName = "/manageSections";
@@ -23,12 +22,11 @@ class ManageSectionPage extends StatefulWidget {
 }
 
 class _ManageSectionPageState extends State<ManageSectionPage> {
+  final baseUrlSrcIcon = "http://0.0.0.0:3000/uploads/sections/";
   final double paddingLeftCellTable = 5.0;
   final Color headerColor = Colors.white;
   final double headerFontSize = 18;
   final HttpService _httpService = HttpService();
-  //final HttpService _httpService = HttpService();
-  List<TableRow> _tableRows = [];
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +121,10 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
           headerColor: headerColor,
           headerFontSize: headerFontSize),
       HeaderTable(
+          headerValue: "Description",
+          headerColor: headerColor,
+          headerFontSize: headerFontSize),
+      HeaderTable(
           headerValue: "Image",
           headerColor: headerColor,
           headerFontSize: headerFontSize),
@@ -134,11 +136,15 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
     ]));
     for (var s in sections) {
       var title = s.title;
+      var srcIcon = s.srcicon != "" ? s.srcicon! : "null";
+      var image = getImage(srcIcon);
+      
       tableRows.add(TableRow(children: [
         CellTable(valueCell: s.title, paddingLeft: paddingLeftCellTable),
-        CellTable(
-            valueCell: s.srcicon != "" ? s.srcicon! : "null",
-            paddingLeft: paddingLeftCellTable),
+         CellTable(valueCell: s.description, paddingLeft: paddingLeftCellTable),
+         Container(
+           child: image,
+         ),
         Row(
           children: [
             ActionBtn(
@@ -168,10 +174,25 @@ class _ManageSectionPageState extends State<ManageSectionPage> {
         )
       ]));
     }
-    return Table(
+    return Table(//IntrinsicColumnWidth
+      columnWidths: {
+                2: IntrinsicColumnWidth(),
+              },
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       border: TableBorder.all(),
       children: tableRows,
     );
+  }
+  dynamic getImage(String srcIcon){
+    var image;
+    try{
+      image = Padding(
+          padding: EdgeInsets.only(left: paddingLeftCellTable),
+          child: Image.network(baseUrlSrcIcon + srcIcon,scale: 1.5, fit: BoxFit.fitWidth,),
+      );
+    }catch(err){
+      image = SizedBox();
+    }
+    return image;
   }
 }
