@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class RequestConnexion{
     enum Result<Individual> {
@@ -13,7 +14,8 @@ class RequestConnexion{
         case Error(String, Int)
     }
     
-    public static func requestConnexion(pseudo: String, password: String, completion: @escaping (Result<Individual>) -> Void){
+    public static func requestConnexion(spinner: UIActivityIndicatorView!,pseudo: String, password: String, completion: @escaping (Result<Individual>) -> Void){
+        spinner.startAnimating()
         guard let uri = URL(string: "http://0.0.0.0:3000/login") else {
             completion(.Error("Invalid URL", 401))
             //completion(nil)
@@ -41,7 +43,7 @@ class RequestConnexion{
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
 
             guard error == nil, let data = data else {
-                completion(.Error("error api server", 401))
+                completion(.Error("error connecting to the api server", 500))
                 return
             }
 

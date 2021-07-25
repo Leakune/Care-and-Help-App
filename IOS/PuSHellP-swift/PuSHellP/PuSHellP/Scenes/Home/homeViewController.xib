@@ -19,6 +19,7 @@
             <connections>
                 <outlet property="motDePasseTextField" destination="TId-c9-WiU" id="bsD-Nc-ct4"/>
                 <outlet property="pseudoTextField" destination="uq5-Kn-KiU" id="usp-6Z-LCz"/>
+                <outlet property="spinner" destination="Ryt-FI-98T" id="9pQ-vd-Sy8"/>
                 <outlet property="submitButton" destination="VYi-eN-I4V" id="m5R-9r-71G"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -81,6 +82,10 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </textField>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Ryt-FI-98T">
+                    <rect key="frame" x="374" y="540" width="20" height="37"/>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -90,14 +95,17 @@
                 <constraint firstItem="T8P-0v-1qM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="330" id="3gZ-0w-wSb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TId-c9-WiU" secondAttribute="trailing" constant="154" id="FLv-hj-C43"/>
                 <constraint firstItem="TId-c9-WiU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="705" id="HxX-8i-aTC"/>
+                <constraint firstItem="Ryt-FI-98T" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="374" id="JMJ-X2-4hB"/>
                 <constraint firstItem="uq5-Kn-KiU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="155" id="Peq-c8-ujv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T8P-0v-1qM" secondAttribute="trailing" constant="329" id="UQi-zJ-xE2"/>
                 <constraint firstItem="TId-c9-WiU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="155" id="Xce-zj-sYe"/>
                 <constraint firstItem="NcF-Ak-lOM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-150" id="XjP-nw-FMh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ryt-FI-98T" secondAttribute="trailing" constant="374" id="emE-pE-Uzi"/>
                 <constraint firstItem="VYi-eN-I4V" firstAttribute="top" secondItem="TId-c9-WiU" secondAttribute="bottom" constant="30" id="gub-aT-k2m"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uq5-Kn-KiU" secondAttribute="trailing" constant="154" id="mLa-rj-SmB"/>
                 <constraint firstItem="VYi-eN-I4V" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oaO-Kf-dBy"/>
                 <constraint firstItem="uq5-Kn-KiU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="584" id="tgT-uZ-Pt0"/>
+                <constraint firstItem="uq5-Kn-KiU" firstAttribute="top" secondItem="Ryt-FI-98T" secondAttribute="bottom" constant="7" id="thk-uX-Tun"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NcF-Ak-lOM" secondAttribute="trailing" constant="186" id="va0-XW-YF2"/>
             </constraints>
             <point key="canvasLocation" x="13.28125" y="80.2734375"/>

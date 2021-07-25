@@ -8,18 +8,18 @@
 import UIKit
 
 class homeViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        setupTextFieldManager()
-        // Do any additional setup after loading the view.
-    }
-    // MARK: Outlets
    
-    
+    @IBOutlet var spinner: UIActivityIndicatorView!
     @IBOutlet var pseudoTextField: UITextField!
     @IBOutlet var motDePasseTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        spinner.hidesWhenStopped = true
+        spinner.stopAnimating()
+    }
     
     @IBAction func submitButton(_ sender: Any) {
         //self.displayLoading()
@@ -33,8 +33,9 @@ class homeViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-        RequestConnexion.requestConnexion(pseudo: pseudo, password: motDePasse, completion:{ result in
+        RequestConnexion.requestConnexion(spinner: self.spinner, pseudo: pseudo, password: motDePasse, completion:{ result in
             DispatchQueue.main.async {
+                self.spinner.stopAnimating()
                 switch result{
                 case .Success(let individual):
                     let controller = FavorisViewController.newInstance(individual: individual)

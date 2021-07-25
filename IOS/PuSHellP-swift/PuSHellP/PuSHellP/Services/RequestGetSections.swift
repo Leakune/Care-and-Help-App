@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class RequestGetSections{
 
@@ -14,7 +15,8 @@ class RequestGetSections{
         case Error(String, Int)
     }
 
-    public static func requestGetSections(completion: @escaping (Result<Section>) -> Void){
+    public static func requestGetSections(spinner: UIActivityIndicatorView!, completion: @escaping (Result<Section>) -> Void){
+        spinner.startAnimating()
         guard let url = URL(string: "http://0.0.0.0:3000/getSections") else {
             completion(.Error("Invalid URL", 401))
             return

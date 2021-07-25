@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="allRubriquesViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
+                <outlet property="spinner" destination="9VJ-z7-ZSu" id="unm-6M-aoE"/>
                 <outlet property="tableViewSections" destination="uIc-mk-GOz" id="n3Q-Ux-v6m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,9 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uIc-mk-GOz">
-                    <rect key="frame" x="20" y="106" width="728" height="797"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uIc-mk-GOz">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="946"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <tabBar contentMode="scaleToFill" translucent="NO" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="lp3-v0-MmM">
@@ -39,12 +39,22 @@
                     </items>
                     <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tabBar>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="9VJ-z7-ZSu">
+                    <rect key="frame" x="365.5" y="493.5" width="37" height="37"/>
+                    <color key="color" systemColor="labelColor"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="lp3-v0-MmM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6hM-GA-GBp"/>
+                <constraint firstItem="9VJ-z7-ZSu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8Pm-h6-bLR"/>
+                <constraint firstItem="uIc-mk-GOz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Adb-A3-gVc"/>
                 <constraint firstItem="lp3-v0-MmM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RhO-nF-lTS"/>
+                <constraint firstItem="9VJ-z7-ZSu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Urr-Lu-m8c"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uIc-mk-GOz" secondAttribute="trailing" id="VgI-36-bpj"/>
+                <constraint firstItem="lp3-v0-MmM" firstAttribute="top" secondItem="uIc-mk-GOz" secondAttribute="bottom" id="hUS-s8-JIz"/>
+                <constraint firstItem="uIc-mk-GOz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qpE-ej-8YZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="lp3-v0-MmM" secondAttribute="bottom" constant="29" id="x9q-Be-Vvf"/>
             </constraints>
             <point key="canvasLocation" x="121.875" y="78.515625"/>
@@ -53,6 +63,9 @@
     <resources>
         <image name="+" width="206" height="240"/>
         <image name="petit+ 2" width="92" height="106"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
