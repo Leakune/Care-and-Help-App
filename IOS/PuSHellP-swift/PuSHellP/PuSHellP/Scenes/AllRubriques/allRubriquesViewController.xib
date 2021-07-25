@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Roboto-Black.ttf">
-            <string>Roboto-Black</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="allRubriquesViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
+                <outlet property="tableViewSections" destination="uIc-mk-GOz" id="n3Q-Ux-v6m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -43,28 +39,12 @@
                     </items>
                     <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tabBar>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zso-E9-Jfc">
-                    <rect key="frame" x="0.0" y="22" width="177" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="177" id="1TB-Rg-hUY"/>
-                        <constraint firstAttribute="height" constant="48" id="LAb-in-Wpw"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="26"/>
-                    <state key="normal" title="&lt; Favoris">
-                        <color key="titleColor" red="0.48394340279999998" green="0.063351407649999997" blue="0.007341299206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="buttonReturnFavoris:" destination="-1" eventType="touchUpInside" id="Z9E-34-zhk"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="lp3-v0-MmM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6hM-GA-GBp"/>
                 <constraint firstItem="lp3-v0-MmM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RhO-nF-lTS"/>
-                <constraint firstItem="zso-E9-Jfc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VY8-zn-m3o"/>
-                <constraint firstItem="zso-E9-Jfc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="bY0-LA-KZL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="lp3-v0-MmM" secondAttribute="bottom" constant="29" id="x9q-Be-Vvf"/>
             </constraints>
             <point key="canvasLocation" x="121.875" y="78.515625"/>

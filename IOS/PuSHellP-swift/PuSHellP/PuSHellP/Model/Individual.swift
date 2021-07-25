@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class Individual {//classe représentant un utilisateur
+class Individual {
     
     private var id: Int
     private var pseudo: String
@@ -30,6 +30,50 @@ class Individual {//classe représentant un utilisateur
         self.email = email
         self.birthday = birthday
         self.registerDate = registerDate
+    }
+    public static func individualFromDictionary(_ dict: [String: Any]) -> Individual? {
+        if let body = dict["body"] as? [String: Any]{
+            if let data = body["data"] as? [Any]{
+                //dump(data)
+                if let data1 = data[0] as? [String: Any]{
+                    guard let id = data1["idindividual"] as? Int else{
+                        print("Error in searching idindividual:")
+                        return nil
+                    }
+                    guard let pseudo = data1["pseudo"] as? String else{
+                        print("Error in searching pseudo:")
+                        return nil
+                    }
+                    guard let email = data1["email"] as? String else{
+                        print("Error in searching email:")
+                        return nil
+                    }
+                    guard let status = data1["status"] as? String else{
+                        print("Error in searching data status:")
+                        return nil
+                    }
+                    guard let password = data1["password"] as? String else{
+                        print("Error in searching password:")
+                        return nil
+                    }
+                    print(type(of: data1["salt"]))
+                   guard let salt = data1["salt"] as? String else{
+                        print("Error in searching data salt:")
+                        return nil
+                   }
+                   print(type(of: data1["registerdate"]))
+                   guard let registerDate = data1["registerdate"] as? String else{
+                        print("Error in searching data registerDate:")
+                        return nil
+                    }
+                    let birthday = data1["birthday"] as? String
+                    return Individual(id: id, pseudo: pseudo, password: password, salt: salt, status: status, email: email, birthday: birthday, registerDate: registerDate)
+                }
+                
+            }
+
+        }
+        return nil
     }
     
     public func getId() -> Int{

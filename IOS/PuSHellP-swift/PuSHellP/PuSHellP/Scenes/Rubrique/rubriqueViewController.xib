@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Roboto-Black.ttf">
-            <string>Roboto-Black</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="rubriqueViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
@@ -53,19 +48,6 @@
                     </items>
                     <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tabBar>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0n-3H-Am2">
-                    <rect key="frame" x="0.0" y="22" width="177" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="PeI-fW-n5g"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="177" id="jni-8j-szb"/>
-                        <constraint firstAttribute="height" constant="48" id="r1E-nn-ZGn"/>
-                        <constraint firstAttribute="width" constant="177" id="zO1-p2-lq2"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="26"/>
-                    <state key="normal" title="&lt; Rubriques">
-                        <color key="titleColor" red="0.48394340279999998" green="0.063351407649999997" blue="0.007341299206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,10 +60,8 @@
                 <constraint firstItem="SJZ-Yv-2E6" firstAttribute="top" secondItem="wjs-vS-kPw" secondAttribute="bottom" constant="34" id="a2q-Yo-LTi"/>
                 <constraint firstItem="zKH-kF-TTU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="a3S-Nh-M0F"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SJZ-Yv-2E6" secondAttribute="bottom" constant="111" id="cIN-Yu-DwC"/>
-                <constraint firstItem="O0n-3H-Am2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dlV-Rb-yh9"/>
                 <constraint firstItem="SJZ-Yv-2E6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="185" id="lFX-YE-32D"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="zKH-kF-TTU" secondAttribute="bottom" constant="29" id="lO3-pj-51i"/>
-                <constraint firstItem="O0n-3H-Am2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="nC2-Md-Ost"/>
                 <constraint firstItem="wjs-vS-kPw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="wna-Nn-l5b"/>
             </constraints>
             <point key="canvasLocation" x="-16.40625" y="78.515625"/>

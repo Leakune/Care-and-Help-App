@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,23 +58,11 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCb-pG-Hln">
-                    <rect key="frame" x="0.0" y="22" width="177" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="Pp8-7H-u70"/>
-                        <constraint firstAttribute="width" constant="177" id="Vsa-t1-ucx"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="26"/>
-                    <state key="normal" title="&lt; Retour">
-                        <color key="titleColor" red="0.48394340279999998" green="0.063351407649999997" blue="0.007341299206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MHe-em-yvc" secondAttribute="trailing" constant="52" id="6tU-RB-4jc"/>
-                <constraint firstItem="xCb-pG-Hln" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="74g-Ur-nLx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P29-H7-ajV" secondAttribute="trailing" constant="52" id="CYR-Dj-Qjx"/>
                 <constraint firstItem="P29-H7-ajV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="218" id="Ew1-le-rwL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bG5-B2-Mns" secondAttribute="trailing" constant="233" id="Lca-ZC-vJf"/>
@@ -82,7 +70,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MHe-em-yvc" secondAttribute="bottom" constant="186" id="ThE-0S-Mq5"/>
                 <constraint firstItem="P29-H7-ajV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="58" id="cbt-gX-xfv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="j4p-wE-Vik" secondAttribute="bottom" constant="44" id="evY-wP-brD"/>
-                <constraint firstItem="xCb-pG-Hln" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fE6-Il-600"/>
                 <constraint firstItem="MHe-em-yvc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="53" id="n9h-fd-6s2"/>
                 <constraint firstItem="bG5-B2-Mns" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="nTz-xf-tdQ"/>
                 <constraint firstItem="MHe-em-yvc" firstAttribute="top" secondItem="P29-H7-ajV" secondAttribute="bottom" constant="33" id="yRy-2o-1bL"/>

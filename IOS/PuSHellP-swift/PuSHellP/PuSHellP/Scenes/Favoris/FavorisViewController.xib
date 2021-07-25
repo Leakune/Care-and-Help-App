@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,6 +24,9 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-pushellp" translatesAutoresizingMaskIntoConstraints="NO" id="5aU-J6-dsw">
+                    <rect key="frame" x="332" y="20" width="106" height="59"/>
+                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Buw-yk-QKx">
                     <rect key="frame" x="20" y="243" width="728" height="670"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -73,32 +76,24 @@
                         <action selector="buttonRubrique:" destination="-1" eventType="touchUpInside" id="2a5-Kh-0QG"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-" translatesAutoresizingMaskIntoConstraints="NO" id="zak-7g-5el">
-                    <rect key="frame" x="102" y="7" width="564" height="78"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="78" id="aqI-sv-Upn"/>
-                        <constraint firstAttribute="width" constant="564" id="wwv-h6-JOi"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zak-7g-5el" secondAttribute="trailing" constant="102" id="22S-97-xKg"/>
                 <constraint firstItem="8tT-Mp-UNI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="6Tj-E5-eJ6"/>
                 <constraint firstItem="8tT-Mp-UNI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="CJB-HM-a7a"/>
-                <constraint firstItem="zak-7g-5el" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="7" id="EV4-Lx-gXl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bgT-y7-yhR" secondAttribute="trailing" constant="20" id="HRh-db-fAb"/>
                 <constraint firstItem="bgT-y7-yhR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="IT1-gb-GIt"/>
-                <constraint firstItem="zak-7g-5el" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="102" id="JQo-Bz-sBC"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="PJ7-IB-TBI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oNV-Qx-FD4" secondAttribute="bottom" constant="29" id="RQH-hK-Xna"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="top" secondItem="bgT-y7-yhR" secondAttribute="bottom" constant="22" id="WEA-1L-ub8"/>
+                <constraint firstItem="5aU-J6-dsw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="aah-GV-qmd"/>
                 <constraint firstItem="bgT-y7-yhR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="lBg-8Z-czj"/>
                 <constraint firstItem="oNV-Qx-FD4" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lEk-w4-fJs"/>
                 <constraint firstItem="oNV-Qx-FD4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="slp-SR-58F"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Buw-yk-QKx" secondAttribute="bottom" constant="111" id="sxu-qA-ck6"/>
+                <constraint firstItem="5aU-J6-dsw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="1" id="z7a-zM-aWv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Buw-yk-QKx" secondAttribute="trailing" constant="20" id="zne-68-t3R"/>
             </constraints>
             <point key="canvasLocation" x="6.25" y="78.515625"/>
@@ -106,7 +101,7 @@
     </objects>
     <resources>
         <image name="+" width="206" height="240"/>
-        <image name="logo-" width="495" height="232"/>
+        <image name="logo-pushellp" width="106" height="59"/>
         <image name="petit+ 2" width="92" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
