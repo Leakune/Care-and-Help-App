@@ -33,7 +33,7 @@ class DrawerCustom extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text('Home Page'),
             onTap: () {
-              Navigator.pop(context); // close the drawer
+              Navigator.pop(context);
               Navigator.pushNamed(
                 context,
                 HomePage.routeName,

@@ -108,13 +108,7 @@ class _ConnectionState extends State<Connection> {
   void onClickSubmitButton() async {
     //verify if form is valid
     if (_formKey.currentState!.validate()) {
-      // setState(() async{
-      //   print("here");
-      //   _futureUser =  _httpService.login(
-      //       _loginController.text.trim(), _passwordController.text.trim());
-      //   print("here2");
-      // });
-      try{ //TODO
+      try{
         User user = await _httpService.login(
             _loginController.text.trim(), _passwordController.text.trim());
         Navigator.pushNamed(

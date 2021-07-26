@@ -34,7 +34,6 @@ class _ManageUserPageState extends State<ManageUserPage>
   TabController? _tabController;
   int _selectedIndex = 0;
   List<TableRow> _tableRows = [];
-  //bool _loading = true;
 
   void initState() {
     super.initState();
@@ -174,10 +173,7 @@ class _ManageUserPageState extends State<ManageUserPage>
                   try{
                     await _httpService.setUserStatusAdminByIdUser(u.idUser, widget.user.idUser);
                     Navigator.of(context).pop();
-                    setState(() {}); //TODO update list of users after the change of the status
-                    // setState(() {
-                    //   _selectedIndex = _tabController!.index;
-                    // });
+                    setState(() {});
                   }catch(err){
                     print("Error: $err");
                     Utils.displayAlertDialog(context, "Error updating the user", err.toString());
@@ -198,7 +194,7 @@ class _ManageUserPageState extends State<ManageUserPage>
               try{
                 await _httpService.deleteUserById(u.idUser);
                 Navigator.of(context).pop();
-                setState(() {}); //TODO update list of users after the deletion
+                setState(() {});
               }catch(err){
                 print("Error: $err");
                 Utils.displayAlertDialog(context, "Error deleting the user", err.toString());
