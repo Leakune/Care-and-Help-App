@@ -1,27 +1,26 @@
 //
-//  RequestCreatePost.swift
+//  RequestPushPost.swift
 //  PuSHellP
 //
-//  Created by Ludovic FAVIER on 27/07/2021.
+//  Created by Ludovic FAVIER on 29/07/2021.
 //
 
 import Foundation
 import UIKit
 
-class RequestCreatePost{
-    enum Result<Individual> {
-        case Success(Void)
+class RequestPushPost{
+    enum Result<Int> {
+        case Success(Int)
         case Error(String, Int)
     }
-
-    public static func requestCreatePost(spinner: UIActivityIndicatorView!, title: String, content: String, idSection: Int, completion: @escaping (Result<Void>) -> Void){
+    public static func pushPostByIdUserWithIdPost(spinner: UIActivityIndicatorView!, idUser: Int, idPost: Int, completion: @escaping (Result<Int>) -> Void){
         spinner.startAnimating()
-        guard let uri = URL(string: "http://0.0.0.0:3000/createPost") else {
+        guard let uri = URL(string: "http://0.0.0.0:3000/pushPostByIdUserWithIdPost") else {
             completion(.Error("Invalid URL", 401))
             //completion(nil)
             return
         }
-        let parameters = ["title": title, "content": content, "idSection": idSection] as [String : Any]
+        let parameters = ["idUser": idUser, "idPost": idPost] as [String : Any]
 
         //create the session object
         let session = URLSession.shared
@@ -56,7 +55,15 @@ class RequestCreatePost{
                     completion(.Error(error, 400))
                     return
                 }
-                completion(.Success(()))
+                guard let body = json["body"] as? [String: Any] else{
+                    completion(.Error("error body not found", 404))
+                    return
+                }
+                guard let numberpush = body["data"] as? Int else{
+                    completion(.Error("error posts not found", 404))
+                    return
+                }
+                completion(.Success((numberpush)))
             } catch let error {
                 print(error.localizedDescription)
             }

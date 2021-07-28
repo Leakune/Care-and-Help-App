@@ -90,10 +90,10 @@ extension rubriqueViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let post = self.listPost[indexPath.row]
         print(post.getTitle() + " clicked")
-//        guard let user = self.individual else{
-//            return
-//        }
-//        let controller = rubriqueViewController.newInstance(individual: user, section: section)
-//        self.navigationController?.pushViewController(controller, animated: true)
+        guard let user = self.individual, let section = self.section else{
+            return
+        }
+        let controller = postViewController.newInstance(individual: user, section: section, post: post)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

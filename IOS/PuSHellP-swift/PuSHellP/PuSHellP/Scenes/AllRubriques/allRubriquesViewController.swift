@@ -8,6 +8,7 @@
 import UIKit
 
 class allRubriquesViewController: UIViewController {
+    let sectionCellId = "SectionTableViewCell"
     @IBOutlet var spinner: UIActivityIndicatorView!
     public var individual: Individual?
     public var listSections: [Section] = []
@@ -38,6 +39,7 @@ class allRubriquesViewController: UIViewController {
         self.title = "Liste des rubriques"
         spinner.hidesWhenStopped = true
         spinner.stopAnimating()
+        self.tableViewSections.register(UINib.init(nibName: sectionCellId, bundle: nil), forCellReuseIdentifier: sectionCellId)
         self.tableViewSections.dataSource = self
         self.tableViewSections.delegate = self
     }
@@ -47,6 +49,7 @@ class allRubriquesViewController: UIViewController {
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }
+
 extension allRubriquesViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.listSections.count
@@ -54,19 +57,26 @@ extension allRubriquesViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = self.listSections[indexPath.row]
         let cell = getSectionCell(tableView: tableView)
-        cell.textLabel?.text = section.getTitle()
+//        let cell = getSectionCell(tableView: tableView) as!SectionTableViewCell
+//        cell.titleSection.text = section.getTitle()
         if let srcIcon = section.getSrcIcon(){
             if let data = NSData(contentsOf: URL(string:"http://0.0.0.0:3000/uploads/sections/" + srcIcon)!)
             {
+                //cell.imageSection?.image = UIImage(data: data as Data)
                 cell.imageView?.image = UIImage(data: data as Data)
             }
         }
+        cell.textLabel?.text = section.getTitle()
         return cell
     }
     func getSectionCell(tableView: UITableView) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "section_identifier") else {
             return UITableViewCell(style: .default, reuseIdentifier: "section_identifier")
         }
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "SectionTableViewCell") as! SectionTableViewCell
+//        guard let cell = (tableView.dequeueReusableCell(withIdentifier: "SectionTableViewCell") as? SectionTableViewCell) else {
+//            return UITableViewCell(style: .default, reuseIdentifier: "SectionTableViewCell") as! SectionTableViewCell
+//        }
         return cell
     }
 }
