@@ -41,7 +41,6 @@ public class Utils {
                     ))
             );
             if(response.statusCode() != 200){
-                //Utils.showAlertDialog("error", "Error finding the ticket list", "There may be no ticket with the status " + status);
                 return ticketList;
             }
             JsonObject convertedObject = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(response.body(), JsonObject.class);

@@ -118,7 +118,7 @@ class _ConnectionState extends State<Connection> {
         );
       }catch(err){
         print("Error: $err");
-        Utils.displayAlertDialog(context, "Error deleting the user", err.toString());
+        Utils.displayAlertDialog(context, "Error during the connection", err.toString());
       }
     }
   }

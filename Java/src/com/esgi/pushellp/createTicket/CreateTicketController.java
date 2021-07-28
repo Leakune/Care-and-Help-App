@@ -120,27 +120,6 @@ public class CreateTicketController implements Initializable {
     public void onClickCancel(ActionEvent event) {
         openTicketListScene(event);
     }
-    // Factory to create Cell of DatePicker
-//    private Callback<DatePicker, DateCell> getDayCellFactory() {
-//
-//        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
-//
-//            @Override
-//            public DateCell call(final DatePicker datePicker) {
-//                return new DateCell() {
-//                    @Override
-//                    public void updateItem(LocalDate item, boolean empty) {
-//                        super.updateItem(item, empty);
-//
-//                        // Disable all past dates
-//                        LocalDate today = LocalDate.now();
-//                        setDisable(empty || item.compareTo(today) < 0);
-//                    }
-//                };
-//            }
-//        };
-//        return dayCellFactory;
-//    }
 
     private void addTextLimiter(final TextInputControl tf, final int maxLength) {
         tf.textProperty().addListener((ov, oldValue, newValue) -> {
@@ -164,10 +143,6 @@ public class CreateTicketController implements Initializable {
 
         //set date deadline configuration
         deadlineDatePicker.setValue(LocalDate.now());
-//        deadlineDatePicker.getEditor().setDisable(true);
-//        deadlineDatePicker.getEditor().setOpacity(1);
-//        Callback<DatePicker, DateCell> dayCellFactory= this.getDayCellFactory();
-//        deadlineDatePicker.setDayCellFactory(dayCellFactory);
 
         //set comboBox priority configuration
         ObservableList<String> priorityList = FXCollections.observableArrayList(LOW, MEDIUM, HIGH);

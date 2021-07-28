@@ -28,19 +28,24 @@ class allRubriquesViewController: UIViewController {
                     self.listSections = sections
                     self.tableViewSections.reloadData()
                 case .Error(let errorMessage, _):
-                    Utils.displayAlertDialog(viewController: self, message: errorMessage)
+                    Utils.displayAlertDialog(viewController: self, title: "Error", message: errorMessage)
                 }
             }
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Liste des rubriques"
         spinner.hidesWhenStopped = true
         spinner.stopAnimating()
         self.tableViewSections.dataSource = self
         self.tableViewSections.delegate = self
     }
 
+    @IBAction func onClickPost(_ sender: Any) {
+        let controller = newPostViewController.newInstance(individual: individual!)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 extension allRubriquesViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,15 +56,6 @@ extension allRubriquesViewController: UITableViewDataSource{
         let cell = getSectionCell(tableView: tableView)
         cell.textLabel?.text = section.getTitle()
         if let srcIcon = section.getSrcIcon(){
-//            let fileName : String = srcIcon
-//            let fileNameArr : [String] = fileName.components(separatedBy: ".")
-//            let fileExtension = fileNameArr[1]
-//            print("filename: " + fileNameArr[0])
-//            print("file extension: " + fileExtension)
-//            if let filePath = Bundle.main.path(forResource: "http://0.0.0.0:3000/uploads/" + fileNameArr[0], ofType: fileExtension), let image = UIImage(contentsOfFile: filePath) {
-//                cell.imageView?.contentMode = .scaleAspectFit
-//                cell.imageView?.image = image
-//            }
             if let data = NSData(contentsOf: URL(string:"http://0.0.0.0:3000/uploads/sections/" + srcIcon)!)
             {
                 cell.imageView?.image = UIImage(data: data as Data)
@@ -77,11 +73,10 @@ extension allRubriquesViewController: UITableViewDataSource{
 extension allRubriquesViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = self.listSections[indexPath.row]
-        print(section.getTitle() + "clicked")
+        guard let user = self.individual else{
+            return
+        }
+        let controller = rubriqueViewController.newInstance(individual: user, section: section)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
-//    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//        let section = self.listSections[sourceIndexPath.row]
-//        self.listSections.remove(at: sourceIndexPath.row)
-//        self.listSections.insert(section, at: destinationIndexPath.row)
-//    }
 }

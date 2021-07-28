@@ -17,6 +17,7 @@ class homeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Connexion"
         spinner.hidesWhenStopped = true
         spinner.stopAnimating()
     }
@@ -41,7 +42,7 @@ class homeViewController: UIViewController {
                     let controller = FavorisViewController.newInstance(individual: individual)
                     self.navigationController?.pushViewController(controller, animated: true)
                 case .Error(let errorMessage, _):
-                    Utils.displayAlertDialog(viewController: self, message: errorMessage)
+                    Utils.displayAlertDialog(viewController: self, title: "Erreur", message: errorMessage)
                 }
             }
         })

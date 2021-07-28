@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,6 +15,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="newPostViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
+                <outlet property="imageSection" destination="bG5-B2-Mns" id="W9o-PL-tr9"/>
+                <outlet property="spinner" destination="ee0-Oq-Xpk" id="VcH-Ro-Yhv"/>
+                <outlet property="textPostContent" destination="xDO-Sp-yFL" id="bAd-kN-K4Q"/>
+                <outlet property="textSection" destination="L1C-Iy-otZ" id="STI-MJ-eDJ"/>
+                <outlet property="textTitle" destination="MCt-Zi-I8t" id="eLu-9c-gtu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,33 +28,17 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Choix rubrique" textAlignment="center" minimumFontSize="17" background="pseudo_bis" disabledBackground="pseudo_bis" translatesAutoresizingMaskIntoConstraints="NO" id="P29-H7-ajV">
-                    <rect key="frame" x="58" y="218" width="658" height="110"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Titre" textAlignment="center" minimumFontSize="17" background="mdp_bis" disabledBackground="pseudo_bis" translatesAutoresizingMaskIntoConstraints="NO" id="MCt-Zi-I8t">
+                    <rect key="frame" x="26" y="313" width="716" height="81"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="658" id="dIr-DI-rUV"/>
-                        <constraint firstAttribute="height" constant="110" id="zxA-eJ-oPz"/>
+                        <constraint firstAttribute="height" constant="81" id="6nl-fi-rvf"/>
+                        <constraint firstAttribute="width" constant="716" id="SNa-6x-R2Q"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="21"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Ecrire quelque chose" textAlignment="center" minimumFontSize="17" background="fond post 2" translatesAutoresizingMaskIntoConstraints="NO" id="MHe-em-yvc">
-                    <rect key="frame" x="53" y="361" width="663" height="477"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="477" id="KzO-aI-j6o"/>
-                        <constraint firstAttribute="width" constant="663" id="nEv-uh-bUd"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="24"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo 1" translatesAutoresizingMaskIntoConstraints="NO" id="bG5-B2-Mns">
-                    <rect key="frame" x="234" y="23" width="301" height="165"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="301" id="X2f-kN-dzS"/>
-                        <constraint firstAttribute="height" constant="165" id="mWc-pw-oP2"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-wE-Vik">
-                    <rect key="frame" x="272" y="904" width="231" height="76"/>
+                    <rect key="frame" x="272" y="878" width="231" height="76"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="231" id="p7J-sj-fUj"/>
                         <constraint firstAttribute="height" constant="76" id="wBj-Uk-yPd"/>
@@ -57,22 +47,68 @@
                     <state key="normal" title="Publier" backgroundImage="submit-1">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="onClickPublish:" destination="-1" eventType="touchUpInside" id="rir-c2-xfD"/>
+                    </connections>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Ecrire quelque chose" textAlignment="center" minimumFontSize="17" background="fond post 2" translatesAutoresizingMaskIntoConstraints="NO" id="MHe-em-yvc">
+                    <rect key="frame" x="26" y="407" width="716" height="443"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="443" id="pZx-TA-gID"/>
+                        <constraint firstAttribute="width" constant="716" id="tzr-QL-9pw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="24"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xDO-Sp-yFL">
+                    <rect key="frame" x="61" y="455" width="646" height="356"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="646" id="74g-PT-vWX"/>
+                        <constraint firstAttribute="height" constant="356" id="ZtA-f8-Z5L"/>
+                    </constraints>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="0.0"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ee0-Oq-Xpk">
+                    <rect key="frame" x="365.5" y="493.5" width="37" height="37"/>
+                    <color key="color" systemColor="labelColor"/>
+                </activityIndicatorView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo 1" translatesAutoresizingMaskIntoConstraints="NO" id="bG5-B2-Mns">
+                    <rect key="frame" x="247.5" y="159" width="273" height="149"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="273" id="fbU-ve-4PE"/>
+                        <constraint firstAttribute="height" constant="149" id="xQn-8k-IMj"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L1C-Iy-otZ">
+                    <rect key="frame" x="306.5" y="73" width="155" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="Y3t-Bi-l5N"/>
+                        <constraint firstAttribute="width" constant="155" id="c2t-mC-Yuh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MHe-em-yvc" secondAttribute="trailing" constant="52" id="6tU-RB-4jc"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P29-H7-ajV" secondAttribute="trailing" constant="52" id="CYR-Dj-Qjx"/>
-                <constraint firstItem="P29-H7-ajV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="218" id="Ew1-le-rwL"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bG5-B2-Mns" secondAttribute="trailing" constant="233" id="Lca-ZC-vJf"/>
+                <constraint firstItem="ee0-Oq-Xpk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="1Wl-gm-oLT"/>
+                <constraint firstItem="xDO-Sp-yFL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4D1-kc-6SW"/>
+                <constraint firstItem="L1C-Iy-otZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="73" id="GlG-Df-8iH"/>
+                <constraint firstItem="MHe-em-yvc" firstAttribute="top" secondItem="MCt-Zi-I8t" secondAttribute="bottom" constant="13" id="HGD-rz-79i"/>
+                <constraint firstItem="ee0-Oq-Xpk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ltv-zN-3XQ"/>
+                <constraint firstItem="xDO-Sp-yFL" firstAttribute="top" secondItem="MCt-Zi-I8t" secondAttribute="bottom" constant="61" id="NNz-Bt-p0k"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="j4p-wE-Vik" secondAttribute="trailing" constant="265" id="Rrn-5J-iGA"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MHe-em-yvc" secondAttribute="bottom" constant="186" id="ThE-0S-Mq5"/>
-                <constraint firstItem="P29-H7-ajV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="58" id="cbt-gX-xfv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="j4p-wE-Vik" secondAttribute="bottom" constant="44" id="evY-wP-brD"/>
-                <constraint firstItem="MHe-em-yvc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="53" id="n9h-fd-6s2"/>
-                <constraint firstItem="bG5-B2-Mns" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="nTz-xf-tdQ"/>
-                <constraint firstItem="MHe-em-yvc" firstAttribute="top" secondItem="P29-H7-ajV" secondAttribute="bottom" constant="33" id="yRy-2o-1bL"/>
+                <constraint firstItem="MCt-Zi-I8t" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ujg-Jh-rdW"/>
+                <constraint firstItem="MCt-Zi-I8t" firstAttribute="top" secondItem="bG5-B2-Mns" secondAttribute="bottom" constant="5" id="YG4-T4-sRj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="j4p-wE-Vik" secondAttribute="bottom" constant="70" id="evY-wP-brD"/>
+                <constraint firstItem="MHe-em-yvc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gCN-MN-jUv"/>
+                <constraint firstItem="bG5-B2-Mns" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mPO-bV-yfo"/>
+                <constraint firstItem="bG5-B2-Mns" firstAttribute="top" secondItem="L1C-Iy-otZ" secondAttribute="bottom" constant="52" id="v5f-6N-lO0"/>
+                <constraint firstItem="L1C-Iy-otZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="w4y-ph-S7c"/>
                 <constraint firstItem="j4p-wE-Vik" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="272" id="zXR-65-F94"/>
             </constraints>
             <point key="canvasLocation" x="131.25" y="77.9296875"/>
@@ -81,7 +117,14 @@
     <resources>
         <image name="Logo 1" width="93" height="103"/>
         <image name="fond post 2" width="301" height="233"/>
+        <image name="mdp_bis" width="301" height="56"/>
         <image name="pseudo_bis" width="300" height="56"/>
         <image name="submit-1" width="160" height="40"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

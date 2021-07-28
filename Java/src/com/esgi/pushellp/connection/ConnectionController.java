@@ -60,7 +60,6 @@ public class ConnectionController implements Initializable {
                 return;
             }
             JsonObject convertedObject = new GsonBuilder().setDateFormat("YYYY-MM-DD HH:mm:ss").create().fromJson(response.body(), JsonObject.class);
-            //System.out.println(convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(0).getClass().getName());
 
             Individual indvdl = gson.fromJson(convertedObject.get("body").getAsJsonObject().get("data").getAsJsonArray().get(0), Individual.class);
 

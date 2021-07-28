@@ -15,7 +15,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavorisViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
-                <outlet property="tabBarPost" destination="oNV-Qx-FD4" id="yH1-IA-JC1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,21 +45,6 @@
                         <constraint firstAttribute="height" constant="148" id="GTd-kQ-Z4y"/>
                     </constraints>
                 </stackView>
-                <tabBar contentMode="scaleToFill" translucent="NO" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="oNV-Qx-FD4">
-                    <rect key="frame" x="0.0" y="946" width="768" height="49"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="768" id="8qy-tV-XhD"/>
-                        <constraint firstAttribute="height" constant="49" id="yUb-1r-DoE"/>
-                    </constraints>
-                    <items>
-                        <tabBarItem image="petit+ 2" largeContentSizeImage="+" id="RdY-iU-qzB">
-                            <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                        </tabBarItem>
-                    </items>
-                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tabBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tT-Mp-UNI">
                     <rect key="frame" x="580" y="20" width="188" height="65"/>
                     <accessibility key="accessibilityConfiguration" label="Toutes les rubriques"/>
@@ -76,6 +60,17 @@
                         <action selector="buttonRubrique:" destination="-1" eventType="touchUpInside" id="2a5-Kh-0QG"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mrd-dM-PqB">
+                    <rect key="frame" x="312" y="888" width="144" height="167"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="144" id="1WW-Zv-QTJ"/>
+                        <constraint firstAttribute="height" constant="167" id="TOL-OW-xjc"/>
+                    </constraints>
+                    <state key="normal" image="+"/>
+                    <connections>
+                        <action selector="onClickPost:" destination="-1" eventType="touchUpInside" id="IYu-AT-MAn"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -86,12 +81,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bgT-y7-yhR" secondAttribute="trailing" constant="20" id="HRh-db-fAb"/>
                 <constraint firstItem="bgT-y7-yhR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="IT1-gb-GIt"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="PJ7-IB-TBI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oNV-Qx-FD4" secondAttribute="bottom" constant="29" id="RQH-hK-Xna"/>
                 <constraint firstItem="Buw-yk-QKx" firstAttribute="top" secondItem="bgT-y7-yhR" secondAttribute="bottom" constant="22" id="WEA-1L-ub8"/>
+                <constraint firstAttribute="bottom" secondItem="Mrd-dM-PqB" secondAttribute="bottom" constant="-31" id="XIo-RF-EH3"/>
                 <constraint firstItem="5aU-J6-dsw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="aah-GV-qmd"/>
+                <constraint firstItem="Mrd-dM-PqB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cRG-aD-F1u"/>
                 <constraint firstItem="bgT-y7-yhR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="lBg-8Z-czj"/>
-                <constraint firstItem="oNV-Qx-FD4" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lEk-w4-fJs"/>
-                <constraint firstItem="oNV-Qx-FD4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="slp-SR-58F"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Buw-yk-QKx" secondAttribute="bottom" constant="111" id="sxu-qA-ck6"/>
                 <constraint firstItem="5aU-J6-dsw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="1" id="z7a-zM-aWv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Buw-yk-QKx" secondAttribute="trailing" constant="20" id="zne-68-t3R"/>
@@ -102,7 +96,6 @@
     <resources>
         <image name="+" width="206" height="240"/>
         <image name="logo-pushellp" width="106" height="59"/>
-        <image name="petit+ 2" width="92" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="rubriqueViewController" customModule="PuSHellP" customModuleProvider="target">
             <connections>
+                <outlet property="imageSection" destination="wjs-vS-kPw" id="kDB-A1-DLP"/>
+                <outlet property="listPosts" destination="SJZ-Yv-2E6" id="uhk-sj-bDt"/>
+                <outlet property="spinner" destination="hrB-fn-y2M" id="RJV-CI-vfq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,13 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2 2" translatesAutoresizingMaskIntoConstraints="NO" id="wjs-vS-kPw">
-                    <rect key="frame" x="264" y="23" width="240" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="MMa-cu-J8b"/>
-                        <constraint firstAttribute="width" constant="240" id="MPC-tH-3eA"/>
-                    </constraints>
-                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SJZ-Yv-2E6">
                     <rect key="frame" x="20" y="185" width="728" height="728"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -33,36 +29,42 @@
                         <constraint firstAttribute="width" constant="728" id="ufK-25-DT3"/>
                     </constraints>
                 </tableView>
-                <tabBar contentMode="scaleToFill" translucent="NO" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="zKH-kF-TTU">
-                    <rect key="frame" x="0.0" y="946" width="768" height="49"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMH-gm-aFi">
+                    <rect key="frame" x="312" y="888" width="144" height="167"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="768" id="7Ax-Gd-6NR"/>
-                        <constraint firstAttribute="height" constant="49" id="vzW-ad-es3"/>
+                        <constraint firstAttribute="height" constant="167" id="mmd-Zk-Zje"/>
+                        <constraint firstAttribute="width" constant="144" id="pQb-os-cB1"/>
                     </constraints>
-                    <items>
-                        <tabBarItem image="petit+ 2" largeContentSizeImage="+" id="E4C-nz-ILu">
-                            <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                        </tabBarItem>
-                    </items>
-                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tabBar>
+                    <state key="normal" image="+"/>
+                    <connections>
+                        <action selector="onClickPost:" destination="-1" eventType="touchUpInside" id="3dQ-to-oYc"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="hrB-fn-y2M">
+                    <rect key="frame" x="365.5" y="493.5" width="37" height="37"/>
+                    <color key="color" systemColor="labelColor"/>
+                </activityIndicatorView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2 2" translatesAutoresizingMaskIntoConstraints="NO" id="wjs-vS-kPw">
+                    <rect key="frame" x="335" y="6" width="98" height="98"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="98" id="kzN-zC-bSF"/>
+                        <constraint firstAttribute="height" constant="98" id="wr9-MS-7ny"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="zKH-kF-TTU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1h8-0X-Ntx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SJZ-Yv-2E6" secondAttribute="trailing" constant="20" id="7bl-IZ-w1h"/>
-                <constraint firstItem="wjs-vS-kPw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="264" id="BJQ-kK-LaA"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wjs-vS-kPw" secondAttribute="trailing" constant="264" id="IVm-sH-NAh"/>
+                <constraint firstItem="tMH-gm-aFi" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BOu-ir-DBy"/>
+                <constraint firstAttribute="bottom" secondItem="tMH-gm-aFi" secondAttribute="bottom" constant="-31" id="DyD-Ld-eyh"/>
+                <constraint firstItem="hrB-fn-y2M" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LUG-Eo-kkF"/>
+                <constraint firstItem="wjs-vS-kPw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WHh-HA-Pft"/>
                 <constraint firstItem="SJZ-Yv-2E6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="YA9-L1-8yM"/>
-                <constraint firstItem="SJZ-Yv-2E6" firstAttribute="top" secondItem="wjs-vS-kPw" secondAttribute="bottom" constant="34" id="a2q-Yo-LTi"/>
-                <constraint firstItem="zKH-kF-TTU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="a3S-Nh-M0F"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SJZ-Yv-2E6" secondAttribute="bottom" constant="111" id="cIN-Yu-DwC"/>
+                <constraint firstItem="hrB-fn-y2M" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="k6Z-dC-rmD"/>
                 <constraint firstItem="SJZ-Yv-2E6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="185" id="lFX-YE-32D"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="zKH-kF-TTU" secondAttribute="bottom" constant="29" id="lO3-pj-51i"/>
-                <constraint firstItem="wjs-vS-kPw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="wna-Nn-l5b"/>
+                <constraint firstItem="wjs-vS-kPw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="6" id="u8g-h8-rtw"/>
             </constraints>
             <point key="canvasLocation" x="-16.40625" y="78.515625"/>
         </view>
@@ -70,7 +72,9 @@
     <resources>
         <image name="+" width="206" height="240"/>
         <image name="logo2 2" width="76" height="76"/>
-        <image name="petit+ 2" width="92" height="106"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

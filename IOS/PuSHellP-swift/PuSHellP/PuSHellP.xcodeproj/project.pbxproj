@@ -13,6 +13,9 @@
 		4344610C266D133200C0741B /* RequestConnexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344610B266D133200C0741B /* RequestConnexion.swift */; };
 		4344610F266D137B00C0741B /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4344610E266D137B00C0741B /* Individual.swift */; };
 		43446113266D4D8C00C0741B /* ConvertDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43446112266D4D8C00C0741B /* ConvertDate.swift */; };
+		43B37DD826B0A2BF0006D74E /* RequestCreatePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B37DD726B0A2BF0006D74E /* RequestCreatePost.swift */; };
+		43B37DDA26B0B00A0006D74E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B37DD926B0B00A0006D74E /* Post.swift */; };
+		43B37DDE26B0BBF50006D74E /* RequestGetPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B37DDD26B0BBF50006D74E /* RequestGetPosts.swift */; };
 		87308DAA263C323C005A85F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87308DA8263C323C005A85F3 /* LaunchScreen.storyboard */; };
 		87308DCC263C3E8B005A85F3 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87308DCA263C3E8B005A85F3 /* homeViewController.swift */; };
 		87308DCD263C3E8B005A85F3 /* homeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87308DCB263C3E8B005A85F3 /* homeViewController.xib */; };
@@ -42,6 +45,9 @@
 		4344610B266D133200C0741B /* RequestConnexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConnexion.swift; sourceTree = "<group>"; };
 		4344610E266D137B00C0741B /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
 		43446112266D4D8C00C0741B /* ConvertDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertDate.swift; sourceTree = "<group>"; };
+		43B37DD726B0A2BF0006D74E /* RequestCreatePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCreatePost.swift; sourceTree = "<group>"; };
+		43B37DD926B0B00A0006D74E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		43B37DDD26B0BBF50006D74E /* RequestGetPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGetPosts.swift; sourceTree = "<group>"; };
 		87308D9A263C323B005A85F3 /* PuSHellP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuSHellP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87308DA9263C323C005A85F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87308DAB263C323C005A85F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +169,8 @@
 				4344610B266D133200C0741B /* RequestConnexion.swift */,
 				43446112266D4D8C00C0741B /* ConvertDate.swift */,
 				4340DFBD26ACC9B10099DEC1 /* RequestGetSections.swift */,
+				43B37DD726B0A2BF0006D74E /* RequestCreatePost.swift */,
+				43B37DDD26B0BBF50006D74E /* RequestGetPosts.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			children = (
 				4344610E266D137B00C0741B /* Individual.swift */,
 				4340DFBF26ACCA650099DEC1 /* Section.swift */,
+				43B37DD926B0B00A0006D74E /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,10 +315,13 @@
 				87BB21F6266CD41F00375241 /* newPostViewController.swift in Sources */,
 				4344610C266D133200C0741B /* RequestConnexion.swift in Sources */,
 				4340DFBE26ACC9B10099DEC1 /* RequestGetSections.swift in Sources */,
+				43B37DDA26B0B00A0006D74E /* Post.swift in Sources */,
 				876FD8A826715FF6008A0CAA /* profilViewController.swift in Sources */,
+				43B37DD826B0A2BF0006D74E /* RequestCreatePost.swift in Sources */,
 				876328612656AD4B00B66420 /* AppDelegate.swift in Sources */,
 				87BB21EF266C059200375241 /* rubriqueViewController.swift in Sources */,
 				4340DFBC26ACC5440099DEC1 /* Utils.swift in Sources */,
+				43B37DDE26B0BBF50006D74E /* RequestGetPosts.swift in Sources */,
 				4344610F266D137B00C0741B /* Individual.swift in Sources */,
 				87F54B50266BB8AE0048D3F7 /* FavorisViewController.swift in Sources */,
 				43446113266D4D8C00C0741B /* ConvertDate.swift in Sources */,
