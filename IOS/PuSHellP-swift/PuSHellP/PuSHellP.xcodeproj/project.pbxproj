@@ -18,7 +18,7 @@
 		4366105526B28F46005234EC /* RequestGetCommentaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4366105426B28F46005234EC /* RequestGetCommentaries.swift */; };
 		4366105826B29B14005234EC /* CommentaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4366105626B29B14005234EC /* CommentaryTableViewCell.swift */; };
 		4366105926B29B14005234EC /* CommentaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4366105726B29B14005234EC /* CommentaryTableViewCell.xib */; };
-		4366105B26B29E51005234EC /* RequestGetUserById.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4366105A26B29E51005234EC /* RequestGetUserById.swift */; };
+		4375EE6A26B2A4830078E659 /* RequestGetUserById.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4375EE6926B2A4830078E659 /* RequestGetUserById.swift */; };
 		43ACA7C826B167E20019A5F9 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACA7C626B167E20019A5F9 /* SectionTableViewCell.swift */; };
 		43ACA7C926B167E20019A5F9 /* SectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43ACA7C726B167E20019A5F9 /* SectionTableViewCell.xib */; };
 		43ACA7CB26B184BB0019A5F9 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACA7CA26B184BB0019A5F9 /* CheckBox.swift */; };
@@ -64,7 +64,7 @@
 		4366105426B28F46005234EC /* RequestGetCommentaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGetCommentaries.swift; sourceTree = "<group>"; };
 		4366105626B29B14005234EC /* CommentaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentaryTableViewCell.swift; sourceTree = "<group>"; };
 		4366105726B29B14005234EC /* CommentaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentaryTableViewCell.xib; sourceTree = "<group>"; };
-		4366105A26B29E51005234EC /* RequestGetUserById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGetUserById.swift; sourceTree = "<group>"; };
+		4375EE6926B2A4830078E659 /* RequestGetUserById.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGetUserById.swift; sourceTree = "<group>"; };
 		43ACA7C626B167E20019A5F9 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
 		43ACA7C726B167E20019A5F9 /* SectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionTableViewCell.xib; sourceTree = "<group>"; };
 		43ACA7CA26B184BB0019A5F9 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
@@ -206,6 +206,7 @@
 				43ACA7D426B210040019A5F9 /* RequestPushPost.swift */,
 				4366105226B28CD3005234EC /* RequestCommentary.swift */,
 				4366105426B28F46005234EC /* RequestGetCommentaries.swift */,
+				4375EE6926B2A4830078E659 /* RequestGetUserById.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -217,7 +218,6 @@
 				4340DFBF26ACCA650099DEC1 /* Section.swift */,
 				43B37DD926B0B00A0006D74E /* Post.swift */,
 				4366105026B28A15005234EC /* Commentary.swift */,
-				4366105A26B29E51005234EC /* RequestGetUserById.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				4366105526B28F46005234EC /* RequestGetCommentaries.swift in Sources */,
 				876FD8A826715FF6008A0CAA /* profilViewController.swift in Sources */,
 				43B37DD826B0A2BF0006D74E /* RequestCreatePost.swift in Sources */,
-				4366105B26B29E51005234EC /* RequestGetUserById.swift in Sources */,
+				4375EE6A26B2A4830078E659 /* RequestGetUserById.swift in Sources */,
 				876328612656AD4B00B66420 /* AppDelegate.swift in Sources */,
 				87BB21EF266C059200375241 /* rubriqueViewController.swift in Sources */,
 				43ACA7D026B18A2F0019A5F9 /* PostTableViewCell.swift in Sources */,

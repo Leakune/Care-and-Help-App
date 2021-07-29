@@ -13,6 +13,7 @@ class postViewController: UIViewController {
     public var post: Post?
     public var listCommentary: [Commentary] = []
     public var isUserDidPushThePost: Bool?
+    public var cellCommentaries = "CommentaryTableViewCell"
     public var colorPushed = UIColor.systemOrange
     public var colorUnpushed = UIColor.systemBlue
     
@@ -79,6 +80,7 @@ class postViewController: UIViewController {
             self.titlePost.text = post.getTitle()
             self.contentPost.text = post.getContent()
         }
+        self.listCommentaries.register(UINib.init(nibName: cellCommentaries, bundle: nil), forCellReuseIdentifier: cellCommentaries)
         self.listCommentaries.dataSource = self
         self.listCommentaries.delegate = self
     }
@@ -133,19 +135,32 @@ extension postViewController: UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let commentary = self.listCommentary[indexPath.row]
-        let cell = getCommentaryCell(tableView: tableView) //as! CommentaryTableViewCell
-        cell.textLabel?.text = commentary.getText()
-        //cell.pseudoUser.text = commentary.get
+        let cell = getCommentaryCell(tableView: tableView, userId: commentary.getIdUser(), commentary: commentary) as! CommentaryTableViewCell
+        //cell.textLabel?.text = commentary.getText()
         return cell
     }
-    func getCommentaryCell(tableView: UITableView) -> UITableViewCell {
-//        guard let cell = (tableView.dequeueReusableCell(withIdentifier: "CommentaryTableViewCell") as? CommentaryTableViewCell) else {
-//            return UITableViewCell(style: .default, reuseIdentifier: "CommentaryTableViewCell") as! CommentaryTableViewCell
-//        }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "section_identifier") else {
-            return UITableViewCell(style: .default, reuseIdentifier: "section_identifier")
+    func getCommentaryCell(tableView: UITableView, userId: Int, commentary: Commentary) -> UITableViewCell {
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: "CommentaryTableViewCell") as? CommentaryTableViewCell) else {
+            return UITableViewCell(style: .default, reuseIdentifier: "CommentaryTableViewCell") as! CommentaryTableViewCell
+        }
+        RequestGetUserById.RequestGetUserById(spinner: self.spinner, idUser: userId) { result in
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                switch result{
+                case .Success(let user):
+                    cell.pseudoUser.text = user.getPseudo()
+                    cell.dateCreation.text = commentary.getDatecreation()
+                    cell.message.text = commentary.getText()
+                case .Error(let errorMessage, _):
+                    Utils.displayAlertDialog(viewController: self, title: "Error", message: errorMessage)
+                }
+            }
         }
         return cell
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "section_identifier") else {
+//            return UITableViewCell(style: .default, reuseIdentifier: "section_identifier")
+//        }
+//        return cell
     }
 
 

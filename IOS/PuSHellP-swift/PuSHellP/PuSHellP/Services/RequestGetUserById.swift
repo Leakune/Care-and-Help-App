@@ -1,52 +1,29 @@
 //
-//  URLRequest.swift
+//  RequestGetUserById.swift
 //  PuSHellP
 //
-//  Created by Ludovic FAVIER on 06/06/2021.
+//  Created by Ludovic FAVIER on 29/07/2021.
 //
 
 import Foundation
 import UIKit
 
-class RequestConnexion{
+class RequestGetUserById{
     enum Result<Individual> {
         case Success(Individual)
         case Error(String, Int)
     }
-    
-    public static func requestConnexion(spinner: UIActivityIndicatorView!,pseudo: String, password: String, completion: @escaping (Result<Individual>) -> Void){
+    public static func RequestGetUserById(spinner: UIActivityIndicatorView!, idUser: Int, completion: @escaping (Result<Individual>) -> Void){
         spinner.startAnimating()
-        guard let uri = URL(string: "http://0.0.0.0:3000/login") else {
+        guard let url = URL(string: "http://0.0.0.0:3000/getIndividualById?idUser=" + String(idUser)) else {
             completion(.Error("Invalid URL", 401))
-            //completion(nil)
             return
         }
-        let parameters = ["username": pseudo, "password": password]
-
-        //create the session object
-        let session = URLSession.shared
-
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: uri)
-        request.httpMethod = "POST" //set http method as POST
-
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        } catch let error {
-            print(error.localizedDescription)
-        }
-
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-        //create dataTask using the session object to send data to the server
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-
+        URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) -> Void in
             guard error == nil, let data = data else {
-                completion(.Error("error connecting to the api server", 500))
+                completion(.Error("error api server", 401))
                 return
             }
-
             do {
                 //create json object from data
                 guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
@@ -63,7 +40,7 @@ class RequestConnexion{
                     return
                 }
                 guard let data = body["data"] as? [ [String: Any] ] else{
-                    completion(.Error("error user not found", 404))
+                    completion(.Error("error data not found", 404))
                     return
                 }
                 let user = data[0]
@@ -74,8 +51,8 @@ class RequestConnexion{
                 completion(.Success(individual))
             } catch let error {
                 print(error.localizedDescription)
+                completion(.Error(error.localizedDescription, 400))
             }
-        })
-        task.resume()
-    }
+        }).resume()
+     }
 }

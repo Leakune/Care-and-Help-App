@@ -32,39 +32,29 @@ class Individual {
         self.registerDate = registerDate
     }
     public static func individualFromDictionary(_ dict: [String: Any]) -> Individual? {
-        if let body = dict["body"] as? [String: Any]{
-            if let data = body["data"] as? [Any]{
-                //dump(data)
-                if let data1 = data[0] as? [String: Any]{
-                    guard let id = data1["idindividual"] as? Int else{
-                        return nil
-                    }
-                    guard let pseudo = data1["pseudo"] as? String else{
-                        return nil
-                    }
-                    guard let email = data1["email"] as? String else{
-                        return nil
-                    }
-                    guard let status = data1["status"] as? String else{
-                        return nil
-                    }
-                    guard let password = data1["password"] as? String else{
-                        return nil
-                    }
-                   guard let salt = data1["salt"] as? String else{
-                        return nil
-                   }
-                   guard let registerDate = data1["registerdate"] as? String else{
-                        return nil
-                    }
-                    let birthday = data1["birthday"] as? String
-                    return Individual(id: id, pseudo: pseudo, password: password, salt: salt, status: status, email: email, birthday: birthday, registerDate: registerDate)
-                }
-                
-            }
-
+        guard let id = dict["idindividual"] as? Int else{
+            return nil
         }
-        return nil
+        guard let pseudo = dict["pseudo"] as? String else{
+            return nil
+        }
+        guard let email = dict["email"] as? String else{
+            return nil
+        }
+        guard let status = dict["status"] as? String else{
+            return nil
+        }
+        guard let password = dict["password"] as? String else{
+            return nil
+        }
+       guard let salt = dict["salt"] as? String else{
+            return nil
+       }
+       guard let registerDate = dict["registerdate"] as? String else{
+            return nil
+       }
+        let birthday = dict["birthday"] as? String
+        return Individual(id: id, pseudo: pseudo, password: password, salt: salt, status: status, email: email, birthday: birthday, registerDate: registerDate)
     }
     
     public func getId() -> Int{
