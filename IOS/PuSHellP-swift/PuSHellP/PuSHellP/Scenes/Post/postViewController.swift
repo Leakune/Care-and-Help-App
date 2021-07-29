@@ -11,6 +11,7 @@ class postViewController: UIViewController {
     public var individual: Individual?
     public var section: Section?
     public var post: Post?
+    public var listCommentary: [Commentary] = []
     public var isUserDidPushThePost: Bool?
     public var colorPushed = UIColor.systemOrange
     public var colorUnpushed = UIColor.systemBlue
@@ -45,12 +46,26 @@ class postViewController: UIViewController {
                     }else{
                         self.arrowPush.tintColor = self.colorUnpushed
                     }
-                
+                    RequestGetCommentaries.requestGetCommentariesByIdPost(spinner: self.spinner, idPost: post.getId()) { result in
+                        DispatchQueue.main.async {
+                            self.spinner.stopAnimating()
+                            switch result{
+                            case .Success(let commentaries):
+                                self.listCommentary = commentaries
+                                self.listCommentaries.reloadData()
+                            case .Error(let errorMessage, _):
+                                Utils.displayAlertDialog(viewController: self, title: "Error", message: errorMessage)
+                            }
+                        }
+                    }
                 case .Error(let errorMessage, _):
                     Utils.displayAlertDialog(viewController: self, title: "Error", message: errorMessage)
                 }
             }
         }
+    }
+    func loadData() {
+        self.listCommentaries.reloadData()
     }
     
     override func viewDidLoad() {
@@ -64,7 +79,8 @@ class postViewController: UIViewController {
             self.titlePost.text = post.getTitle()
             self.contentPost.text = post.getContent()
         }
-        
+        self.listCommentaries.dataSource = self
+        self.listCommentaries.delegate = self
     }
     @IBAction func onClickPush(_ sender: Any) {
         guard let user = self.individual, let post = self.post else{
@@ -90,9 +106,53 @@ class postViewController: UIViewController {
     }
     
     @IBAction func onClickAddCommentary(_ sender: Any) {
-        print("add clicked")
+        guard let text = self.textCommentary.text, let user = self.individual, let post = self.post else{
+            Utils.displayAlertDialog(viewController: self, title: "Error", message: "Please fill the text commentary field.")
+            return
+        }
+        RequestCommentary.requestCreateCommentaryPost(spinner: self.spinner, text: text, idUser: user.getId(), idPost: post.getId()) { result in
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                switch result{
+                case .Success(_):
+                    Utils.displayAlertDialogWithRefresh(viewController: self, title: "Success", message: "The creation of the commentary has been successful", tableView: self.listCommentaries)
+                case .Error(let errorMessage, _):
+                    Utils.displayAlertDialog(viewController: self, title: "Error", message: errorMessage)
+                }
+            }
+        }
     }
     @IBAction func onClickAbandonCommentary(_ sender: Any) {
         print("abandon clicked")
+    }
+}
+
+extension postViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.listCommentary.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let commentary = self.listCommentary[indexPath.row]
+        let cell = getCommentaryCell(tableView: tableView) //as! CommentaryTableViewCell
+        cell.textLabel?.text = commentary.getText()
+        //cell.pseudoUser.text = commentary.get
+        return cell
+    }
+    func getCommentaryCell(tableView: UITableView) -> UITableViewCell {
+//        guard let cell = (tableView.dequeueReusableCell(withIdentifier: "CommentaryTableViewCell") as? CommentaryTableViewCell) else {
+//            return UITableViewCell(style: .default, reuseIdentifier: "CommentaryTableViewCell") as! CommentaryTableViewCell
+//        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "section_identifier") else {
+            return UITableViewCell(style: .default, reuseIdentifier: "section_identifier")
+        }
+        return cell
+    }
+
+
+}
+extension postViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let commentary = self.listCommentary[indexPath.row]
+        print(commentary.getText() + " clicked")
     }
 }

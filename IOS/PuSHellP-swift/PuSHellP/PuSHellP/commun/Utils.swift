@@ -31,4 +31,15 @@ class Utils{
         }))
         viewController.present(alert, animated: true, completion: nil)
     }
+    public static func displayAlertDialogWithRefresh(viewController: UIViewController, title: String, message: String, tableView: UITableView) -> Void{
+        var alertStyle = UIAlertController.Style.actionSheet
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: alertStyle)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
+            tableView.reloadData()
+        }))
+        viewController.present(alert, animated: true, completion: nil)
+    }
 }

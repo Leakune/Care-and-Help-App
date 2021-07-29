@@ -54,10 +54,6 @@ class Post {
             print("Error in searching creationdate")
             return nil
         }
-//        guard let isReceivedReport = post["isreceivedreport"] as? Int else{
-//            print("Error in searching isreceivedreport")
-//            return nil
-//        }
         guard let idSection = post["section_idsection"] as? Int else{
             print("Error in searching idsection")
             return nil
